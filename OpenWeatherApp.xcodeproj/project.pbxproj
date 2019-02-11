@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		22E8F951220C942000BC3EE6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E8F950220C942000BC3EE6 /* AppDelegate.swift */; };
-		22E8F953220C942000BC3EE6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E8F952220C942000BC3EE6 /* ViewController.swift */; };
 		22E8F956220C942000BC3EE6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22E8F954220C942000BC3EE6 /* Main.storyboard */; };
 		22E8F958220C942100BC3EE6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22E8F957220C942100BC3EE6 /* Assets.xcassets */; };
 		22E8F95B220C942100BC3EE6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22E8F959220C942100BC3EE6 /* LaunchScreen.storyboard */; };
@@ -17,7 +16,6 @@
 /* Begin PBXFileReference section */
 		22E8F94D220C942000BC3EE6 /* OpenWeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenWeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		22E8F950220C942000BC3EE6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		22E8F952220C942000BC3EE6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		22E8F955220C942000BC3EE6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		22E8F957220C942100BC3EE6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		22E8F95A220C942100BC3EE6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -70,7 +68,6 @@
 			children = (
 				220AC9A1220CC18C00563AAF /* Services */,
 				220AC9A0220CC17E00563AAF /* Providers */,
-				22E8F952220C942000BC3EE6 /* ViewController.swift */,
 				22E8F954220C942000BC3EE6 /* Main.storyboard */,
 				22E8F959220C942100BC3EE6 /* LaunchScreen.storyboard */,
 				22E8F95C220C942100BC3EE6 /* Info.plist */,
@@ -151,7 +148,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				22E8F953220C942000BC3EE6 /* ViewController.swift in Sources */,
 				22E8F951220C942000BC3EE6 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
