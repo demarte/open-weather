@@ -16,9 +16,7 @@ class CityViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    cityService.fetch(with: searchTerm) { (city) in
-      print("City json: \(city)")
-    }
+    cityService.fetch(with: searchTerm) { print($0) }
   }
   
 }
