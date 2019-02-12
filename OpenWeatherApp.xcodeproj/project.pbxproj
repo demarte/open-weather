@@ -13,6 +13,7 @@
 		22A7857C22133EE9009C0B5B /* CityServiceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A7857B22133EE9009C0B5B /* CityServiceType.swift */; };
 		22A7858022133FB5009C0B5B /* CityProviderRestAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A7857F22133FB5009C0B5B /* CityProviderRestAPI.swift */; };
 		22A7858222134227009C0B5B /* CityServiceRestAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A7858122134227009C0B5B /* CityServiceRestAPI.swift */; };
+		22A78585221343F3009C0B5B /* CityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A78584221343F3009C0B5B /* CityViewController.swift */; };
 		22E8F951220C942000BC3EE6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E8F950220C942000BC3EE6 /* AppDelegate.swift */; };
 		22E8F956220C942000BC3EE6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22E8F954220C942000BC3EE6 /* Main.storyboard */; };
 		22E8F958220C942100BC3EE6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22E8F957220C942100BC3EE6 /* Assets.xcassets */; };
@@ -26,6 +27,7 @@
 		22A7857B22133EE9009C0B5B /* CityServiceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityServiceType.swift; sourceTree = "<group>"; };
 		22A7857F22133FB5009C0B5B /* CityProviderRestAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityProviderRestAPI.swift; sourceTree = "<group>"; };
 		22A7858122134227009C0B5B /* CityServiceRestAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityServiceRestAPI.swift; sourceTree = "<group>"; };
+		22A78584221343F3009C0B5B /* CityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityViewController.swift; sourceTree = "<group>"; };
 		22E8F94D220C942000BC3EE6 /* OpenWeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenWeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		22E8F950220C942000BC3EE6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		22E8F955220C942000BC3EE6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -72,6 +74,14 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		22A78583221343AA009C0B5B /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				22A78584221343F3009C0B5B /* CityViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
 		22E8F944220C942000BC3EE6 = {
 			isa = PBXGroup;
 			children = (
@@ -91,6 +101,7 @@
 		22E8F94F220C942000BC3EE6 /* OpenWeatherApp */ = {
 			isa = PBXGroup;
 			children = (
+				22A78583221343AA009C0B5B /* Controllers */,
 				22A7857422133D0B009C0B5B /* Models */,
 				220AC9A1220CC18C00563AAF /* Services */,
 				220AC9A0220CC17E00563AAF /* Providers */,
@@ -177,6 +188,7 @@
 				22A7857622133D2F009C0B5B /* City.swift in Sources */,
 				22A7857C22133EE9009C0B5B /* CityServiceType.swift in Sources */,
 				22A7858022133FB5009C0B5B /* CityProviderRestAPI.swift in Sources */,
+				22A78585221343F3009C0B5B /* CityViewController.swift in Sources */,
 				22A7858222134227009C0B5B /* CityServiceRestAPI.swift in Sources */,
 				22A7857822133D77009C0B5B /* Weather.swift in Sources */,
 				22E8F951220C942000BC3EE6 /* AppDelegate.swift in Sources */,
