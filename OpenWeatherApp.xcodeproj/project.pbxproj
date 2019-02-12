@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		22A7857622133D2F009C0B5B /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A7857522133D2F009C0B5B /* City.swift */; };
 		22A7857822133D77009C0B5B /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A7857722133D77009C0B5B /* Weather.swift */; };
+		22A7857A22133E63009C0B5B /* CityProviderType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A7857922133E63009C0B5B /* CityProviderType.swift */; };
 		22E8F951220C942000BC3EE6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E8F950220C942000BC3EE6 /* AppDelegate.swift */; };
 		22E8F956220C942000BC3EE6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22E8F954220C942000BC3EE6 /* Main.storyboard */; };
 		22E8F958220C942100BC3EE6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22E8F957220C942100BC3EE6 /* Assets.xcassets */; };
@@ -18,6 +19,7 @@
 /* Begin PBXFileReference section */
 		22A7857522133D2F009C0B5B /* City.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
 		22A7857722133D77009C0B5B /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
+		22A7857922133E63009C0B5B /* CityProviderType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityProviderType.swift; sourceTree = "<group>"; };
 		22E8F94D220C942000BC3EE6 /* OpenWeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenWeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		22E8F950220C942000BC3EE6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		22E8F955220C942000BC3EE6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -40,6 +42,7 @@
 		220AC9A0220CC17E00563AAF /* Providers */ = {
 			isa = PBXGroup;
 			children = (
+				22A7857922133E63009C0B5B /* CityProviderType.swift */,
 			);
 			path = Providers;
 			sourceTree = "<group>";
@@ -165,6 +168,7 @@
 				22A7857622133D2F009C0B5B /* City.swift in Sources */,
 				22A7857822133D77009C0B5B /* Weather.swift in Sources */,
 				22E8F951220C942000BC3EE6 /* AppDelegate.swift in Sources */,
+				22A7857A22133E63009C0B5B /* CityProviderType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
