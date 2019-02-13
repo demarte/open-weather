@@ -9,7 +9,11 @@
 import Foundation
 
 struct Weather: Codable {
-  let main: String
+  enum CodingKeys: String, CodingKey {
+    case type = "main"
+    case description, icon
+  }
+  let type: String
   let description: String
   let icon: String
 }
