@@ -12,8 +12,8 @@ struct CityServiceRestAPI: CityServiceType {
   
   private let cityProvider: CityProviderType
   
-  init() {
-    cityProvider = CityProviderRestAPI()
+  init(cityProvider: CityProviderType = CityProviderRestAPI()) {
+    self.cityProvider = cityProvider
   }
   
   func fetch(with searchTerm: String, completion: @escaping (City) -> ()) {
