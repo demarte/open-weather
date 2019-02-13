@@ -9,8 +9,6 @@
 import Foundation
 
 struct City: Codable {
-  
   let name: String
   let weather: [Weather]
-  
 }
