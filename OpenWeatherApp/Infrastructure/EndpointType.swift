@@ -16,3 +16,15 @@ protocol EndpointType {
   var headers: [String: String]? { get }
   var parameters: [String: String]? { get }
 }
+// MARK: Implementaçāo default do Protocol
+extension EndpointType {
+  var headers: [String: String]? {
+    return nil
+  }
+  var baseURL: URL {
+    return Constansts.baseURL.appendingPathComponent(Constansts.apiVersion)
+  }
+  var request: URLRequest? {
+    return nil
+  }
+}
