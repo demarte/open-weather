@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		221597C622150BA9006D8318 /* Constansts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221597C522150BA9006D8318 /* Constansts.swift */; };
 		22A7857622133D2F009C0B5B /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A7857522133D2F009C0B5B /* City.swift */; };
 		22A7857822133D77009C0B5B /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A7857722133D77009C0B5B /* Weather.swift */; };
 		22A7857A22133E63009C0B5B /* CityProviderType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A7857922133E63009C0B5B /* CityProviderType.swift */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		221597C522150BA9006D8318 /* Constansts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constansts.swift; sourceTree = "<group>"; };
 		22A7857522133D2F009C0B5B /* City.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
 		22A7857722133D77009C0B5B /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
 		22A7857922133E63009C0B5B /* CityProviderType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityProviderType.swift; sourceTree = "<group>"; };
@@ -65,6 +67,14 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
+		221597C422150B83006D8318 /* Infrastructure */ = {
+			isa = PBXGroup;
+			children = (
+				221597C522150BA9006D8318 /* Constansts.swift */,
+			);
+			path = Infrastructure;
+			sourceTree = "<group>";
+		};
 		22A7857422133D0B009C0B5B /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -101,6 +111,7 @@
 		22E8F94F220C942000BC3EE6 /* OpenWeatherApp */ = {
 			isa = PBXGroup;
 			children = (
+				221597C422150B83006D8318 /* Infrastructure */,
 				22A78583221343AA009C0B5B /* Controllers */,
 				22A7857422133D0B009C0B5B /* Models */,
 				220AC9A1220CC18C00563AAF /* Services */,
@@ -211,6 +222,7 @@
 				22A7858022133FB5009C0B5B /* CityProviderRestAPI.swift in Sources */,
 				22A78585221343F3009C0B5B /* CityViewController.swift in Sources */,
 				22A7858222134227009C0B5B /* CityServiceRestAPI.swift in Sources */,
+				221597C622150BA9006D8318 /* Constansts.swift in Sources */,
 				22A7857822133D77009C0B5B /* Weather.swift in Sources */,
 				22E8F951220C942000BC3EE6 /* AppDelegate.swift in Sources */,
 				22A7857A22133E63009C0B5B /* CityProviderType.swift in Sources */,

@@ -14,6 +14,6 @@ struct CityServiceRestAPI: CityServiceType {
     self.cityProvider = cityProvider
   }
   func fetch(with searchTerm: String, completion: @escaping (City) -> Void) {
-    cityProvider.fetch(with: searchTerm, completion: completion)
+    cityProvider.cityWeather(for: searchTerm, completion: completion)
   }
 }
