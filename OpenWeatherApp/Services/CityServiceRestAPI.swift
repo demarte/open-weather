@@ -9,15 +9,11 @@
 import Foundation
 
 struct CityServiceRestAPI: CityServiceType {
-  
   private let cityProvider: CityProviderType
-  
   init(cityProvider: CityProviderType = CityProviderRestAPI()) {
     self.cityProvider = cityProvider
   }
-  
-  func fetch(with searchTerm: String, completion: @escaping (City) -> ()) {
+  func fetch(with searchTerm: String, completion: @escaping (City) -> Void) {
     cityProvider.fetch(with: searchTerm, completion: completion)
   }
-  
 }

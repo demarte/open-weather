@@ -9,5 +9,5 @@
 import Foundation
 
 protocol CityProviderType {
-  func fetch(with searchTerm: String, completion: @escaping (City) -> ())
+  func fetch(with searchTerm: String, completion: @escaping (City) -> Void)
 }
