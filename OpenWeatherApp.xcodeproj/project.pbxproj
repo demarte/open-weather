@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		221597C622150BA9006D8318 /* Constansts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221597C522150BA9006D8318 /* Constansts.swift */; };
 		221EA75F2215A82E00F5510D /* Method.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221EA75E2215A82E00F5510D /* Method.swift */; };
+		221EA7612215A8E800F5510D /* EndpointType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221EA7602215A8E800F5510D /* EndpointType.swift */; };
 		22A7857622133D2F009C0B5B /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A7857522133D2F009C0B5B /* City.swift */; };
 		22A7857822133D77009C0B5B /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A7857722133D77009C0B5B /* Weather.swift */; };
 		22A7857A22133E63009C0B5B /* CityProviderType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A7857922133E63009C0B5B /* CityProviderType.swift */; };
@@ -25,6 +26,7 @@
 /* Begin PBXFileReference section */
 		221597C522150BA9006D8318 /* Constansts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constansts.swift; sourceTree = "<group>"; };
 		221EA75E2215A82E00F5510D /* Method.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Method.swift; sourceTree = "<group>"; };
+		221EA7602215A8E800F5510D /* EndpointType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndpointType.swift; sourceTree = "<group>"; };
 		22A7857522133D2F009C0B5B /* City.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
 		22A7857722133D77009C0B5B /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
 		22A7857922133E63009C0B5B /* CityProviderType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityProviderType.swift; sourceTree = "<group>"; };
@@ -74,6 +76,7 @@
 			children = (
 				221597C522150BA9006D8318 /* Constansts.swift */,
 				221EA75E2215A82E00F5510D /* Method.swift */,
+				221EA7602215A8E800F5510D /* EndpointType.swift */,
 			);
 			path = Infrastructure;
 			sourceTree = "<group>";
@@ -228,6 +231,7 @@
 				22A7858222134227009C0B5B /* CityServiceRestAPI.swift in Sources */,
 				221597C622150BA9006D8318 /* Constansts.swift in Sources */,
 				22A7857822133D77009C0B5B /* Weather.swift in Sources */,
+				221EA7612215A8E800F5510D /* EndpointType.swift in Sources */,
 				22E8F951220C942000BC3EE6 /* AppDelegate.swift in Sources */,
 				22A7857A22133E63009C0B5B /* CityProviderType.swift in Sources */,
 			);
