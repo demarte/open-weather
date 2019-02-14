@@ -11,9 +11,10 @@ import Foundation
 struct Weather: Codable {
   enum CodingKeys: String, CodingKey {
     case type = "main"
-    case description, icon
+    case urlIcon = "icon"
+    case description
   }
   let type: String
   let description: String
-  let icon: String
+  let urlIcon: String
 }
