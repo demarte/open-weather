@@ -84,10 +84,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 22E8F95F220C942100BC3EE6 /* Build configuration list for PBXNativeTarget "OpenWeatherApp" */;
 			buildPhases = (
+				221597C32215056B006D8318 /* ShellScript */,
 				22E8F949220C942000BC3EE6 /* Sources */,
 				22E8F94A220C942000BC3EE6 /* Frameworks */,
 				22E8F94B220C942000BC3EE6 /* Resources */,
-				221597C32215056B006D8318 /* ShellScript */,
 			);
 			buildRules = (
 			);
