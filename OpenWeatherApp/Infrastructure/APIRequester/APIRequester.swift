@@ -9,7 +9,7 @@
 import Foundation
 //Qualquer tipo generico que implemente um EndpointType
 struct APIRequester<Endpoint: EndpointType> {
-  //Qualquer tipo que implemente Decodable
+  //Qualquer tipo generico que implemente Decodable
   func request<T: Decodable>(_ endpoint: Endpoint, completion: @escaping (Result<T>) -> Void) {
     //Cria uma URLRequest
     var request = create(endpoint)
@@ -23,14 +23,17 @@ struct APIRequester<Endpoint: EndpointType> {
           completion(Result.failure(APIRequesterError.noData))
           return
       }
+      //Faz o cast se possivel da response para uma URLResponse
+      //
       guard let httpResponse = response as? HTTPURLResponse,
         200..<300 ~= httpResponse.statusCode else {
           completion(Result.failure(APIRequesterError.invalidResponse))
           return
       }
+      //Faz o parse da data para o objeto que esta de acordo com o protocolo Decodable
       do {
         let parsedObject = try JSONDecoder().decode(T.self, from: data)
-        completion(Result<T>.success(parsedObject))
+        completion(Result.success(parsedObject))
       } catch {
         completion(Result.failure(error))
       }
@@ -60,7 +63,7 @@ struct APIRequester<Endpoint: EndpointType> {
     }
     //Cria uma URLRequest a partir da URLComponets se tiver valor, caso nao tenha cria a partir da URL
     var request = URLRequest(url: urlComponents?.url ?? url)
-    //Adiciona o metodo HTTP a propriedade da URLRequest
+    //Adiciona o metodo HTTP do endpoint a propriedade da URLRequest
     request.httpMethod = endpoint.method.rawValue
     //Caso o metodo do endpoint nao seja GET:
     //Tenta criar um JSON com o dictionary de parameters do endpoint
