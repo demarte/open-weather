@@ -30,11 +30,11 @@ struct APIRequester<Endpoint: EndpointType> {
       }
       do {
         let parsedObject = try JSONDecoder().decode(T.self, from: data)
-        completion(Result.success(parsedObject))
+        completion(Result<T>.success(parsedObject))
       } catch {
         completion(Result.failure(error))
       }
-    }
+    }.resume()
   }
   private func create(_ endpoint: Endpoint) -> URLRequest {
     //faz o unwrap da propriedade request do endpoint e retorna essa request
@@ -56,7 +56,7 @@ struct APIRequester<Endpoint: EndpointType> {
     //Adiciona ha propriedade do URLComponents o array de URLQueryItems
     if endpoint.method == .get {
       let queryItems = endpoint.parameters?.compactMap { URLQueryItem(name: $0.key, value: $0.value) } ?? []
-      urlComponents?.queryItems?.append(contentsOf: queryItems)
+      urlComponents?.queryItems = queryItems
     }
     //Cria uma URLRequest a partir da URLComponets se tiver valor, caso nao tenha cria a partir da URL
     var request = URLRequest(url: urlComponents?.url ?? url)

@@ -84,7 +84,6 @@
 			children = (
 				221EA768221653C200F5510D /* Endpoints */,
 				221EA76F22165D6400F5510D /* APIRequester */,
-				221597C522150BA9006D8318 /* Constants.swift */,
 			);
 			path = Infrastructure;
 			sourceTree = "<group>";
@@ -94,7 +93,6 @@
 			children = (
 				221EA769221653DE00F5510D /* WeatherEndpoint.swift */,
 				221EA7602215A8E800F5510D /* EndpointType.swift */,
-				221EA75E2215A82E00F5510D /* Method.swift */,
 			);
 			path = Endpoints;
 			sourceTree = "<group>";
@@ -102,6 +100,8 @@
 		221EA76F22165D6400F5510D /* APIRequester */ = {
 			isa = PBXGroup;
 			children = (
+				221597C522150BA9006D8318 /* Constants.swift */,
+				221EA75E2215A82E00F5510D /* Method.swift */,
 				221EA7622215BB4A00F5510D /* APIRequester.swift */,
 				221EA76422164FB900F5510D /* APIRequesterError.swift */,
 				221EA7662216516400F5510D /* Result.swift */,

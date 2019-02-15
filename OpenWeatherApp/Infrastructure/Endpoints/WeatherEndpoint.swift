@@ -24,8 +24,8 @@ extension WeatherEndpoint: EndpointType {
     var parameters: [String: String] = ["APPID": Constants.apiKey]
     switch self {
     case .cityWeatherByCoordinates(let lat, let long):
-      parameters["latitude"] = "\(lat)"
-      parameters["longitude"] = "\(long)"
+      parameters["latitude"] = lat
+      parameters["longitude"] = long
     case .cityWeatherBySearchTerm(let searchTerm):
       parameters["q"] = searchTerm
     }
