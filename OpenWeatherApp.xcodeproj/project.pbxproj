@@ -64,7 +64,6 @@
 		220AC9A0220CC17E00563AAF /* Providers */ = {
 			isa = PBXGroup;
 			children = (
-				221EA768221653C200F5510D /* Endpoints */,
 				221EA76B221658C100F5510D /* WeatherProviderType.swift */,
 				221EA76D22165B1000F5510D /* WeatherProvider.swift */,
 			);
@@ -83,12 +82,9 @@
 		221597C422150B83006D8318 /* Infrastructure */ = {
 			isa = PBXGroup;
 			children = (
+				221EA768221653C200F5510D /* Endpoints */,
+				221EA76F22165D6400F5510D /* APIRequester */,
 				221597C522150BA9006D8318 /* Constants.swift */,
-				221EA75E2215A82E00F5510D /* Method.swift */,
-				221EA7602215A8E800F5510D /* EndpointType.swift */,
-				221EA7622215BB4A00F5510D /* APIRequester.swift */,
-				221EA76422164FB900F5510D /* APIRequesterError.swift */,
-				221EA7662216516400F5510D /* Result.swift */,
 			);
 			path = Infrastructure;
 			sourceTree = "<group>";
@@ -97,8 +93,20 @@
 			isa = PBXGroup;
 			children = (
 				221EA769221653DE00F5510D /* WeatherEndpoint.swift */,
+				221EA7602215A8E800F5510D /* EndpointType.swift */,
+				221EA75E2215A82E00F5510D /* Method.swift */,
 			);
 			path = Endpoints;
+			sourceTree = "<group>";
+		};
+		221EA76F22165D6400F5510D /* APIRequester */ = {
+			isa = PBXGroup;
+			children = (
+				221EA7622215BB4A00F5510D /* APIRequester.swift */,
+				221EA76422164FB900F5510D /* APIRequesterError.swift */,
+				221EA7662216516400F5510D /* Result.swift */,
+			);
+			path = APIRequester;
 			sourceTree = "<group>";
 		};
 		22A7857422133D0B009C0B5B /* Models */ = {
