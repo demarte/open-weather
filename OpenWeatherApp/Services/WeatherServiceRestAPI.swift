@@ -13,7 +13,7 @@ struct WeatherServiceRestAPI: WeatherServiceType {
   init(weatherProvider: WeatherProviderType = WeatherProvider()) {
     self.weatherProvider = weatherProvider
   }
-  func fetch(with searchTerm: String, completion: @escaping (Result<City>) -> Void) {
+  func cityWeather(for searchTerm: String, completion: @escaping (Result<City>) -> Void) {
     weatherProvider.cityWeather(for: searchTerm, completion: completion)
   }
 }

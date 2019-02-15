@@ -9,10 +9,10 @@
 import UIKit
 
 class CityViewController: UIViewController {
-  private let weatherServide: WeatherServiceType = WeatherServiceRestAPI()
+  private let weatherService: WeatherServiceType = WeatherServiceRestAPI()
   private let searchTerm = "Zihuatanejo"
   override func viewDidLoad() {
     super.viewDidLoad()
-    weatherServide.fetch(with: searchTerm) { print($0) }
+    weatherService.cityWeather(for: searchTerm) { print($0) }
   }
 }
