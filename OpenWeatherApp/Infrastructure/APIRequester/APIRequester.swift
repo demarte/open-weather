@@ -24,7 +24,6 @@ struct APIRequester<Endpoint: EndpointType> {
           return
       }
       //Faz o cast se possivel da response para uma URLResponse
-      //
       guard let httpResponse = response as? HTTPURLResponse,
         200..<300 ~= httpResponse.statusCode else {
           completion(Result.failure(APIRequesterError.invalidResponse))
