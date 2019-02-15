@@ -11,7 +11,7 @@ import Foundation
 struct CityProviderRestAPI: CityProviderType {
   let api = "https://api.openweathermap.org/data/2.5/weather"
   func cityWeather(for searchTerm: String, completion: @escaping (City) -> Void) {
-    guard let url = URL(string: "\(api)?q=\(searchTerm)&APPID=\(Constansts.apiKey)")
+    guard let url = URL(string: "\(api)?q=\(searchTerm)&APPID=\(Constants.apiKey)")
       else { return }
     let session = URLSession.shared
     session.dataTask(with: url) { (data, _, error) in

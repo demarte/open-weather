@@ -29,5 +29,6 @@ extension WeatherEndpoint: EndpointType {
     case .cityWeatherBySearchTerm(let searchTerm):
       parameters["q"] = searchTerm
     }
+    return parameters
   }
 }

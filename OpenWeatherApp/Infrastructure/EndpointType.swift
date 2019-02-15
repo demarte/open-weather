@@ -22,7 +22,7 @@ extension EndpointType {
     return nil
   }
   var baseURL: URL {
-    return Constansts.baseURL.appendingPathComponent(Constansts.apiVersion)
+    return Constants.baseURL.appendingPathComponent(Constants.apiVersion)
   }
   var request: URLRequest? {
     return nil

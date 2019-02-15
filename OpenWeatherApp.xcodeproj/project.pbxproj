@@ -64,7 +64,7 @@
 		220AC9A0220CC17E00563AAF /* Providers */ = {
 			isa = PBXGroup;
 			children = (
-				221EA768221653C200F5510D /* Endpoint */,
+				221EA768221653C200F5510D /* Endpoints */,
 				22A7857922133E63009C0B5B /* CityProviderType.swift */,
 				22A7857F22133FB5009C0B5B /* CityProviderRestAPI.swift */,
 			);
@@ -93,12 +93,12 @@
 			path = Infrastructure;
 			sourceTree = "<group>";
 		};
-		221EA768221653C200F5510D /* Endpoint */ = {
+		221EA768221653C200F5510D /* Endpoints */ = {
 			isa = PBXGroup;
 			children = (
 				221EA769221653DE00F5510D /* WeatherEndpoint.swift */,
 			);
-			path = Endpoint;
+			path = Endpoints;
 			sourceTree = "<group>";
 		};
 		22A7857422133D0B009C0B5B /* Models */ = {
