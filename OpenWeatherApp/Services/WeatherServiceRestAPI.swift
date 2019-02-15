@@ -10,7 +10,7 @@ import Foundation
 
 struct WeatherServiceRestAPI: WeatherServiceType {
   private let weatherProvider: WeatherProviderType
-  init(weatherProvider: WeatherProviderType = WeatherProvider()) {
+  init(weatherProvider: WeatherProviderType = WeatherProviderRestAPI()) {
     self.weatherProvider = weatherProvider
   }
   func cityWeather(for searchTerm: String, completion: @escaping (Result<City>) -> Void) {

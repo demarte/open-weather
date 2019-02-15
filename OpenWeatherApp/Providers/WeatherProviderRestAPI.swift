@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct WeatherProvider: WeatherProviderType {
+struct WeatherProviderRestAPI: WeatherProviderType {
   let apiRequester = APIRequester<WeatherEndpoint>()
   func cityWeather(for searchTerm: String, completion: @escaping ((Result<City>) -> Void)) {
     apiRequester.request(.cityWeatherBySearchTerm(searchTerm: searchTerm), completion: completion)
