@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct CityServiceRestAPI: CityServiceType {
+struct WeatherServiceRestAPI: WeatherServiceType {
   private let weatherProvider: WeatherProviderType
   init(weatherProvider: WeatherProviderType = WeatherProvider()) {
     self.weatherProvider = weatherProvider

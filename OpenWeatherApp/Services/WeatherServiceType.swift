@@ -8,6 +8,6 @@
 
 import Foundation
 
-protocol CityServiceType {
+protocol WeatherServiceType {
   func fetch(with searchTerm: String, completion: @escaping (Result<City>) -> Void)
 }
