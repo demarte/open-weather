@@ -11,7 +11,7 @@ import Foundation
 struct APIRequester<Endpoint: EndpointType> {
   //Qualquer tipo generico que implemente Decodable
   func request<T: Decodable>(_ endpoint: Endpoint, completion: @escaping (Result<T>) -> Void) {
-    //Cria uma URLRequest
+    //Cria uma URLRequest a partir de um implementador de EndpointType
     var request = create(endpoint)
     //Adiciona o dictionary headers a propriedade headers da URLRequest
     endpoint.headers?.forEach { (key, value) in
@@ -40,6 +40,7 @@ struct APIRequester<Endpoint: EndpointType> {
   }
   private func create(_ endpoint: Endpoint) -> URLRequest {
     //faz o unwrap da propriedade request do endpoint e retorna essa request
+    //caso o implementador do EndpointType ja tenha criado a URLRequest, a funcao retorna
     if let request = endpoint.request { return request }
     //pega a URL padrao do endpoint (baseURL).
     //verifica se existe um path no endpoint. Caso exista, sera acrescentada a essa baseURL
