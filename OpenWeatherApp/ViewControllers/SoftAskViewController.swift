@@ -123,9 +123,10 @@ class SoftAskViewController: UIViewController, CLLocationManagerDelegate {
   // MARK: buttons handle actions
   @objc private func handleYes() {
     checkLocationServices()
+    // TODos: go to CityListViewController
   }
   @objc private func handleMaybe() {
-    print("Maybe!")
+    // TODos: go to CityListViewController
   }
   // MARK: location functions
   private func checkLocationServices() {
