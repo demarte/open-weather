@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,5 +16,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     _ application: UIApplication,
     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
     return true
+  }
+  private func getInitialViewController() -> UIViewController {
+    if CLLocationManager.authorizationStatus() == .notDetermined {
+      return SoftAskViewController()
+    } else {
+      return CityListViewController()
+    }
   }
 }
