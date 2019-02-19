@@ -123,10 +123,10 @@ class SoftAskViewController: UIViewController, CLLocationManagerDelegate {
   // MARK: buttons handle actions
   @objc private func handleYes() {
     checkLocationServices()
-    // TODos: go to CityListViewController
+    // TODO: go to CityListViewController
   }
   @objc private func handleMaybe() {
-    // TODos: go to CityListViewController
+    // TODO: go to CityListViewController
   }
   // MARK: location functions
   private func checkLocationServices() {
@@ -134,7 +134,12 @@ class SoftAskViewController: UIViewController, CLLocationManagerDelegate {
       setupLocationManager()
       checkLocationAuthorization()
     } else {
-      // TODOs: show alert
+      let alert = UIAlertController(title: "Location Services disabled",
+                                    message: "Please enable Location Services in Settings",
+                                    preferredStyle: .alert)
+      let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+      alert.addAction(okAction)
+      present(alert, animated: true, completion: nil)
     }
   }
   private func setupLocationManager() {
@@ -144,17 +149,14 @@ class SoftAskViewController: UIViewController, CLLocationManagerDelegate {
   private func checkLocationAuthorization() {
     switch CLLocationManager.authorizationStatus() {
     case .authorizedWhenInUse:
-      // TODOs: Do something
       break
     case .authorizedAlways:
       break
     case .denied:
-      // TODOs: show alert
       break
     case .notDetermined:
       locationManager.requestWhenInUseAuthorization()
     case .restricted:
-      // TODOs: show alert
       break
     }
   }
