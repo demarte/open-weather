@@ -101,7 +101,6 @@ class SoftAskViewController: UIViewController, CLLocationManagerDelegate {
   private func setupAskTextView() {
     topContainerView.addSubview(askTextView)
     NSLayoutConstraint.activate([
-      askTextView.centerXAnchor.constraint(equalTo: topContainerView.centerXAnchor),
       askTextView.centerYAnchor.constraint(equalTo: topContainerView.centerYAnchor),
       askTextView.leadingAnchor.constraint(equalTo: topContainerView.leadingAnchor, constant: 100),
       askTextView.trailingAnchor.constraint(equalTo: topContainerView.trailingAnchor, constant: -100),
