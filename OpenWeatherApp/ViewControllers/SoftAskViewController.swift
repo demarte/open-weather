@@ -10,7 +10,6 @@ import UIKit
 import CoreLocation
 
 class SoftAskViewController: UIViewController, CLLocationManagerDelegate {
-
   // MARK: Properties
   let locationManager = CLLocationManager()
   private let containerView: UIView = {
@@ -24,21 +23,24 @@ class SoftAskViewController: UIViewController, CLLocationManagerDelegate {
     view.translatesAutoresizingMaskIntoConstraints = false
     return view
   }()
-  private let askTextView: UITextView = {
-    let textView = UITextView()
-    textView.translatesAutoresizingMaskIntoConstraints = false
-    textView.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0)
-    textView.isEditable = false
-    let headerAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 24)]
-    let bodyTextAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12)]
-    let text = NSMutableAttributedString(string: "Hi", attributes: headerAttributes)
-    text
-      .append(
-        NSMutableAttributedString(string: "\n\nCan you provide us your location in order to get the current weather?",
-          attributes: bodyTextAttributes))
-    textView.attributedText = text
-    textView.textAlignment = .center
-    return textView
+  private let greetingLabel: UILabel = {
+    let label = UILabel()
+    label.translatesAutoresizingMaskIntoConstraints = false
+    let attributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 24)]
+    label.attributedText = NSMutableAttributedString(string: "Hi", attributes: attributes)
+    label.textAlignment = .center
+    return label
+  }()
+  private let askLabel: UILabel = {
+    let label = UILabel()
+    label.translatesAutoresizingMaskIntoConstraints = false
+    let attributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 13)]
+    label.attributedText =
+      NSMutableAttributedString(string: "Can you provide us your location in order to get the current weather?",
+                                attributes: attributes)
+    label.numberOfLines = 3
+    label.textAlignment = .center
+    return label
   }()
   private let yesButton: UIButton = {
     let button = UIButton(type: .system)
@@ -72,7 +74,7 @@ class SoftAskViewController: UIViewController, CLLocationManagerDelegate {
     setupView()
     setupContainerView()
     setupTopView()
-    setupAskTextView()
+    setupTopStackView()
     setupBottomStackView()
   }
   // MARK: Setup view and subViews
@@ -98,13 +100,16 @@ class SoftAskViewController: UIViewController, CLLocationManagerDelegate {
       topContainerView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.5)
       ])
   }
-  private func setupAskTextView() {
-    topContainerView.addSubview(askTextView)
+  private func setupTopStackView() {
+    let topStackView = UIStackView(arrangedSubviews: [greetingLabel, askLabel])
+    topStackView.axis = .vertical
+    topStackView.translatesAutoresizingMaskIntoConstraints = false
+    topContainerView.addSubview(topStackView)
     NSLayoutConstraint.activate([
-      askTextView.centerYAnchor.constraint(equalTo: topContainerView.centerYAnchor),
-      askTextView.leadingAnchor.constraint(equalTo: topContainerView.leadingAnchor, constant: 100),
-      askTextView.trailingAnchor.constraint(equalTo: topContainerView.trailingAnchor, constant: -100),
-      askTextView.heightAnchor.constraint(equalTo: topContainerView.heightAnchor, multiplier: 0.5)
+      topStackView.centerYAnchor.constraint(equalTo: topContainerView.centerYAnchor),
+      topStackView.leadingAnchor.constraint(equalTo: topContainerView.leadingAnchor, constant: 110),
+      topStackView.trailingAnchor.constraint(equalTo: topContainerView.trailingAnchor, constant: -110),
+      topStackView.heightAnchor.constraint(equalTo: topContainerView.heightAnchor, multiplier: 0.3)
       ])
   }
   private func setupBottomStackView() {
@@ -160,5 +165,4 @@ class SoftAskViewController: UIViewController, CLLocationManagerDelegate {
       break
     }
   }
-
 }
