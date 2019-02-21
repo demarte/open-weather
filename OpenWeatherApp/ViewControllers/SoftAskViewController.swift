@@ -23,25 +23,20 @@ class SoftAskViewController: UIViewController, CLLocationManagerDelegate {
     view.translatesAutoresizingMaskIntoConstraints = false
     return view
   }()
-  private let greetingLabel: UILabel = {
+  private lazy var greetingLabel = createCustomLabel(with: "Hi", ofSize: 24, withLines: 1)
+  private lazy var askLabel = createCustomLabel(with:
+    "Can you provide us your location in order to get the current weather?",
+                                                ofSize: 13,
+                                                withLines: 3)
+  private func createCustomLabel(with content: String, ofSize font: CGFloat, withLines lines: Int) -> UILabel {
     let label = UILabel()
     label.translatesAutoresizingMaskIntoConstraints = false
-    let attributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 24)]
-    label.attributedText = NSMutableAttributedString(string: "Hi", attributes: attributes)
+    let attributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: font)]
+    label.attributedText = NSMutableAttributedString(string: content, attributes: attributes)
+    label.numberOfLines = lines
     label.textAlignment = .center
     return label
-  }()
-  private let askLabel: UILabel = {
-    let label = UILabel()
-    label.translatesAutoresizingMaskIntoConstraints = false
-    let attributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 13)]
-    label.attributedText =
-      NSMutableAttributedString(string: "Can you provide us your location in order to get the current weather?",
-                                attributes: attributes)
-    label.numberOfLines = 3
-    label.textAlignment = .center
-    return label
-  }()
+  }
   private let yesButton: UIButton = {
     let button = UIButton(type: .system)
     button.translatesAutoresizingMaskIntoConstraints = false
