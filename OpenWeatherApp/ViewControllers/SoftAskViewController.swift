@@ -51,10 +51,6 @@ final class SoftAskViewController: UIViewController, CLLocationManagerDelegate {
     button.setTitleColor(#colorLiteral(red: 0.7540688515, green: 0.7540867925, blue: 0.7540771365, alpha: 1), for: .normal)
     return button
   }()
-  // MARK: View Lifecycle
-  override func viewDidLoad() {
-    super.viewDidLoad()
-  }
   // MARK: Initializers
   override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
     super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
