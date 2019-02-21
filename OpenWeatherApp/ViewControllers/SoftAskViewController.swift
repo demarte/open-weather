@@ -28,11 +28,11 @@ final class SoftAskViewController: UIViewController, CLLocationManagerDelegate {
   private lazy var askLabel = createCustomLabel(with:
     "Can you provide us your location in order to get the current weather?".localized,
                                                 ofSize: 13)
-  private func createCustomLabel(with content: String, ofSize font: CGFloat) -> UILabel {
+  private func createCustomLabel(with text: String, ofSize font: CGFloat) -> UILabel {
     let label = UILabel()
     label.translatesAutoresizingMaskIntoConstraints = false
-    let attributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: font)]
-    label.attributedText = NSMutableAttributedString(string: content, attributes: attributes)
+    label.text = text
+    label.font = UIFont.systemFont(ofSize: font)
     label.numberOfLines = 0
     label.textAlignment = .center
     return label
