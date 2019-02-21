@@ -23,17 +23,16 @@ class SoftAskViewController: UIViewController, CLLocationManagerDelegate {
     view.translatesAutoresizingMaskIntoConstraints = false
     return view
   }()
-  private lazy var greetingLabel = createCustomLabel(with: "Hi", ofSize: 24, withLines: 1)
+  private lazy var greetingLabel = createCustomLabel(with: "Hi", ofSize: 24)
   private lazy var askLabel = createCustomLabel(with:
     "Can you provide us your location in order to get the current weather?",
-                                                ofSize: 13,
-                                                withLines: 3)
-  private func createCustomLabel(with content: String, ofSize font: CGFloat, withLines lines: Int) -> UILabel {
+                                                ofSize: 13)
+  private func createCustomLabel(with content: String, ofSize font: CGFloat) -> UILabel {
     let label = UILabel()
     label.translatesAutoresizingMaskIntoConstraints = false
     let attributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: font)]
     label.attributedText = NSMutableAttributedString(string: content, attributes: attributes)
-    label.numberOfLines = lines
+    label.numberOfLines = 0
     label.textAlignment = .center
     return label
   }
