@@ -49,7 +49,7 @@ final class SoftAskViewController: UIViewController, CLLocationManagerDelegate {
     button.translatesAutoresizingMaskIntoConstraints = false
     button.setTitle("Maybe later".localized, for: .normal)
     button.addTarget(self, action: #selector(handleMaybe), for: .touchUpInside)
-    button.setTitleColor(#colorLiteral(red: 0.7540688515, green: 0.7540867925, blue: 0.7540771365, alpha: 1), for: .normal)
+    button.setTitleColor(UIColor(named: "Silver"), for: .normal)
     return button
   }()
   // MARK: Initializers
@@ -68,7 +68,7 @@ final class SoftAskViewController: UIViewController, CLLocationManagerDelegate {
   }
   // MARK: Setup view and subViews
   private func setupView() {
-    view.backgroundColor = #colorLiteral(red: 0.8374180198, green: 0.8374378085, blue: 0.8374271393, alpha: 1)
+    view.backgroundColor = UIColor(named: "Silver")
   }
   private func setupContainerView() {
     view.addSubview(containerView)
