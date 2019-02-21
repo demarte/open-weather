@@ -25,7 +25,7 @@
 		22E8F951220C942000BC3EE6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E8F950220C942000BC3EE6 /* AppDelegate.swift */; };
 		22E8F958220C942100BC3EE6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22E8F957220C942100BC3EE6 /* Assets.xcassets */; };
 		22E8F95B220C942100BC3EE6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22E8F959220C942100BC3EE6 /* LaunchScreen.storyboard */; };
-		22ED5079221F27BA0019CC93 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 22ED507B221F27BA0019CC93 /* Localizable.strings */; };
+		22ED5080221F2F3B0019CC93 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 22ED5082221F2F3B0019CC93 /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,9 +49,9 @@
 		22E8F957220C942100BC3EE6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		22E8F95A220C942100BC3EE6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		22E8F95C220C942100BC3EE6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		22ED5070221F26D40019CC93 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
-		22ED507A221F27BA0019CC93 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		22ED507C221F27D70019CC93 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		22ED507D221F2F100019CC93 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		22ED5081221F2F3B0019CC93 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		22ED5083221F2F400019CC93 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,9 +165,9 @@
 		22ED506C221F23CA0019CC93 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				22ED507B221F27BA0019CC93 /* Localizable.strings */,
 				22E8F959220C942100BC3EE6 /* LaunchScreen.storyboard */,
 				22E8F957220C942100BC3EE6 /* Assets.xcassets */,
+				22ED5082221F2F3B0019CC93 /* Localizable.strings */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -215,7 +215,6 @@
 			knownRegions = (
 				en,
 				Base,
-				"pt-BR",
 			);
 			mainGroup = 22E8F944220C942000BC3EE6;
 			productRefGroup = 22E8F94E220C942000BC3EE6 /* Products */;
@@ -233,7 +232,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				22E8F95B220C942100BC3EE6 /* LaunchScreen.storyboard in Resources */,
-				22ED5079221F27BA0019CC93 /* Localizable.strings in Resources */,
+				22ED5080221F2F3B0019CC93 /* Localizable.strings in Resources */,
 				22E8F958220C942100BC3EE6 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -291,16 +290,16 @@
 			isa = PBXVariantGroup;
 			children = (
 				22E8F95A220C942100BC3EE6 /* Base */,
-				22ED5070221F26D40019CC93 /* pt-BR */,
+				22ED507D221F2F100019CC93 /* pt-BR */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
-		22ED507B221F27BA0019CC93 /* Localizable.strings */ = {
+		22ED5082221F2F3B0019CC93 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				22ED507A221F27BA0019CC93 /* pt-BR */,
-				22ED507C221F27D70019CC93 /* en */,
+				22ED5081221F2F3B0019CC93 /* pt-BR */,
+				22ED5083221F2F400019CC93 /* en */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
