@@ -16,15 +16,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     _ application: UIApplication,
     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
     window = UIWindow(frame: UIScreen.main.bounds)
-    window?.rootViewController = getInitialViewController()
+    window?.rootViewController = UINavigationController(rootViewController: CityListViewController())
     window?.makeKeyAndVisible()
+    showLocationSoftAskIfNeeded()
     return true
   }
-  private func getInitialViewController() -> UIViewController {
+  private func showLocationSoftAskIfNeeded() {
     if CLLocationManager.authorizationStatus() == .notDetermined {
-      return SoftAskViewController()
-    } else {
-      return CityListViewController()
+      window?.rootViewController?.present(SoftAskViewController(), animated: true)
     }
   }
 }
