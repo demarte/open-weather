@@ -1,0 +1,14 @@
+/* 
+  Localizable.strings
+  OpenWeatherApp
+
+  Created by Ivan De Martino on 2/21/19.
+  Copyright © 2019 Ivan De Martino. All rights reserved.
+*/
+
+"Hi" = "Hi";
+"Can you provide us your location in order to get the current weather?" = "Can you provide us your location in order to get the current weather?";
+"Yes" = "Yes";
+"Maybe later" = "Maybe later";
+"Location Services disabled" = "Location Services disabled";
+"Please enable Location Services in Settings" = "Please enable Location Services in Settings";

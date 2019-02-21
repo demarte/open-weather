@@ -23,9 +23,9 @@ final class SoftAskViewController: UIViewController, CLLocationManagerDelegate {
     view.translatesAutoresizingMaskIntoConstraints = false
     return view
   }()
-  private lazy var greetingLabel = createCustomLabel(with: "Hi", ofSize: 24)
+  private lazy var greetingLabel = createCustomLabel(with: "Hi".localized, ofSize: 24)
   private lazy var askLabel = createCustomLabel(with:
-    "Can you provide us your location in order to get the current weather?",
+    "Can you provide us your location in order to get the current weather?".localized,
                                                 ofSize: 13)
   private func createCustomLabel(with content: String, ofSize font: CGFloat) -> UILabel {
     let label = UILabel()
@@ -39,14 +39,14 @@ final class SoftAskViewController: UIViewController, CLLocationManagerDelegate {
   private let yesButton: UIButton = {
     let button = UIButton(type: .system)
     button.translatesAutoresizingMaskIntoConstraints = false
-    button.setTitle("Yes", for: .normal)
+    button.setTitle("Yes".localized, for: .normal)
     button.addTarget(self, action: #selector(handleYes), for: .touchUpInside)
     return button
   }()
   private let maybeButton: UIButton = {
     let button = UIButton(type: .system)
     button.translatesAutoresizingMaskIntoConstraints = false
-    button.setTitle("Maybe later", for: .normal)
+    button.setTitle("Maybe later".localized, for: .normal)
     button.addTarget(self, action: #selector(handleMaybe), for: .touchUpInside)
     button.setTitleColor(#colorLiteral(red: 0.7540688515, green: 0.7540867925, blue: 0.7540771365, alpha: 1), for: .normal)
     return button
@@ -129,8 +129,8 @@ final class SoftAskViewController: UIViewController, CLLocationManagerDelegate {
       setupLocationManager()
       checkLocationAuthorization()
     } else {
-      let alert = UIAlertController(title: "Location Services disabled",
-                                    message: "Please enable Location Services in Settings",
+      let alert = UIAlertController(title: "Location Services disabled".localized,
+                                    message: "Please enable Location Services in Settings".localized,
                                     preferredStyle: .alert)
       let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
       alert.addAction(okAction)
@@ -154,5 +154,11 @@ final class SoftAskViewController: UIViewController, CLLocationManagerDelegate {
     case .restricted:
       break
     }
+  }
+}
+
+extension String {
+  var localized: String {
+    return NSLocalizedString(self, comment: "")
   }
 }
