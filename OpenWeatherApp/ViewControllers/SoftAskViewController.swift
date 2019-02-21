@@ -23,6 +23,7 @@ final class SoftAskViewController: UIViewController, CLLocationManagerDelegate {
     view.translatesAutoresizingMaskIntoConstraints = false
     return view
   }()
+  private let stackView = UIStackView(frame: .zero)
   private lazy var greetingLabel = createCustomLabel(with: "Hi".localized, ofSize: 24)
   private lazy var askLabel = createCustomLabel(with:
     "Can you provide us your location in order to get the current weather?".localized,
@@ -63,9 +64,7 @@ final class SoftAskViewController: UIViewController, CLLocationManagerDelegate {
   private func finishInit() {
     setupView()
     setupContainerView()
-    setupTopView()
-    setupTopStackView()
-    setupBottomStackView()
+    setupStackView()
   }
   // MARK: Setup view and subViews
   private func setupView() {
@@ -81,38 +80,20 @@ final class SoftAskViewController: UIViewController, CLLocationManagerDelegate {
       containerView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20)
       ])
   }
-  private func setupTopView() {
-    containerView.addSubview(topContainerView)
+  private func setupStackView() {
+    containerView.addSubview(stackView)
+    stackView.addArrangedSubview(greetingLabel)
+    stackView.addArrangedSubview(askLabel)
+    stackView.addArrangedSubview(yesButton)
+    stackView.addArrangedSubview(maybeButton)
+    stackView.translatesAutoresizingMaskIntoConstraints = false
+    stackView.axis = .vertical
+    stackView.spacing = 20
     NSLayoutConstraint.activate([
-      topContainerView.topAnchor.constraint(equalTo: containerView.topAnchor),
-      topContainerView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
-      topContainerView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
-      topContainerView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.5)
-      ])
-  }
-  private func setupTopStackView() {
-    let topStackView = UIStackView(arrangedSubviews: [greetingLabel, askLabel])
-    topStackView.axis = .vertical
-    topStackView.translatesAutoresizingMaskIntoConstraints = false
-    topContainerView.addSubview(topStackView)
-    NSLayoutConstraint.activate([
-      topStackView.centerYAnchor.constraint(equalTo: topContainerView.centerYAnchor),
-      topStackView.leadingAnchor.constraint(equalTo: topContainerView.leadingAnchor, constant: 110),
-      topStackView.trailingAnchor.constraint(equalTo: topContainerView.trailingAnchor, constant: -110),
-      topStackView.heightAnchor.constraint(equalTo: topContainerView.heightAnchor, multiplier: 0.3)
-      ])
-  }
-  private func setupBottomStackView() {
-    let bottomStackView = UIStackView(arrangedSubviews: [yesButton, maybeButton])
-    bottomStackView.distribution = .fillEqually
-    bottomStackView.axis = .vertical
-    bottomStackView.translatesAutoresizingMaskIntoConstraints = false
-    containerView.addSubview(bottomStackView)
-    NSLayoutConstraint.activate([
-      bottomStackView.heightAnchor.constraint(equalToConstant: 100),
-      bottomStackView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
-      bottomStackView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
-      bottomStackView.topAnchor.constraint(equalTo: topContainerView.bottomAnchor)
+      stackView.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
+      stackView.centerYAnchor.constraint(equalTo: containerView.centerYAnchor),
+      stackView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 110),
+      stackView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -110)
       ])
   }
   // MARK: buttons handle actions
