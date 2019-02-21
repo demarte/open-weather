@@ -9,7 +9,7 @@
 import UIKit
 import CoreLocation
 
-class SoftAskViewController: UIViewController, CLLocationManagerDelegate {
+final class SoftAskViewController: UIViewController, CLLocationManagerDelegate {
   // MARK: Properties
   let locationManager = CLLocationManager()
   private let containerView: UIView = {
