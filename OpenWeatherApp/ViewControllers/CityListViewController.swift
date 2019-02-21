@@ -7,10 +7,10 @@
 //
 
 import UIKit
+import CoreLocation
 
 final class CityListViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
+  override func viewDidLoad() {
+    super.viewDidLoad()
+  }
 }

@@ -26,6 +26,10 @@
 		22E8F958220C942100BC3EE6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22E8F957220C942100BC3EE6 /* Assets.xcassets */; };
 		22E8F95B220C942100BC3EE6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22E8F959220C942100BC3EE6 /* LaunchScreen.storyboard */; };
 		22ED5080221F2F3B0019CC93 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 22ED5082221F2F3B0019CC93 /* Localizable.strings */; };
+		22ED5085221F3E820019CC93 /* CLLocationManagerServiceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22ED5084221F3E820019CC93 /* CLLocationManagerServiceType.swift */; };
+		22ED5087221F40690019CC93 /* CLLocationManagerProviderType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22ED5086221F40690019CC93 /* CLLocationManagerProviderType.swift */; };
+		22ED5089221F40A90019CC93 /* CLLocationManagerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22ED5088221F40A90019CC93 /* CLLocationManagerService.swift */; };
+		22ED508B221F41090019CC93 /* CLLocationManagerProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22ED508A221F41090019CC93 /* CLLocationManagerProvider.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +56,10 @@
 		22ED507D221F2F100019CC93 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		22ED5081221F2F3B0019CC93 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		22ED5083221F2F400019CC93 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		22ED5084221F3E820019CC93 /* CLLocationManagerServiceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLLocationManagerServiceType.swift; sourceTree = "<group>"; };
+		22ED5086221F40690019CC93 /* CLLocationManagerProviderType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLLocationManagerProviderType.swift; sourceTree = "<group>"; };
+		22ED5088221F40A90019CC93 /* CLLocationManagerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLLocationManagerService.swift; sourceTree = "<group>"; };
+		22ED508A221F41090019CC93 /* CLLocationManagerProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLLocationManagerProvider.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +78,8 @@
 			children = (
 				221EA76B221658C100F5510D /* WeatherProviderType.swift */,
 				221EA76D22165B1000F5510D /* WeatherProviderRestAPI.swift */,
+				22ED5086221F40690019CC93 /* CLLocationManagerProviderType.swift */,
+				22ED508A221F41090019CC93 /* CLLocationManagerProvider.swift */,
 			);
 			path = Providers;
 			sourceTree = "<group>";
@@ -79,6 +89,8 @@
 			children = (
 				22A7857B22133EE9009C0B5B /* WeatherServiceType.swift */,
 				22A7858122134227009C0B5B /* WeatherServiceRestAPI.swift */,
+				22ED5084221F3E820019CC93 /* CLLocationManagerServiceType.swift */,
+				22ED5088221F40A90019CC93 /* CLLocationManagerService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -264,6 +276,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22ED508B221F41090019CC93 /* CLLocationManagerProvider.swift in Sources */,
 				221EA76E22165B1000F5510D /* WeatherProviderRestAPI.swift in Sources */,
 				221EA75F2215A82E00F5510D /* Method.swift in Sources */,
 				22A7857622133D2F009C0B5B /* City.swift in Sources */,
@@ -272,12 +285,15 @@
 				221EA76C221658C100F5510D /* WeatherProviderType.swift in Sources */,
 				22A7857C22133EE9009C0B5B /* WeatherServiceType.swift in Sources */,
 				221EA7672216516400F5510D /* Result.swift in Sources */,
+				22ED5087221F40690019CC93 /* CLLocationManagerProviderType.swift in Sources */,
 				221EA76A221653DE00F5510D /* WeatherEndpoint.swift in Sources */,
+				22ED5085221F3E820019CC93 /* CLLocationManagerServiceType.swift in Sources */,
 				22A7858222134227009C0B5B /* WeatherServiceRestAPI.swift in Sources */,
 				221597C622150BA9006D8318 /* Constants.swift in Sources */,
 				223119A4221C9B8D00DE010A /* CityListViewController.swift in Sources */,
 				221EA7632215BB4A00F5510D /* APIRequester.swift in Sources */,
 				22A7857822133D77009C0B5B /* Weather.swift in Sources */,
+				22ED5089221F40A90019CC93 /* CLLocationManagerService.swift in Sources */,
 				221EA7612215A8E800F5510D /* EndpointType.swift in Sources */,
 				22E8F951220C942000BC3EE6 /* AppDelegate.swift in Sources */,
 			);

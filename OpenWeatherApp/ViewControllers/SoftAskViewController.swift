@@ -11,7 +11,7 @@ import CoreLocation
 
 final class SoftAskViewController: UIViewController, CLLocationManagerDelegate {
   // MARK: Properties
-  let locationManager = CLLocationManager()
+  var locationService: CLLocationManagerServiceType?
   private let containerView: UIView = {
     let view = UIView()
     view.translatesAutoresizingMaskIntoConstraints = false
@@ -53,6 +53,11 @@ final class SoftAskViewController: UIViewController, CLLocationManagerDelegate {
     return button
   }()
   // MARK: Initializers
+  init(locationService: CLLocationManagerServiceType) {
+    super.init(nibName: nil, bundle: nil)
+    self.locationService = locationService
+    finishInit()
+  }
   override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
     super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     finishInit()
@@ -98,43 +103,11 @@ final class SoftAskViewController: UIViewController, CLLocationManagerDelegate {
   }
   // MARK: buttons handle actions
   @objc private func handleYes() {
-    checkLocationServices()
+    locationService?.requestWhenInUseAuthorization()
     // TODO: go to CityListViewController
   }
   @objc private func handleMaybe() {
     // TODO: go to CityListViewController
-  }
-  // MARK: location functions
-  private func checkLocationServices() {
-    if CLLocationManager.locationServicesEnabled() {
-      setupLocationManager()
-      checkLocationAuthorization()
-    } else {
-      let alert = UIAlertController(title: "Location Services disabled".localized,
-                                    message: "Please enable Location Services in Settings".localized,
-                                    preferredStyle: .alert)
-      let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-      alert.addAction(okAction)
-      present(alert, animated: true, completion: nil)
-    }
-  }
-  private func setupLocationManager() {
-    locationManager.delegate = self
-    locationManager.desiredAccuracy = kCLLocationAccuracyBest
-  }
-  private func checkLocationAuthorization() {
-    switch CLLocationManager.authorizationStatus() {
-    case .authorizedWhenInUse:
-      break
-    case .authorizedAlways:
-      break
-    case .denied:
-      break
-    case .notDetermined:
-      locationManager.requestWhenInUseAuthorization()
-    case .restricted:
-      break
-    }
   }
 }
 
