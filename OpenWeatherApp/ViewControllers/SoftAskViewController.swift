@@ -11,17 +11,22 @@ import UIKit
 final class SoftAskViewController: UIViewController {
   // MARK: Properties
   var locationService: CLLocationManagerServiceType?
+
   private let containerView: UIView = {
     let view = UIView()
     view.translatesAutoresizingMaskIntoConstraints = false
     view.backgroundColor = .white
     return view
   }()
+
   private let stackView = UIStackView(frame: .zero)
+
   private lazy var greetingLabel = createCustomLabel(with: "Hi".localized, ofSize: 24)
+
   private lazy var askLabel = createCustomLabel(with:
     "Can you provide us your location in order to get the current weather?".localized,
                                                 ofSize: 13)
+
   private func createCustomLabel(with text: String, ofSize font: CGFloat) -> UILabel {
     let label = UILabel()
     label.translatesAutoresizingMaskIntoConstraints = false
@@ -31,6 +36,7 @@ final class SoftAskViewController: UIViewController {
     label.textAlignment = .center
     return label
   }
+
   private let yesButton: UIButton = {
     let button = UIButton(type: .system)
     button.translatesAutoresizingMaskIntoConstraints = false
@@ -38,6 +44,7 @@ final class SoftAskViewController: UIViewController {
     button.addTarget(self, action: #selector(handleYes), for: .touchUpInside)
     return button
   }()
+
   private let maybeButton: UIButton = {
     let button = UIButton(type: .system)
     button.translatesAutoresizingMaskIntoConstraints = false
@@ -46,29 +53,37 @@ final class SoftAskViewController: UIViewController {
     button.setTitleColor(UIColor(named: "Silver"), for: .normal)
     return button
   }()
+
   // MARK: Initializers
+
   init(locationService: CLLocationManagerServiceType) {
     super.init(nibName: nil, bundle: nil)
     self.locationService = locationService
     finishInit()
   }
+
   override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
     super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     finishInit()
   }
+
   required init?(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
     finishInit()
   }
+
   private func finishInit() {
     setupView()
     setupContainerView()
     setupStackView()
   }
+
   // MARK: Setup view and subViews
+
   private func setupView() {
     view.backgroundColor = UIColor(named: "Silver")
   }
+
   private func setupContainerView() {
     view.addSubview(containerView)
     NSLayoutConstraint.activate([
@@ -78,6 +93,7 @@ final class SoftAskViewController: UIViewController {
       containerView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20)
       ])
   }
+
   private func setupStackView() {
     containerView.addSubview(stackView)
     stackView.addArrangedSubview(greetingLabel)
@@ -94,10 +110,17 @@ final class SoftAskViewController: UIViewController {
       stackView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -110)
       ])
   }
+
   // MARK: buttons handle actions
   @objc private func handleYes() {
-    locationService?.requestWhenInUseAuthorization()
+    if let service: CLLocationManagerServiceType = locationService {
+      service.requestWhenInUseAuthorization { (response) in
+        print(response)
+      }
+      print(service.isLocationAuthorized)
+    }
   }
+
   @objc private func handleMaybe() {
     self.dismiss(animated: true, completion: nil)
   }

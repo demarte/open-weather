@@ -14,6 +14,7 @@ struct Weather: Codable {
     case iconPath = "icon"
     case description
   }
+
   let type: String
   let description: String
   let iconPath: String

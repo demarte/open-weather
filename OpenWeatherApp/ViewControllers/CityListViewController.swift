@@ -15,6 +15,7 @@ final class CityListViewController: UIViewController {
       showLocationSoftAskIfNeeded()
     }
   }
+
   private func showLocationSoftAskIfNeeded() {
     if CLLocationManager.authorizationStatus() == .notDetermined {
       present(SoftAskViewController(locationService: CLLocationManagerService()), animated: true)
