@@ -12,20 +12,11 @@ import CoreLocation
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
   var window: UIWindow?
-  func application(_ application: UIApplication,
-                   didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?)
-                   -> Bool {
+  func application(_ _: UIApplication,
+                   didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
     window = UIWindow(frame: UIScreen.main.bounds)
-    window?.rootViewController = UINavigationController(rootViewController: CityListViewController())
     window?.makeKeyAndVisible()
-    showLocationSoftAskIfNeeded()
+    window?.rootViewController = UINavigationController(rootViewController: CityListViewController())
     return true
-  }
-  private func showLocationSoftAskIfNeeded() {
-    if CLLocationManager.authorizationStatus() == .notDetermined {
-      window?
-        .rootViewController?
-        .present(SoftAskViewController(locationService: CLLocationManagerService()), animated: true)
-    }
   }
 }

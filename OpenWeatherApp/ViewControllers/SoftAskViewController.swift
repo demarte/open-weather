@@ -7,20 +7,14 @@
 //
 
 import UIKit
-import CoreLocation
 
-final class SoftAskViewController: UIViewController, CLLocationManagerDelegate {
+final class SoftAskViewController: UIViewController {
   // MARK: Properties
   var locationService: CLLocationManagerServiceType?
   private let containerView: UIView = {
     let view = UIView()
     view.translatesAutoresizingMaskIntoConstraints = false
     view.backgroundColor = .white
-    return view
-  }()
-  private let topContainerView: UIView = {
-    let view = UIView()
-    view.translatesAutoresizingMaskIntoConstraints = false
     return view
   }()
   private let stackView = UIStackView(frame: .zero)
@@ -78,7 +72,6 @@ final class SoftAskViewController: UIViewController, CLLocationManagerDelegate {
   private func setupContainerView() {
     view.addSubview(containerView)
     NSLayoutConstraint.activate([
-      containerView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
       containerView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
       containerView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
       containerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
@@ -104,10 +97,9 @@ final class SoftAskViewController: UIViewController, CLLocationManagerDelegate {
   // MARK: buttons handle actions
   @objc private func handleYes() {
     locationService?.requestWhenInUseAuthorization()
-    // TODO: go to CityListViewController
   }
   @objc private func handleMaybe() {
-    // TODO: go to CityListViewController
+    self.dismiss(animated: true, completion: nil)
   }
 }
 

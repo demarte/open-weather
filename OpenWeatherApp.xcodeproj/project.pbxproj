@@ -76,10 +76,8 @@
 		220AC9A0220CC17E00563AAF /* Providers */ = {
 			isa = PBXGroup;
 			children = (
-				221EA76B221658C100F5510D /* WeatherProviderType.swift */,
-				221EA76D22165B1000F5510D /* WeatherProviderRestAPI.swift */,
-				22ED5086221F40690019CC93 /* CLLocationManagerProviderType.swift */,
-				22ED508A221F41090019CC93 /* CLLocationManagerProvider.swift */,
+				226C1D17221F67DD00EEFD51 /* Weather */,
+				226C1D18221F67F500EEFD51 /* CLLocationManager */,
 			);
 			path = Providers;
 			sourceTree = "<group>";
@@ -87,10 +85,8 @@
 		220AC9A1220CC18C00563AAF /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				22A7857B22133EE9009C0B5B /* WeatherServiceType.swift */,
-				22A7858122134227009C0B5B /* WeatherServiceRestAPI.swift */,
-				22ED5084221F3E820019CC93 /* CLLocationManagerServiceType.swift */,
-				22ED5088221F40A90019CC93 /* CLLocationManagerService.swift */,
+				226C1D19221F680C00EEFD51 /* Weather */,
+				226C1D1A221F681A00EEFD51 /* CLLocationManager */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -132,6 +128,42 @@
 				223119A3221C9B8D00DE010A /* CityListViewController.swift */,
 			);
 			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		226C1D17221F67DD00EEFD51 /* Weather */ = {
+			isa = PBXGroup;
+			children = (
+				221EA76B221658C100F5510D /* WeatherProviderType.swift */,
+				221EA76D22165B1000F5510D /* WeatherProviderRestAPI.swift */,
+			);
+			path = Weather;
+			sourceTree = "<group>";
+		};
+		226C1D18221F67F500EEFD51 /* CLLocationManager */ = {
+			isa = PBXGroup;
+			children = (
+				22ED5086221F40690019CC93 /* CLLocationManagerProviderType.swift */,
+				22ED508A221F41090019CC93 /* CLLocationManagerProvider.swift */,
+			);
+			path = CLLocationManager;
+			sourceTree = "<group>";
+		};
+		226C1D19221F680C00EEFD51 /* Weather */ = {
+			isa = PBXGroup;
+			children = (
+				22A7857B22133EE9009C0B5B /* WeatherServiceType.swift */,
+				22A7858122134227009C0B5B /* WeatherServiceRestAPI.swift */,
+			);
+			path = Weather;
+			sourceTree = "<group>";
+		};
+		226C1D1A221F681A00EEFD51 /* CLLocationManager */ = {
+			isa = PBXGroup;
+			children = (
+				22ED5084221F3E820019CC93 /* CLLocationManagerServiceType.swift */,
+				22ED5088221F40A90019CC93 /* CLLocationManagerService.swift */,
+			);
+			path = CLLocationManager;
 			sourceTree = "<group>";
 		};
 		22A7857422133D0B009C0B5B /* Models */ = {

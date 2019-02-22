@@ -10,7 +10,14 @@ import UIKit
 import CoreLocation
 
 final class CityListViewController: UIViewController {
-  override func viewDidLoad() {
-    super.viewDidLoad()
+  override func viewDidAppear(_ animated: Bool) {
+    if self.isBeingPresented || self.isMovingToParent {
+      showLocationSoftAskIfNeeded()
+    }
+  }
+  private func showLocationSoftAskIfNeeded() {
+    if CLLocationManager.authorizationStatus() == .notDetermined {
+      present(SoftAskViewController(locationService: CLLocationManagerService()), animated: true)
+    }
   }
 }
