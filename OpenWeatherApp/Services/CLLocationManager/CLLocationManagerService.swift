@@ -10,9 +10,15 @@ import Foundation
 
 struct CLLocationManagerService: CLLocationManagerServiceType {
   private let locationProvider: CLLocationManagerProviderType
+
+  var isLocationAuthorized: Bool {
+    return locationProvider.isLocationAuthorized
+  }
+
   init(locationProvider: CLLocationManagerProviderType = CLLocationManagerProvider()) {
     self.locationProvider = locationProvider
   }
+
   func requestWhenInUseAuthorization() {
     locationProvider.requestWhenInUseAuthorization()
   }

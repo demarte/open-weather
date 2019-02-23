@@ -7,10 +7,13 @@
 //
 
 import UIKit
+import CoreLocation
 
-final class SoftAskViewController: UIViewController {
+final class SoftAskViewController: UIViewController, CLLocationManagerDelegate {
   // MARK: Properties
   var locationService: CLLocationManagerServiceType?
+
+  var locationManager: CLLocationManager = CLLocationManager()
 
   private let containerView: UIView = {
     let view = UIView()
@@ -53,12 +56,11 @@ final class SoftAskViewController: UIViewController {
     button.setTitleColor(UIColor(named: "Silver"), for: .normal)
     return button
   }()
-
   // MARK: Initializers
-
   init(locationService: CLLocationManagerServiceType) {
     super.init(nibName: nil, bundle: nil)
     self.locationService = locationService
+    locationManager.delegate = self
     finishInit()
   }
 
@@ -77,9 +79,7 @@ final class SoftAskViewController: UIViewController {
     setupContainerView()
     setupStackView()
   }
-
   // MARK: Setup view and subViews
-
   private func setupView() {
     view.backgroundColor = UIColor(named: "Silver")
   }
@@ -110,15 +110,15 @@ final class SoftAskViewController: UIViewController {
       stackView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -110)
       ])
   }
-
-  // MARK: buttons handle actions
-  @objc private func handleYes() {
-    if let service: CLLocationManagerServiceType = locationService {
-      service.requestWhenInUseAuthorization { (response) in
-        print(response)
-      }
-      print(service.isLocationAuthorized)
+  // MARK: Delegate function
+  func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+    if CLLocationManager.authorizationStatus() != .notDetermined {
+      self.dismiss(animated: true, completion: nil)
     }
+  }
+  // MARK: Button actions
+  @objc private func handleYes() {
+   locationService?.requestWhenInUseAuthorization()
   }
 
   @objc private func handleMaybe() {
