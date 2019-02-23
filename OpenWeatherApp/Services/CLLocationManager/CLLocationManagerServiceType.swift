@@ -9,5 +9,7 @@
 import Foundation
 
 protocol CLLocationManagerServiceType {
+  var isLocationAuthorized: Bool { get }
+
   func requestWhenInUseAuthorization()
 }
