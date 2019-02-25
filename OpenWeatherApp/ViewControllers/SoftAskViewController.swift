@@ -7,13 +7,10 @@
 //
 
 import UIKit
-import CoreLocation
 
-final class SoftAskViewController: UIViewController, CLLocationManagerDelegate {
+final class SoftAskViewController: UIViewController {
   // MARK: Properties
   var locationService: CLLocationManagerServiceType?
-
-  var locationManager: CLLocationManager = CLLocationManager()
 
   private let containerView: UIView = {
     let view = UIView()
@@ -60,7 +57,6 @@ final class SoftAskViewController: UIViewController, CLLocationManagerDelegate {
   init(locationService: CLLocationManagerServiceType) {
     super.init(nibName: nil, bundle: nil)
     self.locationService = locationService
-    locationManager.delegate = self
     finishInit()
   }
 
@@ -110,18 +106,18 @@ final class SoftAskViewController: UIViewController, CLLocationManagerDelegate {
       stackView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -110)
       ])
   }
-  // MARK: Delegate function
-  func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-    if CLLocationManager.authorizationStatus() != .notDetermined {
-      self.dismiss(animated: true, completion: nil)
-    }
-  }
-  // MARK: Button actions
+  // MARK: functions
   @objc private func handleYes() {
-   locationService?.requestWhenInUseAuthorization()
+    locationService?.requestWhenInUseAuthorization(completion: {
+      self.exit()
+    })
   }
 
   @objc private func handleMaybe() {
+    exit()
+  }
+
+  private func exit() {
     self.dismiss(animated: true, completion: nil)
   }
 }

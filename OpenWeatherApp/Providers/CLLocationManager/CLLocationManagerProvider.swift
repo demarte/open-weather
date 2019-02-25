@@ -9,14 +9,24 @@
 import Foundation
 import CoreLocation
 
-struct CLLocationManagerProvider: CLLocationManagerProviderType {
-  var isLocationAuthorized: Bool {
-    return CLLocationManager.authorizationStatus() == .authorizedWhenInUse
+class CLLocationManagerProvider: NSObject, CLLocationManagerProviderType {
+  var locationManager: CLLocationManager = CLLocationManager()
+
+  var completion: (() -> Void) = {}
+
+  override init() {
+    super.init()
+    locationManager.delegate = self
   }
 
-  let locationManager: CLLocationManager = CLLocationManager()
-
-  func requestWhenInUseAuthorization() {
+  func requestWhenInUseAuthorization(completion: @escaping () -> Void) {
+    self.completion = completion
     locationManager.requestWhenInUseAuthorization()
+  }
+}
+
+extension CLLocationManagerProvider: CLLocationManagerDelegate {
+  func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+    self.completion()
   }
 }
