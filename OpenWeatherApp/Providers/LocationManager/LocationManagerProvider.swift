@@ -10,9 +10,9 @@ import Foundation
 import CoreLocation
 
 class LocationManagerProvider: NSObject, LocationManagerProviderType {
-  var locationManager: CLLocationManager = CLLocationManager()
+  private var locationManager: CLLocationManager = CLLocationManager()
 
-  var completion: (() -> Void) = {}
+  private var completion: (() -> Void) = {}
 
   override init() {
     super.init()
