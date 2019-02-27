@@ -10,7 +10,7 @@ import UIKit
 
 final class SoftAskViewController: UIViewController {
   // MARK: Properties
-  var locationService: LocationManagerServiceType?
+  private var locationService: LocationManagerServiceType?
 
   private let containerView: UIView = {
     let view = UIView()

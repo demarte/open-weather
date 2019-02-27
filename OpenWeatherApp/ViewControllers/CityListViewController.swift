@@ -7,9 +7,20 @@
 //
 
 import UIKit
-import CoreLocation
 
 final class CityListViewController: UIViewController {
+
+  private var locationService: LocationManagerServiceType?
+
+  init(locationService: LocationManagerServiceType) {
+    super.init(nibName: nil, bundle: nil)
+    self.locationService = locationService
+  }
+
+  required init?(coder aDecoder: NSCoder) {
+    super.init(coder: aDecoder)
+  }
+
   override func viewDidAppear(_ animated: Bool) {
     if self.isBeingPresented || self.isMovingToParent {
       showLocationSoftAskIfNeeded()
@@ -17,7 +28,8 @@ final class CityListViewController: UIViewController {
   }
 
   private func showLocationSoftAskIfNeeded() {
-    if CLLocationManager.authorizationStatus() == .notDetermined {
+    let isNotDetermined = locationService?.checkAuthorizationStatusIsNotDetermined() ?? false
+    if isNotDetermined {
       present(SoftAskViewController(locationService: LocationManagerService()), animated: true)
     }
   }

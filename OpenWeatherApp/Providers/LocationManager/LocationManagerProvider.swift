@@ -25,6 +25,10 @@ class LocationManagerProvider: NSObject, LocationManagerProviderType {
     self.completion = completion
     locationManager.requestWhenInUseAuthorization()
   }
+
+  func checkAuthorizationStatusIsNotDetermined() -> Bool {
+    return CLLocationManager.authorizationStatus() == .notDetermined
+  }
 }
 
 extension LocationManagerProvider: CLLocationManagerDelegate {

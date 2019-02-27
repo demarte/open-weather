@@ -10,4 +10,5 @@ import Foundation
 
 protocol LocationManagerServiceType {
   func requestWhenInUseAuthorization(completion: @escaping () -> Void)
+  func checkAuthorizationStatusIsNotDetermined() -> Bool
 }

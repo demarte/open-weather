@@ -18,4 +18,8 @@ struct LocationManagerService: LocationManagerServiceType {
   func requestWhenInUseAuthorization(completion: @escaping () -> Void) {
     locationProvider.requestWhenInUseAuthorization(completion: completion)
   }
+
+  func checkAuthorizationStatusIsNotDetermined() -> Bool {
+    return locationProvider.checkAuthorizationStatusIsNotDetermined()
+  }
 }
