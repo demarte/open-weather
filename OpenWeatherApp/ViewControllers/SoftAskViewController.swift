@@ -71,16 +71,16 @@ final class SoftAskViewController: UIViewController {
   }
 
   private func finishInit() {
-    setupView()
-    setupContainerView()
-    setupStackView()
+    setUpView()
+    setUpContainerView()
+    setUpStackView()
   }
   // MARK: Setup view and subViews
-  private func setupView() {
+  private func setUpView() {
     view.backgroundColor = .silver
   }
 
-  private func setupContainerView() {
+  private func setUpContainerView() {
     view.addSubview(containerView)
     NSLayoutConstraint.activate([
       containerView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
@@ -90,7 +90,7 @@ final class SoftAskViewController: UIViewController {
       ])
   }
 
-  private func setupStackView() {
+  private func setUpStackView() {
     containerView.addSubview(stackView)
     stackView.addArrangedSubview(greetingLabel)
     stackView.addArrangedSubview(askLabel)
