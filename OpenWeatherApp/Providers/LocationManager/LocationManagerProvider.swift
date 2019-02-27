@@ -9,7 +9,7 @@
 import Foundation
 import CoreLocation
 
-class CLLocationManagerProvider: NSObject, CLLocationManagerProviderType {
+class LocationManagerProvider: NSObject, LocationManagerProviderType {
   var locationManager: CLLocationManager = CLLocationManager()
 
   var completion: (() -> Void) = {}
@@ -25,7 +25,7 @@ class CLLocationManagerProvider: NSObject, CLLocationManagerProviderType {
   }
 }
 
-extension CLLocationManagerProvider: CLLocationManagerDelegate {
+extension LocationManagerProvider: CLLocationManagerDelegate {
   func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
     self.completion()
   }

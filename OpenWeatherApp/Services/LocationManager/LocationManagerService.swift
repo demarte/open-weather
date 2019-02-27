@@ -8,10 +8,10 @@
 
 import Foundation
 
-struct CLLocationManagerService: CLLocationManagerServiceType {
-  private let locationProvider: CLLocationManagerProviderType
+struct LocationManagerService: LocationManagerServiceType {
+  private let locationProvider: LocationManagerProviderType
 
-  init(locationProvider: CLLocationManagerProviderType = CLLocationManagerProvider()) {
+  init(locationProvider: LocationManagerProviderType = LocationManagerProvider()) {
     self.locationProvider = locationProvider
   }
 

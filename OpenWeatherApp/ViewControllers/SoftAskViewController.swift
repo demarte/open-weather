@@ -10,7 +10,7 @@ import UIKit
 
 final class SoftAskViewController: UIViewController {
   // MARK: Properties
-  var locationService: CLLocationManagerServiceType?
+  var locationService: LocationManagerServiceType?
 
   private let containerView: UIView = {
     let view = UIView()
@@ -54,7 +54,7 @@ final class SoftAskViewController: UIViewController {
     return button
   }()
   // MARK: Initializers
-  init(locationService: CLLocationManagerServiceType) {
+  init(locationService: LocationManagerServiceType) {
     super.init(nibName: nil, bundle: nil)
     self.locationService = locationService
     finishInit()

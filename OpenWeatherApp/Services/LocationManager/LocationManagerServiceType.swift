@@ -8,6 +8,6 @@
 
 import Foundation
 
-protocol CLLocationManagerServiceType {
+protocol LocationManagerServiceType {
   func requestWhenInUseAuthorization(completion: @escaping () -> Void)
 }
