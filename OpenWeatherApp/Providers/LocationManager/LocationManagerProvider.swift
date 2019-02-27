@@ -9,17 +9,19 @@
 import Foundation
 import CoreLocation
 
+typealias DidChangeAuthorizationHandle = () -> Void
+
 class LocationManagerProvider: NSObject, LocationManagerProviderType {
   private var locationManager: CLLocationManager = CLLocationManager()
 
-  private var completion: (() -> Void) = {}
+  private var completion: DidChangeAuthorizationHandle = {}
 
   override init() {
     super.init()
     locationManager.delegate = self
   }
 
-  func requestWhenInUseAuthorization(completion: @escaping () -> Void) {
+  func requestWhenInUseAuthorization(completion: @escaping DidChangeAuthorizationHandle) {
     self.completion = completion
     locationManager.requestWhenInUseAuthorization()
   }
