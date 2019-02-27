@@ -122,12 +122,6 @@ final class SoftAskViewController: UIViewController {
   }
 }
 
-extension String {
-  var localized: String {
-    return NSLocalizedString(self, comment: "")
-  }
-}
-
 extension UIColor {
   static let silver: UIColor = UIColor(named: "Silver") ?? #colorLiteral(red: 0.6666666865, green: 0.6666666865, blue: 0.6666666865, alpha: 1)
 }
