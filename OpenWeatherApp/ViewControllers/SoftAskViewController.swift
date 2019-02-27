@@ -12,13 +12,6 @@ final class SoftAskViewController: UIViewController {
   // MARK: Properties
   private var locationService: LocationManagerServiceType?
 
-  private let containerView: UIView = {
-    let view = UIView()
-    view.translatesAutoresizingMaskIntoConstraints = false
-    view.backgroundColor = .white
-    return view
-  }()
-
   private let stackView = UIStackView(frame: .zero)
 
   private lazy var greetingLabel = createCustomLabel(with: "Hi".localized, ofSize: 24)
@@ -72,26 +65,17 @@ final class SoftAskViewController: UIViewController {
 
   private func finishInit() {
     setUpView()
-    setUpContainerView()
     setUpStackView()
   }
   // MARK: Setup view and subViews
   private func setUpView() {
-    view.backgroundColor = .silver
-  }
-
-  private func setUpContainerView() {
-    view.addSubview(containerView)
-    NSLayoutConstraint.activate([
-      containerView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
-      containerView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
-      containerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
-      containerView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20)
-      ])
+    view.backgroundColor = .white
+    view.layer.borderWidth = 20
+    view.layer.borderColor = UIColor.silver.cgColor
+    view.addSubview(stackView)
   }
 
   private func setUpStackView() {
-    containerView.addSubview(stackView)
     stackView.addArrangedSubview(greetingLabel)
     stackView.addArrangedSubview(askLabel)
     stackView.addArrangedSubview(yesButton)
@@ -100,10 +84,10 @@ final class SoftAskViewController: UIViewController {
     stackView.axis = .vertical
     stackView.spacing = 20
     NSLayoutConstraint.activate([
-      stackView.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
-      stackView.centerYAnchor.constraint(equalTo: containerView.centerYAnchor),
-      stackView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 110),
-      stackView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -110)
+      stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+      stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+      stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 110),
+      stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -110)
       ])
   }
   // MARK: functions
