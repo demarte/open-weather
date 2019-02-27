@@ -50,7 +50,7 @@ final class SoftAskViewController: UIViewController {
     button.translatesAutoresizingMaskIntoConstraints = false
     button.setTitle("Maybe later".localized, for: .normal)
     button.addTarget(self, action: #selector(handleMaybe), for: .touchUpInside)
-    button.setTitleColor(UIColor(named: "Silver"), for: .normal)
+    button.setTitleColor(.silver, for: .normal)
     return button
   }()
   // MARK: Initializers
@@ -77,7 +77,7 @@ final class SoftAskViewController: UIViewController {
   }
   // MARK: Setup view and subViews
   private func setupView() {
-    view.backgroundColor = UIColor(named: "Silver")
+    view.backgroundColor = .silver
   }
 
   private func setupContainerView() {
@@ -126,4 +126,8 @@ extension String {
   var localized: String {
     return NSLocalizedString(self, comment: "")
   }
+}
+
+extension UIColor {
+  static let silver: UIColor = UIColor(named: "Silver") ?? #colorLiteral(red: 0.6666666865, green: 0.6666666865, blue: 0.6666666865, alpha: 1)
 }
