@@ -14,11 +14,12 @@ final class SoftAskViewController: UIViewController {
 
   private let stackView = UIStackView(frame: .zero)
 
-  private lazy var greetingLabel = createCustomLabel(with: "Hi".localized, ofSize: 24)
+  private lazy var greetingLabel = createCustomLabel(with: "Hi".localized,
+                                                     ofSize: Constants.titleFont)
 
   private lazy var askLabel = createCustomLabel(with:
     "Can you provide us your location in order to get the current weather?".localized,
-                                                ofSize: 13)
+                                                ofSize: Constants.bodyFont)
 
   private func createCustomLabel(with text: String, ofSize font: CGFloat) -> UILabel {
     let label = UILabel()
@@ -67,10 +68,10 @@ final class SoftAskViewController: UIViewController {
     setUpView()
     setUpStackView()
   }
-  // MARK: Setup view and subViews
+  // MARK: Set up view and subViews
   private func setUpView() {
     view.backgroundColor = .white
-    view.layer.borderWidth = 20
+    view.layer.borderWidth = Constants.borderWidth
     view.layer.borderColor = UIColor.silver.cgColor
     view.addSubview(stackView)
   }
@@ -82,15 +83,16 @@ final class SoftAskViewController: UIViewController {
     stackView.addArrangedSubview(maybeButton)
     stackView.translatesAutoresizingMaskIntoConstraints = false
     stackView.axis = .vertical
-    stackView.spacing = 20
+    stackView.spacing = Constants.stackViewSpacing
     NSLayoutConstraint.activate([
       stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
       stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-      stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 110),
-      stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -110)
+      stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constants.stackViewSpacingToView),
+      stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant:
+        -Constants.stackViewSpacingToView)
       ])
   }
-  // MARK: functions
+  // MARK: Functions
   @objc private func handleYes() {
     locationService?.requestWhenInUseAuthorization(completion: {
       self.exit()
@@ -105,7 +107,17 @@ final class SoftAskViewController: UIViewController {
     self.dismiss(animated: true, completion: nil)
   }
 }
-
+// MARK: Constants
+extension SoftAskViewController {
+  private struct Constants {
+    static let borderWidth: CGFloat = 20.0
+    static let titleFont: CGFloat = 24.0
+    static let bodyFont: CGFloat = 13.0
+    static let stackViewSpacingToView: CGFloat = 110.0
+    static let stackViewSpacing: CGFloat = 20.0
+  }
+}
+// MARK: Custom colors
 extension UIColor {
   static let silver: UIColor = UIColor(named: "Silver") ?? #colorLiteral(red: 0.6666666865, green: 0.6666666865, blue: 0.6666666865, alpha: 1)
 }
