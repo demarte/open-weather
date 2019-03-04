@@ -38,6 +38,7 @@ struct APIRequester<Endpoint: EndpointType> {
       }
     }.resume()
   }
+
   private func create(_ endpoint: Endpoint) -> URLRequest {
     //faz o unwrap da propriedade request do endpoint e retorna essa request
     //caso o implementador do EndpointType ja tenha criado a URLRequest, a funcao retorna

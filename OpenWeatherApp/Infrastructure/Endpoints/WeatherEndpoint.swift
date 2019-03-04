@@ -18,9 +18,11 @@ extension WeatherEndpoint: EndpointType {
   var path: String {
     return "weather"
   }
+
   var method: Method {
     return .get
   }
+
   var parameters: [String: String]? {
     var parameters: [String: String] = ["APPID": Constants.apiKey]
     switch self {
