@@ -26,9 +26,6 @@
 		22D897B4222F03D9008430E0 /* PersistenceServiceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D897B3222F03D9008430E0 /* PersistenceServiceType.swift */; };
 		22D897B7222F0571008430E0 /* PersistenceProviderType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D897B6222F0571008430E0 /* PersistenceProviderType.swift */; };
 		22D897B9222F060F008430E0 /* PersistenceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D897B8222F060F008430E0 /* PersistenceProvider.swift */; };
-		22D897BC222F0BC6008430E0 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 22D897BA222F0BC6008430E0 /* Model.xcdatamodeld */; };
-		22D897CC222F1179008430E0 /* City+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D897CA222F1179008430E0 /* City+CoreDataClass.swift */; };
-		22D897CD222F1179008430E0 /* City+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D897CB222F1179008430E0 /* City+CoreDataProperties.swift */; };
 		22D897CF222F11F8008430E0 /* PersistenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D897CE222F11F8008430E0 /* PersistenceService.swift */; };
 		22E8F951220C942000BC3EE6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E8F950220C942000BC3EE6 /* AppDelegate.swift */; };
 		22E8F958220C942100BC3EE6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22E8F957220C942100BC3EE6 /* Assets.xcassets */; };
@@ -60,9 +57,6 @@
 		22D897B3222F03D9008430E0 /* PersistenceServiceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceServiceType.swift; sourceTree = "<group>"; };
 		22D897B6222F0571008430E0 /* PersistenceProviderType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceProviderType.swift; sourceTree = "<group>"; };
 		22D897B8222F060F008430E0 /* PersistenceProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceProvider.swift; sourceTree = "<group>"; };
-		22D897BB222F0BC6008430E0 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
-		22D897CA222F1179008430E0 /* City+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "City+CoreDataClass.swift"; sourceTree = "<group>"; };
-		22D897CB222F1179008430E0 /* City+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "City+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		22D897CE222F11F8008430E0 /* PersistenceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceService.swift; sourceTree = "<group>"; };
 		22E8F94D220C942000BC3EE6 /* OpenWeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenWeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		22E8F950220C942000BC3EE6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -207,9 +201,6 @@
 		22D897BD222F0BEE008430E0 /* Core Data */ = {
 			isa = PBXGroup;
 			children = (
-				22D897CA222F1179008430E0 /* City+CoreDataClass.swift */,
-				22D897CB222F1179008430E0 /* City+CoreDataProperties.swift */,
-				22D897BA222F0BC6008430E0 /* Model.xcdatamodeld */,
 			);
 			path = "Core Data";
 			sourceTree = "<group>";
@@ -349,9 +340,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				22ED508B221F41090019CC93 /* LocationManagerProvider.swift in Sources */,
-				22D897CD222F1179008430E0 /* City+CoreDataProperties.swift in Sources */,
 				221EA76E22165B1000F5510D /* WeatherProviderRestAPI.swift in Sources */,
-				22D897CC222F1179008430E0 /* City+CoreDataClass.swift in Sources */,
 				221EA75F2215A82E00F5510D /* Method.swift in Sources */,
 				22A7857622133D2F009C0B5B /* City.swift in Sources */,
 				223119A2221C975300DE010A /* SoftAskViewController.swift in Sources */,
@@ -373,7 +362,6 @@
 				22A7857822133D77009C0B5B /* Weather.swift in Sources */,
 				22D897B9222F060F008430E0 /* PersistenceProvider.swift in Sources */,
 				22ED5089221F40A90019CC93 /* LocationManagerService.swift in Sources */,
-				22D897BC222F0BC6008430E0 /* Model.xcdatamodeld in Sources */,
 				221EA7612215A8E800F5510D /* EndpointType.swift in Sources */,
 				22E8F951220C942000BC3EE6 /* AppDelegate.swift in Sources */,
 			);
@@ -579,19 +567,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		22D897BA222F0BC6008430E0 /* Model.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				22D897BB222F0BC6008430E0 /* Model.xcdatamodel */,
-			);
-			currentVersion = 22D897BB222F0BC6008430E0 /* Model.xcdatamodel */;
-			path = Model.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 22E8F945220C942000BC3EE6 /* Project object */;
 }
