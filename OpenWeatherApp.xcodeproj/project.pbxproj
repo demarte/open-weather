@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		221597C622150BA9006D8318 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221597C522150BA9006D8318 /* Constants.swift */; };
+		221E4BE22238CC2B008B0D6A /* PersistenceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221E4BE12238CC2B008B0D6A /* PersistenceError.swift */; };
 		221EA75F2215A82E00F5510D /* Method.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221EA75E2215A82E00F5510D /* Method.swift */; };
 		221EA7612215A8E800F5510D /* EndpointType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221EA7602215A8E800F5510D /* EndpointType.swift */; };
 		221EA7632215BB4A00F5510D /* APIRequester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221EA7622215BB4A00F5510D /* APIRequester.swift */; };
@@ -22,7 +23,7 @@
 		22A7857822133D77009C0B5B /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A7857722133D77009C0B5B /* Weather.swift */; };
 		22A7857C22133EE9009C0B5B /* WeatherServiceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A7857B22133EE9009C0B5B /* WeatherServiceType.swift */; };
 		22A7858222134227009C0B5B /* WeatherServiceRestAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A7858122134227009C0B5B /* WeatherServiceRestAPI.swift */; };
-		22B3EC712226CE50006192A4 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B3EC702226CE50006192A4 /* StringExtension.swift */; };
+		22B3EC712226CE50006192A4 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B3EC702226CE50006192A4 /* String+Extension.swift */; };
 		22D897B4222F03D9008430E0 /* PersistenceServiceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D897B3222F03D9008430E0 /* PersistenceServiceType.swift */; };
 		22D897B7222F0571008430E0 /* PersistenceProviderType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D897B6222F0571008430E0 /* PersistenceProviderType.swift */; };
 		22D897B9222F060F008430E0 /* PersistenceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D897B8222F060F008430E0 /* PersistenceProvider.swift */; };
@@ -39,6 +40,7 @@
 
 /* Begin PBXFileReference section */
 		221597C522150BA9006D8318 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		221E4BE12238CC2B008B0D6A /* PersistenceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceError.swift; sourceTree = "<group>"; };
 		221EA75E2215A82E00F5510D /* Method.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Method.swift; sourceTree = "<group>"; };
 		221EA7602215A8E800F5510D /* EndpointType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndpointType.swift; sourceTree = "<group>"; };
 		221EA7622215BB4A00F5510D /* APIRequester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequester.swift; sourceTree = "<group>"; };
@@ -53,7 +55,7 @@
 		22A7857722133D77009C0B5B /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
 		22A7857B22133EE9009C0B5B /* WeatherServiceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherServiceType.swift; sourceTree = "<group>"; };
 		22A7858122134227009C0B5B /* WeatherServiceRestAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherServiceRestAPI.swift; sourceTree = "<group>"; };
-		22B3EC702226CE50006192A4 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
+		22B3EC702226CE50006192A4 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		22D897B3222F03D9008430E0 /* PersistenceServiceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceServiceType.swift; sourceTree = "<group>"; };
 		22D897B6222F0571008430E0 /* PersistenceProviderType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceProviderType.swift; sourceTree = "<group>"; };
 		22D897B8222F060F008430E0 /* PersistenceProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceProvider.swift; sourceTree = "<group>"; };
@@ -119,7 +121,6 @@
 				221EA75E2215A82E00F5510D /* Method.swift */,
 				221EA7622215BB4A00F5510D /* APIRequester.swift */,
 				221EA76422164FB900F5510D /* APIRequesterError.swift */,
-				221EA7662216516400F5510D /* Result.swift */,
 			);
 			path = APIRequester;
 			sourceTree = "<group>";
@@ -194,6 +195,7 @@
 			children = (
 				22D897B6222F0571008430E0 /* PersistenceProviderType.swift */,
 				22D897B8222F060F008430E0 /* PersistenceProvider.swift */,
+				221E4BE12238CC2B008B0D6A /* PersistenceError.swift */,
 			);
 			path = Persistence;
 			sourceTree = "<group>";
@@ -239,10 +241,11 @@
 		22ED506C221F23CA0019CC93 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				221EA7662216516400F5510D /* Result.swift */,
 				22E8F959220C942100BC3EE6 /* LaunchScreen.storyboard */,
 				22E8F957220C942100BC3EE6 /* Assets.xcassets */,
 				22ED5082221F2F3B0019CC93 /* Localizable.strings */,
-				22B3EC702226CE50006192A4 /* StringExtension.swift */,
+				22B3EC702226CE50006192A4 /* String+Extension.swift */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -347,7 +350,7 @@
 				221EA76522164FB900F5510D /* APIRequesterError.swift in Sources */,
 				221EA76C221658C100F5510D /* WeatherProviderType.swift in Sources */,
 				22A7857C22133EE9009C0B5B /* WeatherServiceType.swift in Sources */,
-				22B3EC712226CE50006192A4 /* StringExtension.swift in Sources */,
+				22B3EC712226CE50006192A4 /* String+Extension.swift in Sources */,
 				221EA7672216516400F5510D /* Result.swift in Sources */,
 				22ED5087221F40690019CC93 /* LocationManagerProviderType.swift in Sources */,
 				22D897B7222F0571008430E0 /* PersistenceProviderType.swift in Sources */,
@@ -363,6 +366,7 @@
 				22D897B9222F060F008430E0 /* PersistenceProvider.swift in Sources */,
 				22ED5089221F40A90019CC93 /* LocationManagerService.swift in Sources */,
 				221EA7612215A8E800F5510D /* EndpointType.swift in Sources */,
+				221E4BE22238CC2B008B0D6A /* PersistenceError.swift in Sources */,
 				22E8F951220C942000BC3EE6 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
