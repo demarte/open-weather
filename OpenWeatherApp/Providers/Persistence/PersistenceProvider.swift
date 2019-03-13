@@ -19,7 +19,6 @@ final class PersistenceProvider: PersistenceProviderType {
   lazy var persistentContainer: NSPersistentContainer = {
     let container = NSPersistentContainer(name: "Model")
     container.loadPersistentStores(completionHandler: { (_, error) in
-      // TODO: - Tratar o erro
       if let error = error as NSError? {
         fatalError("Unresolved error \(error), \(error.userInfo)")
       }
@@ -29,36 +28,42 @@ final class PersistenceProvider: PersistenceProviderType {
 
   // MARK: - fetch
 
-  func fetch<T: NSManagedObject>(_ objectType: T.Type) -> [T]? {
+  func fetch<T: NSManagedObject>(_ objectType: T.Type) -> Result<[T]> {
     let entityName = String(describing: objectType)
     let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
     do {
-      let fetchedObjects = try context.fetch(fetchRequest) as? [T]
-      return fetchedObjects
+      if let fetchedObjects = try context.fetch(fetchRequest) as? [T] {
+        return Result.success(fetchedObjects)
+      } else {
+        return Result.failure(PersistenceError.failToFetchData)
+      }
     } catch {
-      // TODO: - tratar o erro
       let nserror = error as NSError
-      fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+      return Result.failure(nserror)
     }
   }
 
   // MARK: - delete
 
-  func delete<T: NSManagedObject>(_ object: T) {
+  func delete<T: NSManagedObject>(_ object: T) throws {
     context.delete(object)
-    saveContext()
+    do {
+      try saveContext()
+    } catch {
+      let nserror = error as NSError
+      throw nserror
+    }
   }
 
   // MARK: - Core Data save
 
-  func saveContext() {
+  func saveContext() throws {
     if context.hasChanges {
       do {
         try context.save()
       } catch {
-        // TODO: - tratar o erro
         let nserror = error as NSError
-        fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+        throw nserror
       }
     }
   }

@@ -11,21 +11,28 @@ import CoreData
 
 final class PersistenceService: PersistenceServiceType {
   private var persistenceProvider: PersistenceProviderType
-  lazy var context = persistenceProvider.context
 
   init(persistenceProvider: PersistenceProviderType = PersistenceProvider()) {
     self.persistenceProvider = persistenceProvider
   }
 
-  func fetch<T: NSManagedObject>(_ objectType: T.Type) -> [T]? {
+  func fetch<T: NSManagedObject>(_ objectType: T.Type) -> Result<[T]> {
     return persistenceProvider.fetch(objectType)
   }
 
-  func delete<T: NSManagedObject>(_ object: T) {
-    persistenceProvider.delete(object)
+  func delete<T: NSManagedObject>(_ object: T) throws {
+    do {
+      try persistenceProvider.delete(object)
+    } catch {
+      throw error
+    }
   }
 
-  func saveContext() {
-    persistenceProvider.saveContext()
+  func saveContext() throws {
+    do {
+      try persistenceProvider.saveContext()
+    } catch {
+      throw error
+    }
   }
 }

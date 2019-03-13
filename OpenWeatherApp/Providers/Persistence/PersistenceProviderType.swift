@@ -10,8 +10,7 @@ import Foundation
 import CoreData
 
 protocol PersistenceProviderType {
-  var context: NSManagedObjectContext { get }
-  func saveContext()
-  func fetch<T: NSManagedObject>(_ objectType: T.Type) -> [T]?
-  func delete<T: NSManagedObject>(_ object: T)
+  func saveContext() throws
+  func fetch<T: NSManagedObject>(_ objectType: T.Type) -> Result<[T]>
+  func delete<T: NSManagedObject>(_ object: T) throws
 }
