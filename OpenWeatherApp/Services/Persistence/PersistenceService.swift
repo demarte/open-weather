@@ -12,7 +12,7 @@ import CoreData
 final class PersistenceService: PersistenceServiceType {
   private var persistenceProvider: PersistenceProviderType
 
-  init(persistenceProvider: PersistenceProviderType = PersistenceProvider()) {
+  init(persistenceProvider: PersistenceProviderType = PersistenceProvider.shared) {
     self.persistenceProvider = persistenceProvider
   }
 

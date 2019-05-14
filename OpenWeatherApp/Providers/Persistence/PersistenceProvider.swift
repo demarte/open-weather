@@ -10,6 +10,11 @@ import Foundation
 import CoreData
 
 final class PersistenceProvider: PersistenceProviderType {
+
+  // MARK: - Singleton
+  private init() {}
+  static let shared = PersistenceProvider()
+
   // MARK: - Core Data context
 
   lazy var context = persistentContainer.viewContext
