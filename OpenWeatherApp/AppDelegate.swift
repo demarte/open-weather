@@ -17,7 +17,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     window = UIWindow(frame: UIScreen.main.bounds)
     window?.makeKeyAndVisible()
     window?.rootViewController = UINavigationController(rootViewController:
-      CityListViewController(locationService: LocationManagerService()))
+      CityListViewController(locationService: LocationManagerService(),
+                             persistenceService: PersistenceService()))
     return true
   }
 }

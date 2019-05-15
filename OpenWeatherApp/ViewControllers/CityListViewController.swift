@@ -11,10 +11,12 @@ import UIKit
 final class CityListViewController: UIViewController {
 
   private var locationService: LocationManagerServiceType?
+  private var persistenceService: PersistenceServiceType?
 
-  init(locationService: LocationManagerServiceType) {
+  init(locationService: LocationManagerServiceType, persistenceService: PersistenceServiceType) {
     super.init(nibName: nil, bundle: nil)
     self.locationService = locationService
+    self.persistenceService = persistenceService
   }
 
   required init?(coder aDecoder: NSCoder) {
