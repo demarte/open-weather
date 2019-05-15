@@ -13,4 +13,5 @@ protocol PersistenceServiceType {
   func saveContext() throws
   func fetch<T: NSManagedObject>(_ objectType: T.Type) -> Result<[T]>
   func delete<T: NSManagedObject>(_ object: T) throws
+  func getContext() -> NSManagedObjectContext
 }

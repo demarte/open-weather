@@ -10,6 +10,7 @@ import Foundation
 import CoreData
 
 final class PersistenceService: PersistenceServiceType {
+
   private var persistenceProvider: PersistenceProviderType
 
   init(persistenceProvider: PersistenceProviderType = PersistenceProvider.shared) {
@@ -26,6 +27,10 @@ final class PersistenceService: PersistenceServiceType {
     } catch {
       throw error
     }
+  }
+
+  func getContext() -> NSManagedObjectContext {
+    return persistenceProvider.getContext()
   }
 
   func saveContext() throws {

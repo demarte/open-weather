@@ -19,10 +19,14 @@ final class PersistenceProvider: PersistenceProviderType {
 
   lazy var context = persistentContainer.viewContext
 
+  func getContext() -> NSManagedObjectContext {
+    return context
+  }
+
   // MARK: - Core Data stack
 
   lazy var persistentContainer: NSPersistentContainer = {
-    let container = NSPersistentContainer(name: "Model")
+    let container = NSPersistentContainer(name: "OpenWeatherApp")
     container.loadPersistentStores(completionHandler: { (_, error) in
       if let error = error as NSError? {
         fatalError("Unresolved error \(error), \(error.userInfo)")
