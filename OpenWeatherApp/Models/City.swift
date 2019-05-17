@@ -9,6 +9,15 @@
 import Foundation
 
 struct City: Codable {
+  enum CodingKeys: String, CodingKey {
+    case iconStatus = "weather"
+    case weather = "main"
+    case weatherTime = "sys"
+    case name, wind
+  }
   let name: String
-  let weather: [Weather]
+  let iconStatus: [IconStatus]
+  let weather: Weather
+  let wind: Wind
+  let weatherTime: WeatherTime
 }
