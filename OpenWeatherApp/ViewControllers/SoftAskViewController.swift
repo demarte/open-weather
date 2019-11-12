@@ -117,7 +117,3 @@ extension SoftAskViewController {
     static let stackViewSpacing: CGFloat = 20.0
   }
 }
-// MARK: - Custom colors
-extension UIColor {
-  static let silver: UIColor = UIColor(named: "Silver") ?? #colorLiteral(red: 0.6666666865, green: 0.6666666865, blue: 0.6666666865, alpha: 1)
-}

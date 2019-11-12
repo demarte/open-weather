@@ -13,6 +13,7 @@ final class CityListViewController: UIViewController {
 
   private var locationService: LocationManagerServiceType?
   private var persistenceService: PersistenceServiceType?
+  private var weatherService: WeatherServiceType?
 
   private let cellId = "CityCell"
   private var cities: [FavoriteCity] = [] {
@@ -25,11 +26,13 @@ final class CityListViewController: UIViewController {
 
   // MARK: - Init
 
-  init(locationService: LocationManagerServiceType, persistenceService: PersistenceServiceType) {
+  init(locationService: LocationManagerServiceType,
+       persistenceService: PersistenceServiceType,
+       weatherService: WeatherServiceType) {
     super.init(nibName: nil, bundle: nil)
     self.locationService = locationService
     self.persistenceService = persistenceService
-
+    self.weatherService = weatherService
     finishInit()
   }
 
@@ -93,13 +96,12 @@ final class CityListViewController: UIViewController {
   // MARK: - Persistence service methods
 
   @objc private func addFavoriteCity() {
-//    let context = persistenceService?.getContext()
-//    favoriteCity = FavoriteCity(context: context)
-//    favoriteCity?.name = "New York"
-//    favoriteCity?.temperature = "14"
-//    if let city = favoriteCity {
-//       cities.append(city)
-//    }
+//    let searchController = UISearchController(searchResultsController: nil)
+//    searchController.searchBar.delegate = self
+//    present(searchController, animated: true, completion: nil)
+    guard let service = weatherService else { return }
+    let addCityViewController = AddCityViewController(weatherService: service)
+    present(UINavigationController(rootViewController: addCityViewController), animated: true, completion: nil)
   }
 
   private func fetchFavoriteCities() {
@@ -110,15 +112,13 @@ final class CityListViewController: UIViewController {
           cities.append(city)
         }
       default:
-        print("nothing")
+        return
       }
     }
   }
 }
-
-extension CityListViewController: UITableViewDelegate, UITableViewDataSource {
-
-  // MARK: - TableView Delegate and DataSource
+// MARK: - TableView Delegate and DataSource
+extension CityListViewController: UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
 
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     cities.count == 0 ?

@@ -18,7 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     window?.makeKeyAndVisible()
     window?.rootViewController = UINavigationController(rootViewController:
       CityListViewController(locationService: LocationManagerService(),
-                             persistenceService: PersistenceService()))
+                             persistenceService: PersistenceService(),
+                             weatherService: WeatherServiceRestAPI()))
     return true
   }
 }
