@@ -9,10 +9,12 @@
 import Foundation
 
 struct WeatherTime: Codable {
-  enum CodingKeys: String, CodingKey {
-    case sunriseTime = "sunrise"
-    case sunsetTime = "sunset"
-  }
-  let sunriseTime: Int
-  let sunsetTime: Int
+//  enum CodingKeys: String, CodingKey {
+//    case sunriseTime = "sunrise"
+//    case sunsetTime = "sunset"
+//    case contry
+//  }
+//  let sunriseTime: Int
+//  let sunsetTime: Int
+  let country: String
 }

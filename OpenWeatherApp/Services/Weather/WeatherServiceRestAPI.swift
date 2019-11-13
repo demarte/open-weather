@@ -18,4 +18,8 @@ struct WeatherServiceRestAPI: WeatherServiceType {
   func cityWeather(for searchTerm: String, completion: @escaping (Result<City>) -> Void) {
     weatherProvider.cityWeather(for: searchTerm, completion: completion)
   }
+
+  func fetchCities(for searchTerm: String, completion: @escaping (Result<WeatherResult>) -> Void) {
+    weatherProvider.fetchCities(for: searchTerm, completion: completion)
+  }
 }

@@ -9,8 +9,13 @@
 import UIKit
 
 final class CityListViewController: UIViewController {
+  // MARK: - Constants
+  private struct Constants {
+    static let emptyStateFontSize: CGFloat = 24.0
+    static let emptyStateMessage = "Tap the plus button to add a city".localized
+    static let title = "Favorite Cities".localized
+  }
   // MARK: - Properties
-
   private var locationService: LocationManagerServiceType?
   private var persistenceService: PersistenceServiceType?
   private var weatherService: WeatherServiceType?
@@ -23,9 +28,7 @@ final class CityListViewController: UIViewController {
   }
 
   private let tableView = UITableView()
-
-  // MARK: - Init
-
+  // MARK: - Initializers
   init(locationService: LocationManagerServiceType,
        persistenceService: PersistenceServiceType,
        weatherService: WeatherServiceType) {
@@ -40,7 +43,6 @@ final class CityListViewController: UIViewController {
     super.init(coder: aDecoder)
     finishInit()
   }
-
   // MARK: - View life cycle
 
   override func viewDidLoad() {
@@ -55,7 +57,6 @@ final class CityListViewController: UIViewController {
   }
 
   // MARK: - SetUp View Controller
-
   func finishInit() {
     setUpView()
     setUpNavigationItem()
@@ -96,12 +97,10 @@ final class CityListViewController: UIViewController {
   // MARK: - Persistence service methods
 
   @objc private func addFavoriteCity() {
-//    let searchController = UISearchController(searchResultsController: nil)
-//    searchController.searchBar.delegate = self
-//    present(searchController, animated: true, completion: nil)
-    guard let service = weatherService else { return }
-    let addCityViewController = AddCityViewController(weatherService: service)
-    present(UINavigationController(rootViewController: addCityViewController), animated: true, completion: nil)
+    if let service = weatherService, let persistence = persistenceService {
+      let addCityViewController = AddCityViewController(weatherService: service, persistenceService: persistence)
+      present(addCityViewController, animated: true, completion: nil)
+    }
   }
 
   private func fetchFavoriteCities() {
@@ -145,13 +144,5 @@ extension CityListViewController: UITableViewDelegate, UITableViewDataSource, UI
     if editingStyle == .delete {
       cities.remove(at: indexPath.row)
     }
-  }
-
-  // MARK: - Constants
-
-  private struct Constants {
-    static let emptyStateFontSize: CGFloat = 24.0
-    static let emptyStateMessage = "Tap the plus to add a city"
-    static let title = "Favorite Cities"
   }
 }

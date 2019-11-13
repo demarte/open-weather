@@ -10,4 +10,5 @@ import Foundation
 
 protocol WeatherProviderType {
   func cityWeather(for searchTerm: String, completion: @escaping ((Result<City>) -> Void))
+  func fetchCities(for searchTerm: String, completion: @escaping ((Result<WeatherResult>) -> Void))
 }

@@ -11,10 +11,10 @@ import Foundation
 extension Double {
 
   func convertKelvinToCelsius() -> Double {
-    return self - 273.15
+    return (self - 273.15).rounded()
   }
 
   func convertKelvinToFahrenheit() -> Double {
-    return (self - 273.15) * 9/5 + 32
+    return ((self - 273.15) * 9/5 + 32).rounded()
   }
 }
