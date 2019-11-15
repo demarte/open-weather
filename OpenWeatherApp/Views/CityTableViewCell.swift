@@ -4,9 +4,9 @@ final class CityTableViewCell: UITableViewCell {
   // MARK: - Properties
   var city: City? {
     didSet {
-      cityLabelName.text = "\(city?.name ?? "") ,\(city?.weatherTime.country ?? "")"
+      cityLabelName.text = "\(city?.name ?? ""), \(city?.country ?? "")"
       descriptionWeatherLabel.text = city?.iconStatus.first?.description
-      countryLabel.text = city?.weatherTime.country
+      countryLabel.text = city?.country
       temperatureLabel.text = "\(city?.weather.temperature.convertKelvinToCelsius() ?? 0)°C"
     }
   }

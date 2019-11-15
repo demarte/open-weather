@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Weather: Codable {
+struct Weather: Decodable {
   enum CodingKeys: String, CodingKey {
     case temperature = "temp"
     case minimumTemperature = "temp_min"

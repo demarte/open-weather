@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct WeatherResult: Codable {
+struct WeatherResult: Decodable {
   enum CodingKeys: String, CodingKey {
     case cities = "list"
   }

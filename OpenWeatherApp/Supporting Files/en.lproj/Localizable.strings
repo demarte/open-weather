@@ -13,4 +13,8 @@
 "Tap the plus button to add a city" = "Tap the plus button to add a city";
 "Favorite Cities" = "Favorite Cities";
 "City not found" = "City not found";
-"Search Cities" = "Search Cities";
+/**
+ AddCityViewController
+ */
+"Search" = "Search";
+"Type city name" = "Type a city name";

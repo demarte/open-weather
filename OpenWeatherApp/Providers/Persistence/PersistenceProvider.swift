@@ -15,6 +15,18 @@ final class PersistenceProvider: PersistenceProviderType {
   private init() {}
   static let shared = PersistenceProvider()
 
+  // MARK: - Core Data stack
+
+   lazy var persistentContainer: NSPersistentContainer = {
+     let container = NSPersistentContainer(name: "OpenWeatherApp")
+     container.loadPersistentStores(completionHandler: { (_, error) in
+       if let error = error as NSError? {
+         fatalError("Unresolved error \(error), \(error.userInfo)")
+       }
+     })
+     return container
+   }()
+
   // MARK: - Core Data context
 
   lazy var context = persistentContainer.viewContext
@@ -22,18 +34,6 @@ final class PersistenceProvider: PersistenceProviderType {
   func getContext() -> NSManagedObjectContext {
     return context
   }
-
-  // MARK: - Core Data stack
-
-  lazy var persistentContainer: NSPersistentContainer = {
-    let container = NSPersistentContainer(name: "OpenWeatherApp")
-    container.loadPersistentStores(completionHandler: { (_, error) in
-      if let error = error as NSError? {
-        fatalError("Unresolved error \(error), \(error.userInfo)")
-      }
-    })
-    return container
-  }()
 
   // MARK: - fetch
 

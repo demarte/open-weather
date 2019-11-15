@@ -16,7 +16,7 @@ final class AddCityViewController: UITableViewController {
   }
   // MARK: - Properties
   private var weatherService: WeatherServiceType?
-  private var persistenceService: PersistenceServiceType?
+  private var cityListViewController: CityListViewController?
   private let cellId = "FetchedCityCell"
   private let debouncer = Debouncer(timeInterval: 0.8)
   private let searchController = UISearchController(searchResultsController: nil)
@@ -24,9 +24,10 @@ final class AddCityViewController: UITableViewController {
   private var fetchedCities: [City] = []
 
   // MARK: - Initializers
-  init(weatherService: WeatherServiceType, persistenceService: PersistenceServiceType) {
+  init(weatherService: WeatherServiceType, cityListViewController: CityListViewController) {
     super.init(nibName: nil, bundle: nil)
     self.weatherService = weatherService
+    self.cityListViewController = cityListViewController
     finishInit()
   }
 
@@ -47,14 +48,16 @@ final class AddCityViewController: UITableViewController {
 
   private func setUpTableView() {
     tableView.register(CityTableViewCell.self, forCellReuseIdentifier: cellId)
-    tableView.tableHeaderView = searchController.searchBar
+    tableView.separatorStyle = .none
+    navigationItem.searchController = searchController
+    navigationItem.title = AddCityStrings.navigationTitle
   }
 
   func setUpSearchController() {
     searchController.searchResultsUpdater = self
-    searchController.obscuresBackgroundDuringPresentation = false
+//    searchController.obscuresBackgroundDuringPresentation = false
     searchController.hidesNavigationBarDuringPresentation = false
-    searchController.searchBar.placeholder = "Search Cities".localized
+    searchController.searchBar.placeholder = AddCityStrings.searchBarPlaceHolder
     definesPresentationContext = true
   }
   // MARK: - Service Method
@@ -89,13 +92,7 @@ extension AddCityViewController: UISearchResultsUpdating {
 
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     let city = fetchedCities[indexPath.row]
-//    let context = persistenceService?.getContext()
-//    context?.setValue(city, forKey: "\(city.id)")
-//    do {
-//      try persistenceService?.saveContext()
-//    } catch(let error) {
-//      print(error)
-//    }
+    cityListViewController?.save(city: city)
     searchController.dismiss(animated: true, completion: nil)
     self.dismiss(animated: true, completion: nil)
   }

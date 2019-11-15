@@ -85,6 +85,14 @@ final class CityListViewController: UIViewController {
     tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
   }
 
+  @objc private func addFavoriteCity() {
+    if let service = weatherService {
+      let addCityViewController = AddCityViewController(weatherService: service, cityListViewController: self)
+      let navigationController = UINavigationController(rootViewController: addCityViewController)
+      present(navigationController, animated: true, completion: nil)
+    }
+  }
+
   // MARK: - Location service methods
 
   private func showLocationSoftAskIfNeeded() {
@@ -95,30 +103,45 @@ final class CityListViewController: UIViewController {
   }
 
   // MARK: - Persistence service methods
-
-  @objc private func addFavoriteCity() {
-    if let service = weatherService, let persistence = persistenceService {
-      let addCityViewController = AddCityViewController(weatherService: service, persistenceService: persistence)
-      present(addCityViewController, animated: true, completion: nil)
-    }
-  }
-
   private func fetchFavoriteCities() {
     if let result = persistenceService?.fetch(FavoriteCity.self) {
       switch result {
       case .success(let value):
-        value.forEach { city in
-          cities.append(city)
-        }
+        cities = value
       default:
         return
       }
     }
   }
-}
-// MARK: - TableView Delegate and DataSource
-extension CityListViewController: UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
 
+  func save(city: City) {
+    if let persistence = persistenceService {
+      // 1 - get context
+      let context = persistence.getContext()
+      // 2 - entity
+      let favoriteCity = FavoriteCity(context: context)
+      favoriteCity.name = city.name
+      favoriteCity.temperature = "\(city.weather.temperature.convertKelvinToCelsius())"
+      do {
+        try persistence.saveContext()
+        fetchFavoriteCities()
+      } catch(let error) {
+        print(error)
+      }
+    }
+  }
+
+  private func delete(city: FavoriteCity) {
+    do {
+      try persistenceService?.delete(city)
+    } catch(let error) {
+      print(error)
+    }
+  }
+}
+
+extension CityListViewController: UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
+// MARK: - TableView Delegate and DataSource
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     cities.count == 0 ?
       tableView.setUpEmptyState(with: Constants.emptyStateMessage,
@@ -135,14 +158,22 @@ extension CityListViewController: UITableViewDelegate, UITableViewDataSource, UI
 
     return cell
   }
-
   // MARK: - TableView EditingStyle
-
   func tableView(_ tableView: UITableView,
                  commit editingStyle: UITableViewCell.EditingStyle,
                  forRowAt indexPath: IndexPath) {
     if editingStyle == .delete {
+      let city = cities[indexPath.row]
+      delete(city: city)
       cities.remove(at: indexPath.row)
     }
+  }
+
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    guard let service = weatherService else { return }
+    let detailViewController = CityDetailViewController(weatherService: service)
+    let city = cities[indexPath.row]
+    detailViewController.cityName = city.name
+    navigationController?.pushViewController(detailViewController, animated: true)
   }
 }

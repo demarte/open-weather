@@ -14,37 +14,51 @@ final class SoftAskViewController: UIViewController {
 
   private let stackView = UIStackView(frame: .zero)
 
-  private lazy var greetingLabel = createCustomLabel(with: "Hi".localized,
-                                                     ofSize: Constants.titleFont)
-
-  private lazy var askLabel = createCustomLabel(with:
-    "Can you provide us your location in order to get the current weather?".localized,
-                                                ofSize: Constants.bodyFont)
-
-  private func createCustomLabel(with text: String, ofSize font: CGFloat) -> UILabel {
+  private let greetingLabel: UILabel = {
     let label = UILabel()
     label.translatesAutoresizingMaskIntoConstraints = false
-    label.text = text
-    label.font = UIFont.systemFont(ofSize: font)
+    label.text = SofttAskStrings.greeting
+    label.textColor = Colors.text
+    label.font = UIFont(name: CustomFont.bold, size: Sizes.titleFont)
     label.numberOfLines = 0
     label.textAlignment = .center
     return label
-  }
+  }()
+
+  private let askLabel: UILabel = {
+    let label = UILabel()
+    label.translatesAutoresizingMaskIntoConstraints = false
+    label.text = SofttAskStrings.ask
+    label.textColor = Colors.text
+    label.font = UIFont(name: CustomFont.regular, size: Sizes.bodyFont)
+    label.numberOfLines = 0
+    label.textAlignment = .center
+    return label
+  }()
 
   private let yesButton: UIButton = {
     let button = UIButton(type: .system)
     button.translatesAutoresizingMaskIntoConstraints = false
-    button.setTitle("Yes".localized, for: .normal)
+    button.setTitle(SofttAskStrings.yesButton, for: .normal)
+    button.titleLabel?.font = UIFont(name: CustomFont.bold, size: Sizes.bodyFont)
+    button.setTitleColor(Colors.text, for: .normal)
     button.addTarget(self, action: #selector(handleYes), for: .touchUpInside)
+    button.backgroundColor = Colors.secondaryOne
+    button.layer.cornerRadius = Sizes.buttonCornerRadius
     return button
   }()
 
   private let maybeButton: UIButton = {
     let button = UIButton(type: .system)
     button.translatesAutoresizingMaskIntoConstraints = false
-    button.setTitle("Maybe later".localized, for: .normal)
+    button.setTitle(SofttAskStrings.maybeButton, for: .normal)
+    button.titleLabel?.font = UIFont(name: CustomFont.bold, size: Sizes.bodyFont)
     button.addTarget(self, action: #selector(handleMaybe), for: .touchUpInside)
-    button.setTitleColor(.silver, for: .normal)
+    button.setTitleColor(Colors.primaryOne, for: .normal)
+    button.backgroundColor = Colors.primaryTwo
+    button.layer.borderColor = #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1)
+    button.layer.borderWidth = Sizes.buttonBorderWidth
+    button.layer.cornerRadius = Sizes.buttonCornerRadius
     return button
   }()
   // MARK: - Initializers
@@ -70,9 +84,7 @@ final class SoftAskViewController: UIViewController {
   }
   // MARK: - Set up view and subViews
   private func setUpView() {
-    view.backgroundColor = .white
-    view.layer.borderWidth = Constants.borderWidth
-    view.layer.borderColor = UIColor.silver.cgColor
+    view.backgroundColor = Colors.background
     view.addSubview(stackView)
   }
 
@@ -83,14 +95,14 @@ final class SoftAskViewController: UIViewController {
     stackView.addArrangedSubview(maybeButton)
     stackView.translatesAutoresizingMaskIntoConstraints = false
     stackView.axis = .vertical
-    stackView.spacing = Constants.stackViewSpacing
+    stackView.spacing = 20
     NSLayoutConstraint.activate([
       stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
       stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-      stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constants.stackViewSpacingToView),
+      stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 110),
       stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant:
-        -Constants.stackViewSpacingToView)
-      ])
+        -110)
+    ])
   }
   // MARK: - Functions
   @objc private func handleYes() {
@@ -105,15 +117,5 @@ final class SoftAskViewController: UIViewController {
 
   private func exit() {
     self.dismiss(animated: true, completion: nil)
-  }
-}
-// MARK: - Constants
-extension SoftAskViewController {
-  private struct Constants {
-    static let borderWidth: CGFloat = 20.0
-    static let titleFont: CGFloat = 24.0
-    static let bodyFont: CGFloat = 13.0
-    static let stackViewSpacingToView: CGFloat = 110.0
-    static let stackViewSpacing: CGFloat = 20.0
   }
 }

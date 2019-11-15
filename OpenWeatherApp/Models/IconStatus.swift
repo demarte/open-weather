@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct IconStatus: Codable {
+struct IconStatus: Decodable {
   enum CodingKeys: String, CodingKey {
     case type = "main"
     case path = "icon"
