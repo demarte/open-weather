@@ -23,7 +23,6 @@ struct City {
 
   enum Wind: String, CodingKey {
     case speed
-    case degree = "deg"
   }
 
   enum Country: String, CodingKey {
@@ -34,7 +33,6 @@ struct City {
   let iconStatus: [IconStatus]
   let weather: Weather
   let windSpeed: Double
-  let windDegree: Double
   let latitude: Double
   let longitude: Double
   let country: String
@@ -50,7 +48,6 @@ extension City: Decodable {
 
     let windContainer = try values.nestedContainer(keyedBy: Wind.self, forKey: .wind)
     windSpeed = try windContainer.decode(Double.self, forKey: .speed)
-    windDegree = try windContainer.decode(Double.self, forKey: .degree)
 
     let countryContainer = try values.nestedContainer(keyedBy: Country.self, forKey: .country)
     country = try countryContainer.decode(String.self, forKey: .country)

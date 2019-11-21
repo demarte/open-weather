@@ -1,13 +1,19 @@
+//
+//  CityTableViewCell.swift
+//  OpenWeatherApp
+//
+//  Created by Ivan De Martino on 11/16/19.
+//  Copyright © 2019 Ivan De Martino. All rights reserved.
+//
+
 import UIKit
 
 final class CityTableViewCell: UITableViewCell {
   // MARK: - Properties
-  var city: City? {
+  var favoriteCity: FavoriteCity? {
     didSet {
-      cityLabelName.text = "\(city?.name ?? ""), \(city?.country ?? "")"
-      descriptionWeatherLabel.text = city?.iconStatus.first?.description
-      countryLabel.text = city?.country
-      temperatureLabel.text = "\(city?.weather.temperature.convertKelvinToCelsius() ?? 0)°C"
+      cityLabelName.text = "\(favoriteCity?.name ?? "")"
+      temperatureLabel.text = favoriteCity?.temperature ?? "temp"
     }
   }
   private let containerStackView = UIStackView()
@@ -15,32 +21,32 @@ final class CityTableViewCell: UITableViewCell {
 
   private let cityLabelName: UILabel = {
     let label = UILabel()
-    label.textColor = .black
-    label.font = UIFont.boldSystemFont(ofSize: 16)
+    label.textColor = Colors.text
+    label.font = UIFont(name: CustomFont.semiBold, size: Sizes.subTitle)
     label.textAlignment = .left
     return label
   }()
 
   private let countryLabel: UILabel = {
     let label = UILabel()
-    label.textColor = .black
-    label.font = UIFont.systemFont(ofSize: 16)
+    label.textColor = Colors.text
+    label.font = UIFont(name: CustomFont.regular, size: Sizes.bodyFont)
     label.textAlignment = .left
     return label
   }()
 
   private let descriptionWeatherLabel: UILabel = {
     let label = UILabel()
-    label.textColor = .black
-    label.font = UIFont.systemFont(ofSize: 16)
+    label.textColor = Colors.text
+    label.font = UIFont(name: CustomFont.regular, size: Sizes.bodyFont)
     label.textAlignment = .left
     return label
   }()
 
   private let temperatureLabel: UILabel = {
     let label = UILabel()
-    label.textColor = .black
-    label.font = UIFont.systemFont(ofSize: 16)
+    label.textColor = Colors.text
+    label.font = UIFont(name: CustomFont.regular, size: Sizes.bodyFont)
     label.textAlignment = .left
     return label
   }()
@@ -57,7 +63,7 @@ final class CityTableViewCell: UITableViewCell {
   }
 // MARK: - Set Up Views
   private func setUpContainerStackView() {
-    containerStackView.axis = .vertical
+    containerStackView.axis = .horizontal
     containerStackView.spacing = 5
     containerStackView.addArrangedSubview(cityNameStackView)
     containerStackView.addArrangedSubview(temperatureLabel)

@@ -16,10 +16,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                    didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
     window = UIWindow(frame: UIScreen.main.bounds)
     window?.makeKeyAndVisible()
-    window?.rootViewController = UINavigationController(rootViewController:
-      CityListViewController(locationService: LocationManagerService(),
-                             persistenceService: PersistenceService(),
-                             weatherService: WeatherServiceRestAPI()))
+    let viewController = CityListViewController(locationService: LocationManagerService(),
+    persistenceService: PersistenceService(),
+    weatherService: WeatherServiceRestAPI())
+    let navigationController = UINavigationController(rootViewController: viewController)
+    navigationController.navigationBar.barTintColor = Colors.primaryOne
+    navigationController.navigationBar.tintColor = Colors.text
+
+    viewController.setUpNavigationItemImage()
+    window?.rootViewController = navigationController
     return true
   }
 }

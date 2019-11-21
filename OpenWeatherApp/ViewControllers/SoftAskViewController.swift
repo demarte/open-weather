@@ -12,6 +12,12 @@ final class SoftAskViewController: UIViewController {
   // MARK: - Properties
   private var locationService: LocationManagerServiceType?
 
+  private let imageBackground: UIImageView = {
+    let imageView = UIImageView(image: UIImage(named: "background"))
+    imageView.translatesAutoresizingMaskIntoConstraints = false
+    imageView.contentMode = .scaleAspectFill
+    return imageView
+  }()
   private let stackView = UIStackView(frame: .zero)
 
   private let greetingLabel: UILabel = {
@@ -55,7 +61,7 @@ final class SoftAskViewController: UIViewController {
     button.titleLabel?.font = UIFont(name: CustomFont.bold, size: Sizes.bodyFont)
     button.addTarget(self, action: #selector(handleMaybe), for: .touchUpInside)
     button.setTitleColor(Colors.primaryOne, for: .normal)
-    button.backgroundColor = Colors.primaryTwo
+    button.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0)
     button.layer.borderColor = #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1)
     button.layer.borderWidth = Sizes.buttonBorderWidth
     button.layer.cornerRadius = Sizes.buttonCornerRadius
@@ -84,7 +90,7 @@ final class SoftAskViewController: UIViewController {
   }
   // MARK: - Set up view and subViews
   private func setUpView() {
-    view.backgroundColor = Colors.background
+    view.addSubview(imageBackground)
     view.addSubview(stackView)
   }
 
@@ -97,6 +103,12 @@ final class SoftAskViewController: UIViewController {
     stackView.axis = .vertical
     stackView.spacing = 20
     NSLayoutConstraint.activate([
+      yesButton.heightAnchor.constraint(equalToConstant: 50),
+      maybeButton.heightAnchor.constraint(equalToConstant: 50),
+      imageBackground.topAnchor.constraint(equalTo: view.topAnchor),
+      imageBackground.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+      imageBackground.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+      imageBackground.trailingAnchor.constraint(equalTo: view.trailingAnchor),
       stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
       stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
       stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 110),

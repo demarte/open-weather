@@ -10,33 +10,50 @@ import UIKit
 
 extension UITableView {
 
-  func setUpEmptyState(with message: String, ofSize font: CGFloat) {
-
+  func setUpTableViewBackground(with message: String, header: String, imageName: String) {
     let emptyView = UIView(frame: CGRect(
       x: self.center.x,
       y: self.center.y,
       width: self.bounds.size.width,
       height: self.bounds.size.height))
 
-    let messageLabel: UILabel = {
-      let label = UILabel()
-      label.translatesAutoresizingMaskIntoConstraints = false
-      label.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-      label.numberOfLines = 0
-      label.textAlignment = .center
-      label.font = UIFont.systemFont(ofSize: font)
-      label.text = message.localized
-      return label
-    }()
+    let imageBackground = UIImageView(image: UIImage(named: imageName))
+    imageBackground.translatesAutoresizingMaskIntoConstraints = false
+    imageBackground.contentMode = .scaleToFill
 
-    emptyView.addSubview(messageLabel)
+    let stackView = UIStackView()
+    let headerLabel = UILabel()
+      headerLabel.translatesAutoresizingMaskIntoConstraints = false
+      headerLabel.textColor = Colors.text
+      headerLabel.textAlignment = .center
+      headerLabel.font = UIFont(name: CustomFont.bold, size: Sizes.titleFont)
+      headerLabel.text = header
+
+    let messageLabel = UILabel()
+      messageLabel.translatesAutoresizingMaskIntoConstraints = false
+      messageLabel.textColor = Colors.text
+      messageLabel.numberOfLines = 0
+      messageLabel.textAlignment = .center
+      messageLabel.font = UIFont(name: CustomFont.regular, size: Sizes.bodyFont)
+      messageLabel.text = message
+
+    emptyView.addSubview(imageBackground)
+    imageBackground.addSubview(stackView)
+    stackView.addSubview(headerLabel)
+    stackView.addSubview(messageLabel)
 
     NSLayoutConstraint.activate([
-      messageLabel.centerYAnchor.constraint(equalTo: emptyView.centerYAnchor),
-      messageLabel.leadingAnchor.constraint(equalTo: emptyView.leadingAnchor, constant: 100.0),
-      messageLabel.trailingAnchor.constraint(equalTo: emptyView.trailingAnchor, constant: -100.0)
+      imageBackground.leadingAnchor.constraint(equalTo: emptyView.leadingAnchor),
+      imageBackground.trailingAnchor.constraint(equalTo: emptyView.trailingAnchor),
+      imageBackground.topAnchor.constraint(equalTo: emptyView.topAnchor),
+      imageBackground.bottomAnchor.constraint(equalTo: emptyView.bottomAnchor),
+      headerLabel.heightAnchor.constraint(equalToConstant: 40.0),
+      headerLabel.centerXAnchor.constraint(equalTo: imageBackground.centerXAnchor),
+      headerLabel.bottomAnchor.constraint(equalTo: messageLabel.topAnchor),
+      messageLabel.centerYAnchor.constraint(equalTo: imageBackground.centerYAnchor),
+      messageLabel.leadingAnchor.constraint(equalTo: imageBackground.leadingAnchor, constant: 100.0),
+      messageLabel.trailingAnchor.constraint(equalTo: imageBackground.trailingAnchor, constant: -100.0)
     ])
-
     self.backgroundView = emptyView
     self.separatorStyle = .none
   }

@@ -23,6 +23,7 @@
 		225E4953237B61F4006059A5 /* FetchCitiesEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225E4952237B61F4006059A5 /* FetchCitiesEndpoint.swift */; };
 		225E4955237B6938006059A5 /* WeatherResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225E4954237B6938006059A5 /* WeatherResult.swift */; };
 		225E4957237B70FA006059A5 /* CityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225E4956237B70FA006059A5 /* CityTableViewCell.swift */; };
+		227D578623873F8A007160A1 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227D578523873F8A007160A1 /* UIViewController+Extension.swift */; };
 		2284D038237F3766000E518E /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2284D037237F3766000E518E /* Strings.swift */; };
 		2284D054237F4845000E518E /* Barlow-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2284D041237F4845000E518E /* Barlow-Italic.ttf */; };
 		2284D05A237F4845000E518E /* Barlow-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2284D047237F4845000E518E /* Barlow-Bold.ttf */; };
@@ -50,6 +51,7 @@
 		22E8F951220C942000BC3EE6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E8F950220C942000BC3EE6 /* AppDelegate.swift */; };
 		22E8F958220C942100BC3EE6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22E8F957220C942100BC3EE6 /* Assets.xcassets */; };
 		22E8F95B220C942100BC3EE6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22E8F959220C942100BC3EE6 /* LaunchScreen.storyboard */; };
+		22ECBE6423805F99005B9962 /* AddCityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22ECBE6323805F99005B9962 /* AddCityTableViewCell.swift */; };
 		22ED5080221F2F3B0019CC93 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 22ED5082221F2F3B0019CC93 /* Localizable.strings */; };
 		22ED5085221F3E820019CC93 /* LocationManagerServiceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22ED5084221F3E820019CC93 /* LocationManagerServiceType.swift */; };
 		22ED5087221F40690019CC93 /* LocationManagerProviderType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22ED5086221F40690019CC93 /* LocationManagerProviderType.swift */; };
@@ -76,6 +78,7 @@
 		225E4952237B61F4006059A5 /* FetchCitiesEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchCitiesEndpoint.swift; sourceTree = "<group>"; };
 		225E4954237B6938006059A5 /* WeatherResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherResult.swift; sourceTree = "<group>"; };
 		225E4956237B70FA006059A5 /* CityTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityTableViewCell.swift; sourceTree = "<group>"; };
+		227D578523873F8A007160A1 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		2284D037237F3766000E518E /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		2284D041237F4845000E518E /* Barlow-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Barlow-Italic.ttf"; sourceTree = "<group>"; };
 		2284D047237F4845000E518E /* Barlow-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Barlow-Bold.ttf"; sourceTree = "<group>"; };
@@ -105,6 +108,7 @@
 		22E8F957220C942100BC3EE6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		22E8F95A220C942100BC3EE6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		22E8F95C220C942100BC3EE6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		22ECBE6323805F99005B9962 /* AddCityTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddCityTableViewCell.swift; sourceTree = "<group>"; };
 		22ED507D221F2F100019CC93 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		22ED5081221F2F3B0019CC93 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		22ED5083221F2F400019CC93 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -187,6 +191,7 @@
 				229538F4228E5FDF00F4E308 /* Double+Extension.swift */,
 				22F086E32348F51F00ED9F78 /* UIColor+Extension.swift */,
 				22DF2978228DEAB300217893 /* TableView+Extension.swift */,
+				227D578523873F8A007160A1 /* UIViewController+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -302,6 +307,7 @@
 		22DF297A228DEABD00217893 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				22ECBE6323805F99005B9962 /* AddCityTableViewCell.swift */,
 				225E4956237B70FA006059A5 /* CityTableViewCell.swift */,
 			);
 			path = Views;
@@ -464,6 +470,7 @@
 				221EA76522164FB900F5510D /* APIRequesterError.swift in Sources */,
 				221EA76C221658C100F5510D /* WeatherProviderType.swift in Sources */,
 				22DE9EA2228B91FD0018147E /* FavoriteCity+CoreDataProperties.swift in Sources */,
+				227D578623873F8A007160A1 /* UIViewController+Extension.swift in Sources */,
 				22A7857C22133EE9009C0B5B /* WeatherServiceType.swift in Sources */,
 				22B3EC712226CE50006192A4 /* String+Extension.swift in Sources */,
 				221EA7672216516400F5510D /* Result.swift in Sources */,
@@ -483,6 +490,7 @@
 				223119A4221C9B8D00DE010A /* CityListViewController.swift in Sources */,
 				225E4955237B6938006059A5 /* WeatherResult.swift in Sources */,
 				221EA7632215BB4A00F5510D /* APIRequester.swift in Sources */,
+				22ECBE6423805F99005B9962 /* AddCityTableViewCell.swift in Sources */,
 				22D897CF222F11F8008430E0 /* PersistenceService.swift in Sources */,
 				22A7857822133D77009C0B5B /* IconStatus.swift in Sources */,
 				222CBF8C236E1B08006B5CA5 /* Deboucer.swift in Sources */,

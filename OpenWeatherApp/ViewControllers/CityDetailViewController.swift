@@ -25,6 +25,12 @@ final class CityDetailViewController: UIViewController {
     return label
   }
 
+  private let imageBackground: UIImageView = {
+    let image = UIImageView(image: UIImage(named: "clouds-background"))
+    image.translatesAutoresizingMaskIntoConstraints = false
+    return image
+  }()
+
   private var weatherService: WeatherServiceType?
   var cityName: String?
 
@@ -56,10 +62,14 @@ final class CityDetailViewController: UIViewController {
   }
   // MARK: - Set up view and subViews
   private func setUpView() {
-    view.backgroundColor = .white
+    view.addSubview(imageBackground)
     view.addSubview(cityLabel)
 
     NSLayoutConstraint.activate([
+      imageBackground.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+      imageBackground.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+      imageBackground.topAnchor.constraint(equalTo: view.topAnchor),
+      imageBackground.bottomAnchor.constraint(equalTo: view.bottomAnchor),
       cityLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
       cityLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor)
     ])

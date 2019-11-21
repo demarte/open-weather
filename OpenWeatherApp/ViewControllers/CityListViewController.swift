@@ -8,26 +8,17 @@
 
 import UIKit
 
-final class CityListViewController: UIViewController {
-  // MARK: - Constants
-  private struct Constants {
-    static let emptyStateFontSize: CGFloat = 24.0
-    static let emptyStateMessage = "Tap the plus button to add a city".localized
-    static let title = "Favorite Cities".localized
-  }
+final class CityListViewController: UITableViewController {
   // MARK: - Properties
   private var locationService: LocationManagerServiceType?
   private var persistenceService: PersistenceServiceType?
   private var weatherService: WeatherServiceType?
-
-  private let cellId = "CityCell"
+  private let cellId = CityListStrings.cellId
   private var cities: [FavoriteCity] = [] {
     didSet {
       tableView.reloadData()
     }
   }
-
-  private let tableView = UITableView()
   // MARK: - Initializers
   init(locationService: LocationManagerServiceType,
        persistenceService: PersistenceServiceType,
@@ -58,31 +49,20 @@ final class CityListViewController: UIViewController {
 
   // MARK: - SetUp View Controller
   func finishInit() {
-    setUpView()
     setUpNavigationItem()
     setUpTableView()
   }
 
   func setUpNavigationItem() {
-    navigationItem.title = Constants.title.localized
+    navigationItem.title = CityListStrings.title
     navigationItem.rightBarButtonItem = UIBarButtonItem(
       barButtonSystemItem: .add,
       target: self,
       action: #selector(addFavoriteCity))
   }
 
-  func setUpView() {
-    view.addSubview(tableView)
-  }
-
   func setUpTableView() {
-    let screenSizeWidth = UIScreen.main.bounds.width
-    let screenSizeHeight = UIScreen.main.bounds.height
-
-    tableView.frame = CGRect(x: 0, y: 0, width: screenSizeWidth, height: screenSizeHeight)
-    tableView.delegate = self
-    tableView.dataSource = self
-    tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
+    tableView.register(CityTableViewCell.self, forCellReuseIdentifier: cellId)
   }
 
   @objc private func addFavoriteCity() {
@@ -140,28 +120,30 @@ final class CityListViewController: UIViewController {
   }
 }
 
-extension CityListViewController: UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
-// MARK: - TableView Delegate and DataSource
-  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+extension CityListViewController: UISearchBarDelegate {
+  // MARK: - TableView Delegate and DataSource
+  override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     cities.count == 0 ?
-      tableView.setUpEmptyState(with: Constants.emptyStateMessage,
-                                ofSize: Constants.emptyStateFontSize) : tableView.restore()
+      tableView.setUpTableViewBackground(
+        with: CityListStrings.emptyStateMessage,
+        header: CityListStrings.title, imageName: "background") : tableView.setUpTableViewBackground(
+          with: "",
+          header: "", imageName: "background")
     return cities.count
   }
 
-  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = UITableViewCell(style: .value1, reuseIdentifier: cellId)
-
+  override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as? CityTableViewCell
     let city = cities[indexPath.row]
-    cell.textLabel?.text = city.name
-    cell.detailTextLabel?.text = "\(city.temperature)°"
+    cell?.favoriteCity = city
 
-    return cell
+    return cell!
   }
   // MARK: - TableView EditingStyle
-  func tableView(_ tableView: UITableView,
-                 commit editingStyle: UITableViewCell.EditingStyle,
-                 forRowAt indexPath: IndexPath) {
+  override func tableView(
+    _ tableView: UITableView,
+    commit editingStyle: UITableViewCell.EditingStyle,
+    forRowAt indexPath: IndexPath) {
     if editingStyle == .delete {
       let city = cities[indexPath.row]
       delete(city: city)
@@ -169,11 +151,15 @@ extension CityListViewController: UITableViewDelegate, UITableViewDataSource, UI
     }
   }
 
-  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+  override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     guard let service = weatherService else { return }
     let detailViewController = CityDetailViewController(weatherService: service)
     let city = cities[indexPath.row]
     detailViewController.cityName = city.name
     navigationController?.pushViewController(detailViewController, animated: true)
+  }
+
+  override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+    cell.backgroundColor = .clear
   }
 }

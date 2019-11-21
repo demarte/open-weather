@@ -11,6 +11,7 @@ import Foundation
 struct CustomFont {
   static let regular = "Barlow"
   static let bold = "Barlow-Bold"
+  static let semiBold = "Barlow-Bold"
 }
 
 struct AddCityStrings {
@@ -23,4 +24,10 @@ struct SofttAskStrings {
   static let ask = "Can you provide us your location in order to get the current weather?".localized
   static let yesButton = "Yes".localized
   static let maybeButton = "Maybe later".localized
+}
+
+struct CityListStrings {
+  static let emptyStateMessage = "Tap the plus button to add a city".localized
+  static let title = "Favorite Cities".localized
+  static let cellId = "CityCell"
 }

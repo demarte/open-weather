@@ -47,7 +47,7 @@ final class AddCityViewController: UITableViewController {
   }
 
   private func setUpTableView() {
-    tableView.register(CityTableViewCell.self, forCellReuseIdentifier: cellId)
+    tableView.register(AddCityTableViewCell.self, forCellReuseIdentifier: cellId)
     tableView.separatorStyle = .none
     navigationItem.searchController = searchController
     navigationItem.title = AddCityStrings.navigationTitle
@@ -55,7 +55,7 @@ final class AddCityViewController: UITableViewController {
 
   func setUpSearchController() {
     searchController.searchResultsUpdater = self
-//    searchController.obscuresBackgroundDuringPresentation = false
+    searchController.obscuresBackgroundDuringPresentation = false
     searchController.hidesNavigationBarDuringPresentation = false
     searchController.searchBar.placeholder = AddCityStrings.searchBarPlaceHolder
     definesPresentationContext = true
@@ -84,7 +84,7 @@ extension AddCityViewController: UISearchResultsUpdating {
   }
 
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as? CityTableViewCell
+    let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as? AddCityTableViewCell
     let city = fetchedCities[indexPath.row]
     cell?.city = city
     return cell!
