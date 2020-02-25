@@ -49,6 +49,7 @@ final class AddCityViewController: UITableViewController {
   private func setUpTableView() {
     tableView.register(AddCityTableViewCell.self, forCellReuseIdentifier: cellId)
     tableView.separatorStyle = .none
+    tableView.backgroundColor = .black
     navigationItem.searchController = searchController
     navigationItem.title = AddCityStrings.navigationTitle
   }

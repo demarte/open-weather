@@ -15,7 +15,7 @@ final class AddCityTableViewCell: UITableViewCell {
 
   private let cityLabelName: UILabel = {
     let label = UILabel()
-    label.textColor = .black
+    label.textColor = .white
     label.font = UIFont.boldSystemFont(ofSize: 16)
     label.textAlignment = .left
     return label
@@ -23,7 +23,7 @@ final class AddCityTableViewCell: UITableViewCell {
 
   private let countryLabel: UILabel = {
     let label = UILabel()
-    label.textColor = .black
+    label.textColor = .white
     label.font = UIFont.systemFont(ofSize: 16)
     label.textAlignment = .left
     return label
@@ -31,7 +31,7 @@ final class AddCityTableViewCell: UITableViewCell {
 
   private let descriptionWeatherLabel: UILabel = {
     let label = UILabel()
-    label.textColor = .black
+    label.textColor = .white
     label.font = UIFont.systemFont(ofSize: 16)
     label.textAlignment = .left
     return label
@@ -39,7 +39,7 @@ final class AddCityTableViewCell: UITableViewCell {
 
   private let temperatureLabel: UILabel = {
     let label = UILabel()
-    label.textColor = .black
+    label.textColor = .white
     label.font = UIFont.systemFont(ofSize: 16)
     label.textAlignment = .left
     return label
