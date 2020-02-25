@@ -11,7 +11,7 @@ import UIKit
 
 enum WeatherEndpoint {
   case cityWeatherBySearchTerm(searchTerm: String)
-  case cityWeatherByCoordinates(lat: CGFloat, long: CGFloat)
+  case cityWeatherByCoordinates(lat: CGFloat, lon: CGFloat)
 }
 
 extension WeatherEndpoint: EndpointType {
@@ -26,9 +26,9 @@ extension WeatherEndpoint: EndpointType {
   var parameters: [String: String]? {
     var parameters: [String: String] = ["APPID": Constants.apiKey]
     switch self {
-    case .cityWeatherByCoordinates(let lat, let long):
-      parameters["latitude"] = "\(lat)"
-      parameters["longitude"] = "\(long)"
+    case .cityWeatherByCoordinates(let lat, let lon):
+      parameters["lat"] = "\(lat)"
+      parameters["lon"] = "\(lon)"
     case .cityWeatherBySearchTerm(let searchTerm):
       parameters["q"] = searchTerm
     }

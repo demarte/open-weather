@@ -7,8 +7,9 @@
 //
 
 import Foundation
+import UIKit
 
 protocol WeatherProviderType {
-  func cityWeather(for searchTerm: String, completion: @escaping ((Result<City>) -> Void))
+  func cityWeather(for latitude: CGFloat, longitude: CGFloat, completion: @escaping ((Result<City>) -> Void))
   func fetchCities(for searchTerm: String, completion: @escaping ((Result<WeatherResult>) -> Void))
 }

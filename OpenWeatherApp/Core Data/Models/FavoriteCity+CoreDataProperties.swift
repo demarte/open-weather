@@ -12,10 +12,11 @@ import CoreData
 
 extension FavoriteCity {
 
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<FavoriteCity> {
-        return NSFetchRequest<FavoriteCity>(entityName: "FavoriteCity")
-    }
+  @nonobjc public class func fetchRequest() -> NSFetchRequest<FavoriteCity> {
+    return NSFetchRequest<FavoriteCity>(entityName: "FavoriteCity")
+  }
 
-    @NSManaged public var name: String
-    @NSManaged public var temperature: String
+  @NSManaged public var name: String
+  @NSManaged public var lat: Float
+  @NSManaged public var long: Float
 }

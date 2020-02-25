@@ -33,8 +33,8 @@ struct City {
   let iconStatus: [IconStatus]
   let weather: Weather
   let windSpeed: Double
-  let latitude: Double
-  let longitude: Double
+  let latitude: Float
+  let longitude: Float
   let country: String
 }
 
@@ -53,7 +53,7 @@ extension City: Decodable {
     country = try countryContainer.decode(String.self, forKey: .country)
 
     let coordinates = try values.nestedContainer(keyedBy: Coordinates.self, forKey: .coord)
-    latitude = try coordinates.decode(Double.self, forKey: .latitude)
-    longitude = try coordinates.decode(Double.self, forKey: .longitude)
+    latitude = try coordinates.decode(Float.self, forKey: .latitude)
+    longitude = try coordinates.decode(Float.self, forKey: .longitude)
   }
 }

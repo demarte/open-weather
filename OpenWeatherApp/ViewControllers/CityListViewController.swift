@@ -14,7 +14,7 @@ final class CityListViewController: UITableViewController {
   private var persistenceService: PersistenceServiceType?
   private var weatherService: WeatherServiceType?
   private let cellId = CityListStrings.cellId
-  private var cities: [FavoriteCity] = [] {
+  private var cities: [City] = [] {
     didSet {
       tableView.reloadData()
     }
@@ -86,8 +86,22 @@ final class CityListViewController: UITableViewController {
   private func fetchFavoriteCities() {
     if let result = persistenceService?.fetch(FavoriteCity.self) {
       switch result {
-      case .success(let value):
-        cities = value
+      case .success(let cities):
+        cities.forEach { (favoriteCity) in
+          self.weatherService?.cityWeather(
+            for: CGFloat(favoriteCity.lat),
+            longitude: CGFloat(favoriteCity.long),
+            completion: { (result) in
+              switch result {
+              case .success(let city):
+                DispatchQueue.main.async {
+                  self.cities.append(city)
+                }
+              case .failure(let error):
+                print(error)
+              }
+          })
+        }
       default:
         return
       }
@@ -101,23 +115,34 @@ final class CityListViewController: UITableViewController {
       // 2 - entity
       let favoriteCity = FavoriteCity(context: context)
       favoriteCity.name = city.name
-      favoriteCity.temperature = "\(city.weather.temperature.convertKelvinToCelsius())"
+      favoriteCity.lat = city.latitude
+      favoriteCity.long = city.longitude
       do {
         try persistence.saveContext()
-        fetchFavoriteCities()
-      } catch(let error) {
+        cities.append(city)
+      } catch let error {
         print(error)
       }
     }
   }
 
-  private func delete(city: FavoriteCity) {
-    do {
-      try persistenceService?.delete(city)
-    } catch(let error) {
-      print(error)
+  private func delete(city: City) {
+    if let persistence = persistenceService {
+         // 1 - get context
+         let context = persistence.getContext()
+         // 2 - entity
+         let favoriteCity = FavoriteCity(context: context)
+         favoriteCity.name = city.name
+         favoriteCity.lat = city.latitude
+         favoriteCity.long = city.longitude
+      do {
+        try persistenceService?.delete(favoriteCity)
+      } catch let error {
+        print(error)
+      }
     }
   }
+
 }
 
 extension CityListViewController: UISearchBarDelegate {
@@ -135,7 +160,7 @@ extension CityListViewController: UISearchBarDelegate {
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as? CityTableViewCell
     let city = cities[indexPath.row]
-    cell?.favoriteCity = city
+    cell?.city = city
 
     return cell!
   }
@@ -155,7 +180,7 @@ extension CityListViewController: UISearchBarDelegate {
     guard let service = weatherService else { return }
     let detailViewController = CityDetailViewController(weatherService: service)
     let city = cities[indexPath.row]
-    detailViewController.cityName = city.name
+    detailViewController.city = city
     navigationController?.pushViewController(detailViewController, animated: true)
   }
 

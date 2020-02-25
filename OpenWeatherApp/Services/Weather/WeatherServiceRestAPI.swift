@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct WeatherServiceRestAPI: WeatherServiceType {
   private let weatherProvider: WeatherProviderType
@@ -15,8 +16,8 @@ struct WeatherServiceRestAPI: WeatherServiceType {
     self.weatherProvider = weatherProvider
   }
 
-  func cityWeather(for searchTerm: String, completion: @escaping (Result<City>) -> Void) {
-    weatherProvider.cityWeather(for: searchTerm, completion: completion)
+  func cityWeather(for latitude: CGFloat, longitude: CGFloat, completion: @escaping (Result<City>) -> Void) {
+    weatherProvider.cityWeather(for: latitude, longitude: longitude, completion: completion)
   }
 
   func fetchCities(for searchTerm: String, completion: @escaping (Result<WeatherResult>) -> Void) {

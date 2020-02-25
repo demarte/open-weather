@@ -9,8 +9,10 @@
 import UIKit
 
 final class CityDetailViewController: UIViewController {
-
   // MARK: - Properties
+  private var weatherService: WeatherServiceType?
+  var city: City?
+
   private lazy var cityLabel = createCustomLabel(with:
     "teste".localized,
                                                  ofSize: 18.0)
@@ -26,18 +28,15 @@ final class CityDetailViewController: UIViewController {
   }
 
   private let imageBackground: UIImageView = {
-    let image = UIImageView(image: UIImage(named: "clouds-background"))
+    let image = UIImageView(image: UIImage(named: "background"))
     image.translatesAutoresizingMaskIntoConstraints = false
     return image
   }()
 
-  private var weatherService: WeatherServiceType?
-  var cityName: String?
-
   // MARK: - View Life cycle
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    weather()
+    //    weather()
   }
 
   // MARK: - Initializers
@@ -73,20 +72,5 @@ final class CityDetailViewController: UIViewController {
       cityLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
       cityLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor)
     ])
-  }
-
-  // MARK: - Service Method
-  private func weather() {
-    guard let city = cityName else { return }
-    weatherService?.cityWeather(for: city, completion: { (result) in
-      switch result {
-      case .success(let city):
-        DispatchQueue.main.async {
-          print(city)
-        }
-      case .failure(let error):
-        print(error)
-      }
-    })
   }
 }

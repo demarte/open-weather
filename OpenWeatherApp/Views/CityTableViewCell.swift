@@ -9,13 +9,20 @@
 import UIKit
 
 final class CityTableViewCell: UITableViewCell {
+
+  enum Degree: String {
+    case fahrenheit = "F"
+    case celsius = "C"
+  }
+
   // MARK: - Properties
-  var favoriteCity: FavoriteCity? {
+  var city: City? {
     didSet {
-      cityLabelName.text = "\(favoriteCity?.name ?? "")"
-      temperatureLabel.text = favoriteCity?.temperature ?? "temp"
+      cityLabelName.text = "\(city?.name ?? "")"
+      temperatureLabel.text = "\(city?.weather.temperature ?? 0)\(labelDegree.rawValue)°"
     }
   }
+  private var labelDegree: Degree = .fahrenheit
   private let containerStackView = UIStackView()
   private let cityNameStackView = UIStackView()
 
