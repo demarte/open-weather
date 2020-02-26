@@ -15,8 +15,9 @@ struct CustomFont {
 }
 
 struct AddCityStrings {
-  static let navigationTitle = "Type city name".localized
+  static let navigationTitle = "Type the city name".localized
   static let searchBarPlaceHolder = "Search".localized
+  static let cityNotFound = "City not found".localized
 }
 
 struct SofttAskStrings {

@@ -6,7 +6,6 @@ final class AddCityTableViewCell: UITableViewCell {
     didSet {
       cityLabelName.text = "\(city?.name ?? ""), \(city?.country ?? "")"
       descriptionWeatherLabel.text = city?.iconStatus.first?.description
-      countryLabel.text = city?.country
       temperatureLabel.text = "\(city?.weather.temperature.convertKelvinToCelsius() ?? 0)°C"
     }
   }
@@ -21,26 +20,18 @@ final class AddCityTableViewCell: UITableViewCell {
     return label
   }()
 
-  private let countryLabel: UILabel = {
-    let label = UILabel()
-    label.textColor = .white
-    label.font = UIFont.systemFont(ofSize: 16)
-    label.textAlignment = .left
-    return label
-  }()
-
   private let descriptionWeatherLabel: UILabel = {
     let label = UILabel()
-    label.textColor = .white
-    label.font = UIFont.systemFont(ofSize: 16)
+    label.textColor = #colorLiteral(red: 0.5141925812, green: 0.5142051578, blue: 0.5141984224, alpha: 1)
+    label.font = UIFont.boldSystemFont(ofSize: 16)
     label.textAlignment = .left
     return label
   }()
 
   private let temperatureLabel: UILabel = {
     let label = UILabel()
-    label.textColor = .white
-    label.font = UIFont.systemFont(ofSize: 16)
+    label.textColor = #colorLiteral(red: 0.5141925812, green: 0.5142051578, blue: 0.5141984224, alpha: 1)
+    label.font = UIFont.boldSystemFont(ofSize: 16)
     label.textAlignment = .left
     return label
   }()
@@ -48,6 +39,7 @@ final class AddCityTableViewCell: UITableViewCell {
   override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
     addSubview(containerStackView)
+    backgroundColor = .black
     setUpContainerStackView()
     setUpCityNameStackView()
   }
@@ -60,7 +52,7 @@ final class AddCityTableViewCell: UITableViewCell {
     containerStackView.axis = .vertical
     containerStackView.spacing = 5
     containerStackView.addArrangedSubview(cityNameStackView)
-    containerStackView.addArrangedSubview(temperatureLabel)
+//    containerStackView.addArrangedSubview(temperatureLabel)
     containerStackView.translatesAutoresizingMaskIntoConstraints = false
     NSLayoutConstraint.activate([
       containerStackView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
@@ -76,7 +68,13 @@ final class AddCityTableViewCell: UITableViewCell {
     cityNameStackView.spacing = 5
     cityNameStackView.addArrangedSubview(cityLabelName)
     cityNameStackView.addArrangedSubview(descriptionWeatherLabel)
-    cityNameStackView.addArrangedSubview(countryLabel)
+    cityNameStackView.addArrangedSubview(temperatureLabel)
     cityNameStackView.translatesAutoresizingMaskIntoConstraints = false
+    NSLayoutConstraint.activate([
+        cityNameStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20.0),
+        cityNameStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20.0),
+        cityNameStackView.topAnchor.constraint(equalTo: self.topAnchor, constant: 20.0),
+        cityNameStackView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -20.0)
+    ])
   }
 }

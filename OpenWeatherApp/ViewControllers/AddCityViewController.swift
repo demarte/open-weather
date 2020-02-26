@@ -12,7 +12,7 @@ final class AddCityViewController: UITableViewController {
   // MARK: - Contants
   private struct Constants {
     static let emptyStateFontSize: CGFloat = 20.0
-    static let emptyStateMessage = "City not found".localized
+    static let emptyStateMessage = AddCityStrings.cityNotFound
   }
   // MARK: - Properties
   private var weatherService: WeatherServiceType?
@@ -64,11 +64,11 @@ final class AddCityViewController: UITableViewController {
   // MARK: - Service Method
   private func weatherService(searchTerm: String?) {
     guard let searchTerm = searchTerm else { return }
-    weatherService?.fetchCities(for: searchTerm, completion: { (result) in
+    weatherService?.fetchCities(for: searchTerm, completion: { result in
       switch result {
-      case .success(let value):
-        self.fetchedCities = value.cities
+      case .success(let data):
         DispatchQueue.main.async {
+          self.fetchedCities = data.list
           self.tableView.reloadData()
         }
       case .failure(let error):

@@ -7,16 +7,23 @@
 //
 
 import Foundation
-import UIKit
 
 enum WeatherEndpoint {
   case cityWeatherBySearchTerm(searchTerm: String)
-  case cityWeatherByCoordinates(lat: CGFloat, lon: CGFloat)
+  case cityWeatherByCoordinates(lat: Float, lon: Float)
+  case cityWeatherForecast(searchTerm: String)
 }
 
 extension WeatherEndpoint: EndpointType {
   var path: String {
-    return "weather"
+    switch self {
+    case .cityWeatherByCoordinates:
+      return "weather"
+    case .cityWeatherBySearchTerm:
+      return "find"
+    case .cityWeatherForecast:
+      return "forecast"
+    }
   }
 
   var method: Method {
@@ -30,6 +37,8 @@ extension WeatherEndpoint: EndpointType {
       parameters["lat"] = "\(lat)"
       parameters["lon"] = "\(lon)"
     case .cityWeatherBySearchTerm(let searchTerm):
+      parameters["q"] = searchTerm
+    case .cityWeatherForecast(let searchTerm):
       parameters["q"] = searchTerm
     }
     return parameters

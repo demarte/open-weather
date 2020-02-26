@@ -7,17 +7,19 @@
 //
 
 import Foundation
-import UIKit
 
 struct WeatherProviderRestAPI: WeatherProviderType {
   let weatherRequester = APIRequester<WeatherEndpoint>()
-  let citiesRequester = APIRequester<FetchCitiesEndpoint>()
 
-  func cityWeather(for latitude: CGFloat, longitude: CGFloat, completion: @escaping ((Result<City>) -> Void)) {
+  func cityWeather(latitude: Float, longitude: Float, completion: @escaping (Result<City>) -> Void) {
     weatherRequester.request(.cityWeatherByCoordinates(lat: latitude, lon: longitude), completion: completion)
   }
 
-  func fetchCities(for searchTerm: String, completion: @escaping ((Result<WeatherResult>) -> Void)) {
-    citiesRequester.request(.citiesBySearchTerm(searchTerm: searchTerm), completion: completion)
+  func fetchCities(for searchTerm: String, completion: @escaping (Result<OpenWeatherResponse<City>>) -> Void) {
+    weatherRequester.request(.cityWeatherBySearchTerm(searchTerm: searchTerm), completion: completion)
+  }
+
+  func weatherForecast(for searchTerm: String, completion: @escaping (Result<OpenWeatherResponse<City>>) -> Void) {
+    weatherRequester.request(.cityWeatherForecast(searchTerm: searchTerm), completion: completion)
   }
 }

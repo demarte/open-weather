@@ -89,8 +89,8 @@ final class CityListViewController: UITableViewController {
       case .success(let cities):
         cities.forEach { (favoriteCity) in
           self.weatherService?.cityWeather(
-            for: CGFloat(favoriteCity.lat),
-            longitude: CGFloat(favoriteCity.long),
+            latitude: favoriteCity.lat,
+            longitude: favoriteCity.long,
             completion: { (result) in
               switch result {
               case .success(let city):
@@ -109,14 +109,12 @@ final class CityListViewController: UITableViewController {
   }
 
   func save(city: City) {
-    if let persistence = persistenceService {
-      // 1 - get context
+    if let persistence = persistenceService, let name = city.name {
       let context = persistence.getContext()
-      // 2 - entity
       let favoriteCity = FavoriteCity(context: context)
-      favoriteCity.name = city.name
-      favoriteCity.lat = city.latitude
-      favoriteCity.long = city.longitude
+      favoriteCity.name = name
+      favoriteCity.lat = city.latitude!
+      favoriteCity.long = city.longitude!
       do {
         try persistence.saveContext()
         cities.append(city)
@@ -127,14 +125,12 @@ final class CityListViewController: UITableViewController {
   }
 
   private func delete(city: City) {
-    if let persistence = persistenceService {
-         // 1 - get context
+    if let persistence = persistenceService, let name = city.name {
          let context = persistence.getContext()
-         // 2 - entity
          let favoriteCity = FavoriteCity(context: context)
-         favoriteCity.name = city.name
-         favoriteCity.lat = city.latitude
-         favoriteCity.long = city.longitude
+         favoriteCity.name = name
+         favoriteCity.lat = city.latitude!
+         favoriteCity.long = city.longitude!
       do {
         try persistenceService?.delete(favoriteCity)
       } catch let error {
@@ -184,7 +180,10 @@ extension CityListViewController: UISearchBarDelegate {
     navigationController?.pushViewController(detailViewController, animated: true)
   }
 
-  override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+  override func tableView(
+    _ tableView: UITableView,
+    willDisplay cell: UITableViewCell,
+    forRowAt indexPath: IndexPath) {
     cell.backgroundColor = .clear
   }
 }

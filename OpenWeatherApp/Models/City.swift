@@ -13,6 +13,7 @@ struct City {
     case iconStatus = "weather"
     case weather = "main"
     case country = "sys"
+    case dateTime = "dt"
     case name, wind, coord
   }
 
@@ -29,20 +30,30 @@ struct City {
     case country
   }
 
-  let name: String
+  let name: String?
   let iconStatus: [IconStatus]
   let weather: Weather
   let windSpeed: Double
-  let latitude: Float
-  let longitude: Float
-  let country: String
+  let latitude: Float?
+  let longitude: Float?
+  let country: String?
+  let dateTime: Int?
 }
 
 extension City: Decodable {
   init(from decoder: Decoder) throws {
     let values = try decoder.container(keyedBy: CodingKeys.self)
 
-    name = try values.decode(String.self, forKey: .name)
+    if values.contains(.name) {
+      name = try values.decode(String.self, forKey: .name)
+    } else {
+      name = nil
+    }
+    if values.contains(.dateTime) {
+      dateTime = try values.decode(Int.self, forKey: .dateTime)
+    } else {
+      dateTime = nil
+    }
     iconStatus = try values.decode([IconStatus].self, forKey: .iconStatus)
     weather = try values.decode(Weather.self, forKey: .weather)
 
@@ -50,10 +61,19 @@ extension City: Decodable {
     windSpeed = try windContainer.decode(Double.self, forKey: .speed)
 
     let countryContainer = try values.nestedContainer(keyedBy: Country.self, forKey: .country)
-    country = try countryContainer.decode(String.self, forKey: .country)
+    if countryContainer.contains(.country) {
+       country = try countryContainer.decode(String.self, forKey: .country)
+    } else {
+      country = nil
+    }
 
-    let coordinates = try values.nestedContainer(keyedBy: Coordinates.self, forKey: .coord)
-    latitude = try coordinates.decode(Float.self, forKey: .latitude)
-    longitude = try coordinates.decode(Float.self, forKey: .longitude)
+    if values.contains(.coord) {
+      let coordinates = try values.nestedContainer(keyedBy: Coordinates.self, forKey: .coord)
+      latitude = try coordinates.decode(Float.self, forKey: .latitude)
+      longitude = try coordinates.decode(Float.self, forKey: .longitude)
+    } else {
+      latitude = nil
+      longitude = nil
+    }
   }
 }
