@@ -38,6 +38,29 @@ struct City {
   let longitude: Float?
   let country: String?
   let dateTime: Int?
+  let identifier = UUID().uuidString
+  var time: String {
+    guard let dateTime = self.dateTime else {
+      return ""
+    }
+    let date = Date(timeIntervalSince1970: TimeInterval(dateTime))
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "HH:mm"
+    if date.compare(Date()) == .orderedSame {
+      return "now"
+    } else {
+      return dateFormatter.string(from: date)
+    }
+  }
+  var date: String {
+    guard let dateTime = self.dateTime else {
+      return ""
+    }
+    let date = Date(timeIntervalSince1970: TimeInterval(dateTime))
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "MM/dd"
+    return dateFormatter.string(from: date)
+  }
 }
 
 extension City: Decodable {
@@ -62,7 +85,7 @@ extension City: Decodable {
 
     let countryContainer = try values.nestedContainer(keyedBy: Country.self, forKey: .country)
     if countryContainer.contains(.country) {
-       country = try countryContainer.decode(String.self, forKey: .country)
+      country = try countryContainer.decode(String.self, forKey: .country)
     } else {
       country = nil
     }
@@ -75,5 +98,17 @@ extension City: Decodable {
       latitude = nil
       longitude = nil
     }
+  }
+}
+
+extension City: Hashable {
+  func hash(into hasher: inout Hasher) {
+    hasher.combine(identifier)
+  }
+}
+
+extension City: Equatable {
+  static func == (lhs: City, rhs: City) -> Bool {
+    return lhs.identifier == rhs.identifier
   }
 }

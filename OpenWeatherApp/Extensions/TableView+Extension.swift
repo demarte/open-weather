@@ -26,7 +26,7 @@ extension UITableView {
       headerLabel.translatesAutoresizingMaskIntoConstraints = false
       headerLabel.textColor = Colors.text
       headerLabel.textAlignment = .center
-      headerLabel.font = UIFont(name: CustomFont.bold, size: Sizes.titleFont)
+      headerLabel.font = UIFont(name: Resources.CustomFont.bold, size: Sizes.titleFont)
       headerLabel.text = header
 
     let messageLabel = UILabel()
@@ -34,7 +34,7 @@ extension UITableView {
       messageLabel.textColor = Colors.text
       messageLabel.numberOfLines = 0
       messageLabel.textAlignment = .center
-      messageLabel.font = UIFont(name: CustomFont.regular, size: Sizes.bodyFont)
+      messageLabel.font = UIFont(name: Resources.CustomFont.regular, size: Sizes.bodyFont)
       messageLabel.text = message
 
     emptyView.addSubview(imageBackground)

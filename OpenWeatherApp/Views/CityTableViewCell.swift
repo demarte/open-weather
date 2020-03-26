@@ -9,81 +9,38 @@
 import UIKit
 
 final class CityTableViewCell: UITableViewCell {
-  // MARK: - Properties
-  var city: City? {
+  // MARK: - Properties -
+  var city: FavoriteCity? {
     didSet {
-      cityLabelName.text = "\(city?.name ?? "")"
-      temperatureLabel.text = "\(city?.weather.temperature.convertKelvinToCelsius() ?? 0)C°"
+      cityLabelName.text = city?.name
     }
   }
-
-  private let containerStackView = UIStackView()
-  private let cityNameStackView = UIStackView()
 
   private let cityLabelName: UILabel = {
     let label = UILabel()
     label.textColor = Colors.text
-    label.font = UIFont(name: CustomFont.semiBold, size: Sizes.subTitle)
+    label.font = UIFont(name: Resources.CustomFont.semiBold, size: Sizes.subTitle)
     label.textAlignment = .left
+    label.translatesAutoresizingMaskIntoConstraints = false
     return label
   }()
 
-  private let countryLabel: UILabel = {
-    let label = UILabel()
-    label.textColor = Colors.text
-    label.font = UIFont(name: CustomFont.regular, size: Sizes.bodyFont)
-    label.textAlignment = .left
-    return label
-  }()
-
-  private let descriptionWeatherLabel: UILabel = {
-    let label = UILabel()
-    label.textColor = Colors.text
-    label.font = UIFont(name: CustomFont.regular, size: Sizes.bodyFont)
-    label.textAlignment = .left
-    return label
-  }()
-
-  private let temperatureLabel: UILabel = {
-    let label = UILabel()
-    label.textColor = Colors.text
-    label.font = UIFont(name: CustomFont.regular, size: Sizes.bodyFont)
-    label.textAlignment = .left
-    return label
-  }()
-// MARK: - Initializers
+// MARK: - Initializers -
   override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
-    addSubview(containerStackView)
+    addSubview(cityLabelName)
     setUpContainerStackView()
-    setUpCityNameStackView()
   }
 
   required init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
-// MARK: - Set Up Views
+// MARK: - Set Up Views -
   private func setUpContainerStackView() {
-    containerStackView.axis = .horizontal
-    containerStackView.spacing = 5
-    containerStackView.addArrangedSubview(cityNameStackView)
-    containerStackView.addArrangedSubview(temperatureLabel)
-    containerStackView.translatesAutoresizingMaskIntoConstraints = false
-    NSLayoutConstraint.activate([
-      containerStackView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-      containerStackView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-      containerStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20.0),
-      containerStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20.0)
-    ])
-  }
 
-  private func setUpCityNameStackView() {
-    cityNameStackView.distribution = .equalSpacing
-    cityNameStackView.axis = .horizontal
-    cityNameStackView.spacing = 5
-    cityNameStackView.addArrangedSubview(cityLabelName)
-    cityNameStackView.addArrangedSubview(descriptionWeatherLabel)
-    cityNameStackView.addArrangedSubview(countryLabel)
-    cityNameStackView.translatesAutoresizingMaskIntoConstraints = false
+    NSLayoutConstraint.activate([
+      cityLabelName.centerYAnchor.constraint(equalTo: centerYAnchor),
+      cityLabelName.centerXAnchor.constraint(equalTo: centerXAnchor)
+    ])
   }
 }

@@ -8,6 +8,8 @@
 
 import UIKit
 
+// MARK: - Nav Bar Icon -
+
 extension UIViewController {
   func setUpNavigationItemImage() {
     let image = #imageLiteral(resourceName: "logo")
@@ -16,4 +18,26 @@ extension UIViewController {
 
     navigationItem.titleView = imageView
   }
+}
+
+// MARK: - Activity Indicator -
+
+private var activityIndicatorView: UIView?
+
+extension UIViewController {
+  func showActivityIndicator() {
+     activityIndicatorView = UIView(frame: self.view.bounds)
+     activityIndicatorView?.backgroundColor = Colors.background
+     let activityIndicator = UIActivityIndicatorView(style: .large)
+     activityIndicator.color = Colors.text
+     activityIndicator.center = activityIndicatorView!.center
+     activityIndicator.startAnimating()
+     activityIndicatorView?.addSubview(activityIndicator)
+     self.view.addSubview(activityIndicatorView!)
+   }
+
+   func stopActivityIndicator() {
+     activityIndicatorView?.removeFromSuperview()
+     activityIndicatorView = nil
+   }
 }

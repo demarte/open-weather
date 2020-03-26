@@ -17,5 +17,6 @@ struct Colors {
   static let secondaryOne = UIColor(named: "SecondaryOne")
   static let text = UIColor(named: "Text")
   static let textInversed = UIColor(named: "TextInversed")
-  static let textTransparent = UIColor(named: "TextTransparent")
+  static let transparent = UIColor(named: "TextTransparent")
+  static let clear = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0)
 }

@@ -21,4 +21,17 @@ struct Weather: Decodable {
   let humidity: Int
   let minimumTemperature: Double
   let maximumTemperature: Double
+  let identifier = UUID().uuidString
+}
+
+extension Weather: Hashable {
+  func hash(into hasher: inout Hasher) {
+    hasher.combine(identifier)
+  }
+}
+
+extension Weather: Equatable {
+  static func == (lhs: Weather, rhs: Weather) -> Bool {
+    return lhs.identifier == rhs.identifier
+  }
 }

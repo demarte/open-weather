@@ -18,4 +18,17 @@ struct IconStatus: Decodable {
   let type: String
   let description: String
   let path: String
+  let identifier = UUID().uuidString
+}
+
+extension IconStatus: Hashable {
+  func hash(into hasher: inout Hasher) {
+    hasher.combine(identifier)
+  }
+}
+
+extension IconStatus: Equatable {
+  static func == (lhs: IconStatus, rhs: IconStatus) -> Bool {
+    return lhs.identifier == rhs.identifier
+  }
 }

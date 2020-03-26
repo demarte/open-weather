@@ -11,11 +11,11 @@ import CoreData
 
 final class PersistenceProvider: PersistenceProviderType {
 
-  // MARK: - Singleton
+  // MARK: - Singleton -
   private init() {}
   static let shared = PersistenceProvider()
 
-  // MARK: - Core Data stack
+  // MARK: - Core Data stack -
 
    lazy var persistentContainer: NSPersistentContainer = {
      let container = NSPersistentContainer(name: "OpenWeatherApp")
@@ -27,7 +27,7 @@ final class PersistenceProvider: PersistenceProviderType {
      return container
    }()
 
-  // MARK: - Core Data context
+  // MARK: - Core Data context -
 
   lazy var context = persistentContainer.viewContext
 
@@ -35,7 +35,7 @@ final class PersistenceProvider: PersistenceProviderType {
     return context
   }
 
-  // MARK: - fetch
+  // MARK: - fetch -
 
   func fetch<T: NSManagedObject>(_ objectType: T.Type) -> Result<[T]> {
     let entityName = String(describing: objectType)
@@ -52,7 +52,7 @@ final class PersistenceProvider: PersistenceProviderType {
     }
   }
 
-  // MARK: - delete
+  // MARK: - delete -
 
   func delete<T: NSManagedObject>(_ object: T) throws {
     context.delete(object)
@@ -64,7 +64,7 @@ final class PersistenceProvider: PersistenceProviderType {
     }
   }
 
-  // MARK: - save
+  // MARK: - save -
 
   func saveContext() throws {
     if context.hasChanges {

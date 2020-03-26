@@ -1,7 +1,7 @@
 import UIKit
 
 final class AddCityTableViewCell: UITableViewCell {
-  // MARK: - Properties
+  // MARK: - Properties -
   var city: City? {
     didSet {
       cityLabelName.text = "\(city?.name ?? ""), \(city?.country ?? "")"
@@ -14,7 +14,7 @@ final class AddCityTableViewCell: UITableViewCell {
 
   private let cityLabelName: UILabel = {
     let label = UILabel()
-    label.textColor = .white
+    label.textColor = Colors.text
     label.font = UIFont.boldSystemFont(ofSize: 16)
     label.textAlignment = .left
     return label
@@ -22,7 +22,7 @@ final class AddCityTableViewCell: UITableViewCell {
 
   private let descriptionWeatherLabel: UILabel = {
     let label = UILabel()
-    label.textColor = #colorLiteral(red: 0.5141925812, green: 0.5142051578, blue: 0.5141984224, alpha: 1)
+    label.textColor = Colors.text
     label.font = UIFont.boldSystemFont(ofSize: 16)
     label.textAlignment = .left
     return label
@@ -30,36 +30,26 @@ final class AddCityTableViewCell: UITableViewCell {
 
   private let temperatureLabel: UILabel = {
     let label = UILabel()
-    label.textColor = #colorLiteral(red: 0.5141925812, green: 0.5142051578, blue: 0.5141984224, alpha: 1)
+    label.textColor = Colors.text
     label.font = UIFont.boldSystemFont(ofSize: 16)
     label.textAlignment = .left
     return label
   }()
-// MARK: - Initializers
+// MARK: - Initializers -
   override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
-    addSubview(containerStackView)
-    backgroundColor = .black
-    setUpContainerStackView()
-    setUpCityNameStackView()
+    setUpView()
   }
 
   required init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
-// MARK: - Set Up Views
-  private func setUpContainerStackView() {
-    containerStackView.axis = .vertical
-    containerStackView.spacing = 5
-    containerStackView.addArrangedSubview(cityNameStackView)
-//    containerStackView.addArrangedSubview(temperatureLabel)
-    containerStackView.translatesAutoresizingMaskIntoConstraints = false
-    NSLayoutConstraint.activate([
-      containerStackView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-      containerStackView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-      containerStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20.0),
-      containerStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20.0)
-    ])
+// MARK: - Set Up Views -
+  private func setUpView() {
+    addSubview(cityNameStackView)
+    backgroundColor = Colors.primaryOne
+    // TODO: - fix layout
+    setUpCityNameStackView()
   }
 
   private func setUpCityNameStackView() {

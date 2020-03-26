@@ -18,3 +18,7 @@
  */
 "Search" = "Search";
 "Type city name" = "Type a city name";
+"Today" = "Today";
+"Wind" = "Wind";
+"Pressure" = "Pressure";
+"Humidity" = "Humidity";

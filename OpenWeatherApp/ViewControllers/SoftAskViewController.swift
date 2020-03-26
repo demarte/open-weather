@@ -9,7 +9,7 @@
 import UIKit
 
 final class SoftAskViewController: UIViewController {
-  // MARK: - Properties
+  // MARK: - Properties -
   private var locationService: LocationManagerServiceType?
 
   private let imageBackground: UIImageView = {
@@ -23,9 +23,9 @@ final class SoftAskViewController: UIViewController {
   private let greetingLabel: UILabel = {
     let label = UILabel()
     label.translatesAutoresizingMaskIntoConstraints = false
-    label.text = SofttAskStrings.greeting
+    label.text = Resources.SofttAskStrings.greeting
     label.textColor = Colors.text
-    label.font = UIFont(name: CustomFont.bold, size: Sizes.titleFont)
+    label.font = UIFont(name: Resources.CustomFont.bold, size: Sizes.titleFont)
     label.numberOfLines = 0
     label.textAlignment = .center
     return label
@@ -34,9 +34,9 @@ final class SoftAskViewController: UIViewController {
   private let askLabel: UILabel = {
     let label = UILabel()
     label.translatesAutoresizingMaskIntoConstraints = false
-    label.text = SofttAskStrings.ask
+    label.text = Resources.SofttAskStrings.ask
     label.textColor = Colors.text
-    label.font = UIFont(name: CustomFont.regular, size: Sizes.bodyFont)
+    label.font = UIFont(name: Resources.CustomFont.regular, size: Sizes.bodyFont)
     label.numberOfLines = 0
     label.textAlignment = .center
     return label
@@ -45,8 +45,8 @@ final class SoftAskViewController: UIViewController {
   private let yesButton: UIButton = {
     let button = UIButton(type: .system)
     button.translatesAutoresizingMaskIntoConstraints = false
-    button.setTitle(SofttAskStrings.yesButton, for: .normal)
-    button.titleLabel?.font = UIFont(name: CustomFont.bold, size: Sizes.bodyFont)
+    button.setTitle(Resources.SofttAskStrings.yesButton, for: .normal)
+    button.titleLabel?.font = UIFont(name: Resources.CustomFont.bold, size: Sizes.bodyFont)
     button.setTitleColor(Colors.text, for: .normal)
     button.addTarget(self, action: #selector(handleYes), for: .touchUpInside)
     button.backgroundColor = Colors.secondaryOne
@@ -57,8 +57,8 @@ final class SoftAskViewController: UIViewController {
   private let maybeButton: UIButton = {
     let button = UIButton(type: .system)
     button.translatesAutoresizingMaskIntoConstraints = false
-    button.setTitle(SofttAskStrings.maybeButton, for: .normal)
-    button.titleLabel?.font = UIFont(name: CustomFont.bold, size: Sizes.bodyFont)
+    button.setTitle(Resources.SofttAskStrings.maybeButton, for: .normal)
+    button.titleLabel?.font = UIFont(name: Resources.CustomFont.bold, size: Sizes.bodyFont)
     button.addTarget(self, action: #selector(handleMaybe), for: .touchUpInside)
     button.setTitleColor(Colors.primaryOne, for: .normal)
     button.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0)
@@ -67,7 +67,7 @@ final class SoftAskViewController: UIViewController {
     button.layer.cornerRadius = Sizes.buttonCornerRadius
     return button
   }()
-  // MARK: - Initializers
+  // MARK: - Initializers -
   init(locationService: LocationManagerServiceType) {
     super.init(nibName: nil, bundle: nil)
     self.locationService = locationService
@@ -88,7 +88,7 @@ final class SoftAskViewController: UIViewController {
     setUpView()
     setUpStackView()
   }
-  // MARK: - Set up view and subViews
+  // MARK: - Set up view and subViews -
   private func setUpView() {
     view.addSubview(imageBackground)
     view.addSubview(stackView)
@@ -116,7 +116,7 @@ final class SoftAskViewController: UIViewController {
         -110)
     ])
   }
-  // MARK: - Functions
+  // MARK: - Functions -
   @objc private func handleYes() {
     locationService?.requestWhenInUseAuthorization(completion: {
       self.exit()

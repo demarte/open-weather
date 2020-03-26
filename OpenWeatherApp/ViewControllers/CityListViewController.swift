@@ -9,17 +9,17 @@
 import UIKit
 
 final class CityListViewController: UITableViewController {
-  // MARK: - Properties
+  // MARK: - Properties -
   private var locationService: LocationManagerServiceType?
   private var persistenceService: PersistenceServiceType?
   private var weatherService: WeatherServiceType?
-  private let cellId = CityListStrings.cellId
-  private var cities: [City] = [] {
+  private let cellId = Resources.CityListStrings.cellId
+  private var cities: [FavoriteCity] = [] {
     didSet {
       tableView.reloadData()
     }
   }
-  // MARK: - Initializers
+  // MARK: - Initializers -
   init(locationService: LocationManagerServiceType,
        persistenceService: PersistenceServiceType,
        weatherService: WeatherServiceType) {
@@ -34,7 +34,7 @@ final class CityListViewController: UITableViewController {
     super.init(coder: aDecoder)
     finishInit()
   }
-  // MARK: - View life cycle
+  // MARK: - View life cycle -
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -47,14 +47,14 @@ final class CityListViewController: UITableViewController {
     }
   }
 
-  // MARK: - SetUp View Controller
+  // MARK: - SetUp View Controller -
   func finishInit() {
     setUpNavigationItem()
     setUpTableView()
   }
 
   func setUpNavigationItem() {
-    navigationItem.title = CityListStrings.title
+    navigationItem.title = Resources.CityListStrings.title
     navigationItem.rightBarButtonItem = UIBarButtonItem(
       barButtonSystemItem: .add,
       target: self,
@@ -73,7 +73,7 @@ final class CityListViewController: UITableViewController {
     }
   }
 
-  // MARK: - Location service methods
+  // MARK: - Location Service -
 
   private func showLocationSoftAskIfNeeded() {
     let isNotDetermined = locationService?.checkAuthorizationStatusIsNotDetermined() ?? false
@@ -82,72 +82,58 @@ final class CityListViewController: UITableViewController {
     }
   }
 
-  // MARK: - Persistence service methods
+  // MARK: - Persistence Service -
   private func fetchFavoriteCities() {
+    self.showActivityIndicator()
     if let result = persistenceService?.fetch(FavoriteCity.self) {
       switch result {
       case .success(let cities):
-        cities.forEach { (favoriteCity) in
-          self.weatherService?.cityWeather(
-            latitude: favoriteCity.lat,
-            longitude: favoriteCity.long,
-            completion: { (result) in
-              switch result {
-              case .success(let city):
-                DispatchQueue.main.async {
-                  self.cities.append(city)
-                }
-              case .failure(let error):
-                print(error)
-              }
-          })
-        }
-      default:
-        return
+        self.cities = cities
+        self.stopActivityIndicator()
+      case .failure(let error):
+        print(error)
+        self.stopActivityIndicator()
+        //TODO: - error handle
       }
     }
   }
 
   func save(city: City) {
-    if let persistence = persistenceService, let name = city.name {
+    if let persistence = persistenceService,
+      let name = city.name,
+      let latitude = city.latitude,
+      let longitude = city.longitude {
       let context = persistence.getContext()
       let favoriteCity = FavoriteCity(context: context)
       favoriteCity.name = name
-      favoriteCity.lat = city.latitude!
-      favoriteCity.long = city.longitude!
+      favoriteCity.lat = latitude
+      favoriteCity.long = longitude
       do {
         try persistence.saveContext()
-        cities.append(city)
+        fetchFavoriteCities()
       } catch let error {
         print(error)
       }
     }
   }
 
-  private func delete(city: City) {
-    if let persistence = persistenceService, let name = city.name {
-         let context = persistence.getContext()
-         let favoriteCity = FavoriteCity(context: context)
-         favoriteCity.name = name
-         favoriteCity.lat = city.latitude!
-         favoriteCity.long = city.longitude!
-      do {
-        try persistenceService?.delete(favoriteCity)
-      } catch let error {
-        print(error)
-      }
+  private func delete(favoriteCity: FavoriteCity) {
+    do {
+      try persistenceService?.delete(favoriteCity)
+    } catch let error {
+      print(error)
     }
   }
 
 }
 
-extension CityListViewController: UISearchBarDelegate {
-  // MARK: - TableView Delegate and DataSource
+extension CityListViewController {
+  // MARK: - TableView Delegate and DataSource -
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     cities.count == 0 ?
       tableView.setUpTableViewBackground(
-        with: CityListStrings.emptyStateMessage,
-        header: CityListStrings.title, imageName: "background") : tableView.setUpTableViewBackground(
+        with: Resources.CityListStrings.emptyStateMessage,
+        header: Resources.CityListStrings.title, imageName: "background") : tableView.setUpTableViewBackground(
           with: "",
           header: "", imageName: "background")
     return cities.count
@@ -160,23 +146,23 @@ extension CityListViewController: UISearchBarDelegate {
 
     return cell!
   }
-  // MARK: - TableView EditingStyle
+  // MARK: - TableView EditingStyle -
   override func tableView(
     _ tableView: UITableView,
     commit editingStyle: UITableViewCell.EditingStyle,
     forRowAt indexPath: IndexPath) {
     if editingStyle == .delete {
       let city = cities[indexPath.row]
-      delete(city: city)
+      delete(favoriteCity: city)
       cities.remove(at: indexPath.row)
     }
   }
 
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     guard let service = weatherService else { return }
-    let detailViewController = CityDetailViewController(weatherService: service)
     let city = cities[indexPath.row]
-    detailViewController.city = city
+
+    let detailViewController = CityDetailViewController(weatherService: service, favoriteCity: city)
     navigationController?.pushViewController(detailViewController, animated: true)
   }
 
