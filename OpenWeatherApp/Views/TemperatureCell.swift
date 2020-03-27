@@ -33,13 +33,13 @@ final class TemperatureCell: UICollectionViewCell {
     addSubview(weatherImage)
     addSubview(temperatureLabel)
     timeLabel.translatesAutoresizingMaskIntoConstraints = false
-    timeLabel.font = UIFont(name: Resources.CustomFont.regular, size: Sizes.bodyFont)
+    timeLabel.font = UIFont(name: Resources.CustomFont.bold, size: Sizes.bodyFont)
     timeLabel.textColor = Colors.text
     temperatureLabel.translatesAutoresizingMaskIntoConstraints = false
-    temperatureLabel.font = UIFont(name: Resources.CustomFont.regular, size: Sizes.bodyFont)
+    temperatureLabel.font = UIFont(name: Resources.CustomFont.bold, size: Sizes.bodyFont)
     temperatureLabel.textColor = Colors.text
     dateLabel.translatesAutoresizingMaskIntoConstraints = false
-    dateLabel.font = UIFont(name: Resources.CustomFont.regular, size: Sizes.bodyFont)
+    dateLabel.font = UIFont(name: Resources.CustomFont.bold, size: Sizes.bodyFont)
     dateLabel.textColor = Colors.text
     weatherImage.translatesAutoresizingMaskIntoConstraints = false
     weatherImage.contentMode = .scaleAspectFit

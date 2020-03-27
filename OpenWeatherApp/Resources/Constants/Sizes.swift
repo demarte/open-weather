@@ -10,9 +10,9 @@ import Foundation
 import UIKit
 
 struct Sizes {
-  static let titleFont: CGFloat = 28.0
-  static let subTitle: CGFloat = 24.0
-  static let bodyFont: CGFloat = 22.0
+  static let titleFont: CGFloat = 24.0
+  static let subTitle: CGFloat = 20.0
+  static let bodyFont: CGFloat = 18.0
   static let buttonCornerRadius: CGFloat = 25.0
   static let buttonBorderWidth: CGFloat = 1.0
 }

@@ -41,3 +41,12 @@ extension UIViewController {
      activityIndicatorView = nil
    }
 }
+
+// MARK: - Error Message -
+
+extension UIViewController {
+  func showErrorMessage(serverMessage: String) {
+    let errorMessageView = ErrorMessageView(frame: self.view.bounds, serverMessage: serverMessage)
+    self.view.addSubview(errorMessageView)
+  }
+}

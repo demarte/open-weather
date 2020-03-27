@@ -2,6 +2,7 @@ import UIKit
 
 final class AddCityTableViewCell: UITableViewCell {
   // MARK: - Properties -
+  static let reuseIdentifier = String(describing: AddCityTableViewCell.self)
   var city: City? {
     didSet {
       cityLabelName.text = "\(city?.name ?? ""), \(city?.country ?? "")"
@@ -47,7 +48,7 @@ final class AddCityTableViewCell: UITableViewCell {
 // MARK: - Set Up Views -
   private func setUpView() {
     addSubview(cityNameStackView)
-    backgroundColor = Colors.primaryOne
+    backgroundColor = Colors.clear
     // TODO: - fix layout
     setUpCityNameStackView()
   }

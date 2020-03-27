@@ -17,7 +17,7 @@
  AddCityViewController
  */
 "Search" = "Search";
-"Type city name" = "Type a city name";
+"Enter city name" = "Enter city name";
 "Today" = "Today";
 "Wind" = "Wind";
 "Pressure" = "Pressure";

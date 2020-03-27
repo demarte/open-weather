@@ -13,12 +13,12 @@ final class CityListViewController: UITableViewController {
   private var locationService: LocationManagerServiceType?
   private var persistenceService: PersistenceServiceType?
   private var weatherService: WeatherServiceType?
-  private let cellId = Resources.CityListStrings.cellId
-  private var cities: [FavoriteCity] = [] {
+  var cities: [FavoriteCity] = [] {
     didSet {
       tableView.reloadData()
     }
   }
+
   // MARK: - Initializers -
   init(locationService: LocationManagerServiceType,
        persistenceService: PersistenceServiceType,
@@ -48,12 +48,12 @@ final class CityListViewController: UITableViewController {
   }
 
   // MARK: - SetUp View Controller -
-  func finishInit() {
+  private func finishInit() {
     setUpNavigationItem()
     setUpTableView()
   }
 
-  func setUpNavigationItem() {
+  private func setUpNavigationItem() {
     navigationItem.title = Resources.CityListStrings.title
     navigationItem.rightBarButtonItem = UIBarButtonItem(
       barButtonSystemItem: .add,
@@ -61,15 +61,24 @@ final class CityListViewController: UITableViewController {
       action: #selector(addFavoriteCity))
   }
 
-  func setUpTableView() {
-    tableView.register(CityTableViewCell.self, forCellReuseIdentifier: cellId)
+  private func setUpTableView() {
+    tableView.register(CityTableViewCell.self, forCellReuseIdentifier: CityTableViewCell.reuseIdentifier)
   }
 
   @objc private func addFavoriteCity() {
     if let service = weatherService {
       let addCityViewController = AddCityViewController(weatherService: service, cityListViewController: self)
       let navigationController = UINavigationController(rootViewController: addCityViewController)
-      present(navigationController, animated: true, completion: nil)
+      self.present(navigationController, animated: true, completion: nil)
+    }
+  }
+
+  // MARK: - Error Handle -
+
+  private func showError(serverMessage: String) {
+    DispatchQueue.main.async {
+      self.stopActivityIndicator()
+      self.showErrorMessage(serverMessage: serverMessage)
     }
   }
 
@@ -91,9 +100,7 @@ final class CityListViewController: UITableViewController {
         self.cities = cities
         self.stopActivityIndicator()
       case .failure(let error):
-        print(error)
-        self.stopActivityIndicator()
-        //TODO: - error handle
+         self.showError(serverMessage: error.localizedDescription)
       }
     }
   }
@@ -112,7 +119,7 @@ final class CityListViewController: UITableViewController {
         try persistence.saveContext()
         fetchFavoriteCities()
       } catch let error {
-        print(error)
+        showError(serverMessage: error.localizedDescription)
       }
     }
   }
@@ -121,29 +128,34 @@ final class CityListViewController: UITableViewController {
     do {
       try persistenceService?.delete(favoriteCity)
     } catch let error {
-      print(error)
+      showError(serverMessage: error.localizedDescription)
     }
   }
-
 }
 
+// MARK: - TableView Delegate and DataSource -
 extension CityListViewController {
-  // MARK: - TableView Delegate and DataSource -
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    cities.count == 0 ?
-      tableView.setUpTableViewBackground(
-        with: Resources.CityListStrings.emptyStateMessage,
-        header: Resources.CityListStrings.title, imageName: "background") : tableView.setUpTableViewBackground(
-          with: "",
-          header: "", imageName: "background")
+
+    var message = ""
+    var headerText = ""
+    let imageName = "background"
+
+    if cities.count == 0 {
+      message = Resources.CityListStrings.emptyStateMessage
+      headerText = Resources.CityListStrings.title
+    }
+
+    tableView.setUpTableViewBackground(with: message, header: headerText, imageName: imageName)
+
     return cities.count
   }
 
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as? CityTableViewCell
+    let cell = tableView.dequeueReusableCell(
+      withIdentifier: CityTableViewCell.reuseIdentifier, for: indexPath) as? CityTableViewCell
     let city = cities[indexPath.row]
     cell?.city = city
-
     return cell!
   }
   // MARK: - TableView EditingStyle -
@@ -157,6 +169,7 @@ extension CityListViewController {
       cities.remove(at: indexPath.row)
     }
   }
+  // MARK: - TableView Did Select Row -
 
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     guard let service = weatherService else { return }

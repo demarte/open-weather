@@ -8,7 +8,6 @@
 
 import UIKit
 
-// TODO: - fix layout
 final class CityDetailViewController: UIViewController {
   // MARK: - Properties -
   private var weatherService: WeatherServiceType?
@@ -115,36 +114,48 @@ final class CityDetailViewController: UIViewController {
   private func setUpImageBackGround() {
     if let weatherStatus = city?.iconStatus.first {
       imageBackground.image = UIImage(named: "\(weatherStatus.type.lowercased())-background")
+    } else {
+      imageBackground.image = UIImage(named: "background")
     }
   }
 
   // MARK: - Weather service -
   private func cityWeather() {
-    weatherService?.cityWeather(latitude: favoriteCity.lat, longitude: favoriteCity.long, completion: { result in
+    weatherService?.cityWeather(
+      latitude: favoriteCity.lat,
+      longitude: favoriteCity.long,
+      completion: { [weak self] result in
       switch result {
       case .success(let city):
-        self.city = city
-        self.forecastWeather { result in
-
+        self?.city = city
+        self?.forecastWeather { result in
           switch result {
           case .success(let data):
             DispatchQueue.main.async {
-              self.forecastWeekly = data.list
-              self.stopActivityIndicator()
+              self?.forecastWeekly = data.list
+              self?.stopActivityIndicator()
             }
           case .failure(let error):
-            // TODO: error handle
-            print(error)
+            self?.showError(serverMessage: error.localizedDescription)
           }
         }
       case .failure(let error):
-        print(error)
+        self?.showError(serverMessage: error.localizedDescription)
       }
     })
-
   }
+
   private func forecastWeather(completion: @escaping (Result<OpenWeatherResponse<City>>) -> Void) {
     weatherService?.weatherForecast(for: favoriteCity.name, completion: completion)
+  }
+
+  // MARK: - Error Handle -
+
+  private func showError(serverMessage: String) {
+    DispatchQueue.main.async {
+      self.stopActivityIndicator()
+      self.showErrorMessage(serverMessage: serverMessage)
+    }
   }
 }
 
@@ -154,8 +165,6 @@ extension CityDetailViewController {
   private func setUpCollectionView() {
     collectionView = UICollectionView(frame: view.frame, collectionViewLayout: configureCollectionView())
     collectionView.backgroundColor = Colors.clear
-    collectionView.layer.borderWidth = 1.0
-    collectionView.layer.borderColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
     collectionView.translatesAutoresizingMaskIntoConstraints = false
     collectionView.register(TemperatureCell.self, forCellWithReuseIdentifier: TemperatureCell.reusableIdentifier)
     configureDataSource()
@@ -170,7 +179,7 @@ extension CityDetailViewController {
 
       let item = NSCollectionLayoutItem(layoutSize: itemSize)
       let groupSize = NSCollectionLayoutSize(
-        widthDimension: .absolute(200),
+        widthDimension: .absolute(150),
         heightDimension: .absolute(300))
 
       let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
@@ -254,16 +263,16 @@ extension CityDetailViewController {
       collectionView.topAnchor.constraint(equalTo: weekdayLabel.bottomAnchor, constant: inset),
       collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
       collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-      collectionView.heightAnchor.constraint(equalToConstant: 320),
+      collectionView.heightAnchor.constraint(equalToConstant: 180),
       pressureLabel.leadingAnchor.constraint(equalTo: margins.leadingAnchor),
       pressureLabel.heightAnchor.constraint(equalToConstant: 32),
-      pressureLabel.topAnchor.constraint(equalTo: collectionView.bottomAnchor, constant: inset),
+      pressureLabel.topAnchor.constraint(equalTo: collectionView.bottomAnchor),
       humidityLabel.leadingAnchor.constraint(equalTo: margins.leadingAnchor),
       humidityLabel.heightAnchor.constraint(equalToConstant: 32),
-      humidityLabel.topAnchor.constraint(equalTo: pressureLabel.bottomAnchor, constant: inset),
+      humidityLabel.topAnchor.constraint(equalTo: pressureLabel.bottomAnchor),
       windDescriptionLabel.leadingAnchor.constraint(equalTo: margins.leadingAnchor),
       windDescriptionLabel.heightAnchor.constraint(equalToConstant: 32),
-      windDescriptionLabel.topAnchor.constraint(equalTo: humidityLabel.bottomAnchor, constant: inset)
+      windDescriptionLabel.topAnchor.constraint(equalTo: humidityLabel.bottomAnchor)
     ])
   }
 }

@@ -10,6 +10,7 @@ import UIKit
 
 final class CityTableViewCell: UITableViewCell {
   // MARK: - Properties -
+  static let reuseIdentifier = String(describing: CityTableViewCell.self)
   var city: FavoriteCity? {
     didSet {
       cityLabelName.text = city?.name
@@ -42,5 +43,14 @@ final class CityTableViewCell: UITableViewCell {
       cityLabelName.centerYAnchor.constraint(equalTo: centerYAnchor),
       cityLabelName.centerXAnchor.constraint(equalTo: centerXAnchor)
     ])
+  }
+
+  override func setSelected(_ selected: Bool, animated: Bool) {
+    super.setSelected(selected, animated: animated)
+    if selected {
+      backgroundColor = Colors.primaryOne
+    } else {
+      backgroundColor = Colors.clear
+    }
   }
 }

@@ -17,7 +17,7 @@ struct Resources {
   }
 
   struct AddCityStrings {
-    static let navigationTitle = "Type the city name".localized
+    static let navigationTitle = "Enter city name".localized
     static let searchBarPlaceHolder = "Search".localized
     static let cityNotFound = "City not found".localized
   }
@@ -32,12 +32,11 @@ struct Resources {
   struct CityListStrings {
     static let emptyStateMessage = "Tap the plus button to add a city".localized
     static let title = "Favorite Cities".localized
-    static let cellId = "CityCell"
   }
 
   struct CityDetailsStrings {
     static let weekdaysLabel = "Today".localized
-    static let pressureLabel = "Pressure.".localized + ":"
+    static let pressureLabel = "Pressure".localized + ":"
     static let windLabel = "Wind".localized + ":"
     static let humidityLabel = "Humidity".localized + ":"
   }

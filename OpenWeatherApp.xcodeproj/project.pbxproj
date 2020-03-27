@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		22146649242CDB8200B60EF0 /* TemperatureCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22146648242CDB8200B60EF0 /* TemperatureCell.swift */; };
 		221597C622150BA9006D8318 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221597C522150BA9006D8318 /* Constants.swift */; };
+		221AE2C2242E6E2C00084380 /* ErrorMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221AE2C1242E6E2C00084380 /* ErrorMessageView.swift */; };
 		221E4BE22238CC2B008B0D6A /* PersistenceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221E4BE12238CC2B008B0D6A /* PersistenceError.swift */; };
 		221EA75F2215A82E00F5510D /* Method.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221EA75E2215A82E00F5510D /* Method.swift */; };
 		221EA7612215A8E800F5510D /* EndpointType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221EA7602215A8E800F5510D /* EndpointType.swift */; };
@@ -63,6 +64,7 @@
 /* Begin PBXFileReference section */
 		22146648242CDB8200B60EF0 /* TemperatureCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperatureCell.swift; sourceTree = "<group>"; };
 		221597C522150BA9006D8318 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		221AE2C1242E6E2C00084380 /* ErrorMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMessageView.swift; sourceTree = "<group>"; };
 		221E4BE12238CC2B008B0D6A /* PersistenceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceError.swift; sourceTree = "<group>"; };
 		221EA75E2215A82E00F5510D /* Method.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Method.swift; sourceTree = "<group>"; };
 		221EA7602215A8E800F5510D /* EndpointType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndpointType.swift; sourceTree = "<group>"; };
@@ -323,6 +325,7 @@
 				22ECBE6323805F99005B9962 /* AddCityTableViewCell.swift */,
 				225E4956237B70FA006059A5 /* CityTableViewCell.swift */,
 				22146648242CDB8200B60EF0 /* TemperatureCell.swift */,
+				221AE2C1242E6E2C00084380 /* ErrorMessageView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -506,6 +509,7 @@
 				22D897CF222F11F8008430E0 /* PersistenceService.swift in Sources */,
 				22A7857822133D77009C0B5B /* IconStatus.swift in Sources */,
 				222CBF8C236E1B08006B5CA5 /* Deboucer.swift in Sources */,
+				221AE2C2242E6E2C00084380 /* ErrorMessageView.swift in Sources */,
 				2284D038237F3766000E518E /* Resources.swift in Sources */,
 				22D897B9222F060F008430E0 /* PersistenceProvider.swift in Sources */,
 				228F6706237EFF0300A9D459 /* CityDetailViewController.swift in Sources */,
