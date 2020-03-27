@@ -49,7 +49,6 @@ final class AddCityTableViewCell: UITableViewCell {
   private func setUpView() {
     addSubview(cityNameStackView)
     backgroundColor = Colors.clear
-    // TODO: - fix layout
     setUpCityNameStackView()
   }
 

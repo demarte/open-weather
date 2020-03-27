@@ -23,7 +23,10 @@ struct WeatherServiceRestAPI: WeatherServiceType {
     weatherProvider.fetchCities(for: searchTerm, completion: completion)
   }
 
-  func weatherForecast(for searchTerm: String, completion: @escaping (Result<OpenWeatherResponse<City>>) -> Void) {
-    weatherProvider.weatherForecast(for: searchTerm, completion: completion)
+  func weatherForecast(
+    latitude: Float,
+    longitude: Float,
+    completion: @escaping (Result<OpenWeatherResponse<City>>) -> Void) {
+    weatherProvider.weatherForecast(latitude: latitude, longitude: longitude, completion: completion)
   }
 }

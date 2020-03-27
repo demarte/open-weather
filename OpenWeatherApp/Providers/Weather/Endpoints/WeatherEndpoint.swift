@@ -11,7 +11,7 @@ import Foundation
 enum WeatherEndpoint {
   case cityWeatherBySearchTerm(searchTerm: String)
   case cityWeatherByCoordinates(lat: Float, lon: Float)
-  case cityWeatherForecast(searchTerm: String)
+  case cityWeatherForecast(lat: Float, lon: Float)
 }
 
 extension WeatherEndpoint: EndpointType {
@@ -38,8 +38,9 @@ extension WeatherEndpoint: EndpointType {
       parameters["lon"] = "\(lon)"
     case .cityWeatherBySearchTerm(let searchTerm):
       parameters["q"] = searchTerm
-    case .cityWeatherForecast(let searchTerm):
-      parameters["q"] = searchTerm
+    case .cityWeatherForecast(let lat, let lon):
+      parameters["lat"] = "\(lat)"
+      parameters["lon"] = "\(lon)"
     }
     return parameters
   }

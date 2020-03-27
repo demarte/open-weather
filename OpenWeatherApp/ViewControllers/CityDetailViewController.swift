@@ -146,7 +146,7 @@ final class CityDetailViewController: UIViewController {
   }
 
   private func forecastWeather(completion: @escaping (Result<OpenWeatherResponse<City>>) -> Void) {
-    weatherService?.weatherForecast(for: favoriteCity.name, completion: completion)
+    weatherService?.weatherForecast(latitude: favoriteCity.lat, longitude: favoriteCity.long, completion: completion)
   }
 
   // MARK: - Error Handle -
