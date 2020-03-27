@@ -15,7 +15,18 @@ struct WeatherServiceRestAPI: WeatherServiceType {
     self.weatherProvider = weatherProvider
   }
 
-  func cityWeather(for searchTerm: String, completion: @escaping (Result<City>) -> Void) {
-    weatherProvider.cityWeather(for: searchTerm, completion: completion)
+  func cityWeather(latitude: Float, longitude: Float, completion: @escaping (Result<City>) -> Void) {
+    weatherProvider.cityWeather(latitude: latitude, longitude: longitude, completion: completion)
+  }
+
+  func fetchCities(for searchTerm: String, completion: @escaping (Result<OpenWeatherResponse<City>>) -> Void) {
+    weatherProvider.fetchCities(for: searchTerm, completion: completion)
+  }
+
+  func weatherForecast(
+    latitude: Float,
+    longitude: Float,
+    completion: @escaping (Result<OpenWeatherResponse<City>>) -> Void) {
+    weatherProvider.weatherForecast(latitude: latitude, longitude: longitude, completion: completion)
   }
 }

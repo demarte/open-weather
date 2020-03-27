@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct IconStatus: Codable {
+struct IconStatus: Decodable {
   enum CodingKeys: String, CodingKey {
     case type = "main"
     case path = "icon"
@@ -18,4 +18,17 @@ struct IconStatus: Codable {
   let type: String
   let description: String
   let path: String
+  let identifier = UUID().uuidString
+}
+
+extension IconStatus: Hashable {
+  func hash(into hasher: inout Hasher) {
+    hasher.combine(identifier)
+  }
+}
+
+extension IconStatus: Equatable {
+  static func == (lhs: IconStatus, rhs: IconStatus) -> Bool {
+    return lhs.identifier == rhs.identifier
+  }
 }

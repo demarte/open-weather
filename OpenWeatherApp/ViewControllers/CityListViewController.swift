@@ -8,28 +8,25 @@
 
 import UIKit
 
-final class CityListViewController: UIViewController {
-  // MARK: - Properties
-
+final class CityListViewController: UITableViewController {
+  // MARK: - Properties -
   private var locationService: LocationManagerServiceType?
   private var persistenceService: PersistenceServiceType?
-
-  private let cellId = "CityCell"
-  private var cities: [FavoriteCity] = [] {
+  private var weatherService: WeatherServiceType?
+  var cities: [FavoriteCity] = [] {
     didSet {
       tableView.reloadData()
     }
   }
 
-  private let tableView = UITableView()
-
-  // MARK: - Init
-
-  init(locationService: LocationManagerServiceType, persistenceService: PersistenceServiceType) {
+  // MARK: - Initializers -
+  init(locationService: LocationManagerServiceType,
+       persistenceService: PersistenceServiceType,
+       weatherService: WeatherServiceType) {
     super.init(nibName: nil, bundle: nil)
     self.locationService = locationService
     self.persistenceService = persistenceService
-
+    self.weatherService = weatherService
     finishInit()
   }
 
@@ -37,8 +34,7 @@ final class CityListViewController: UIViewController {
     super.init(coder: aDecoder)
     finishInit()
   }
-
-  // MARK: - View life cycle
+  // MARK: - View life cycle -
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -51,37 +47,42 @@ final class CityListViewController: UIViewController {
     }
   }
 
-  // MARK: - SetUp View Controller
-
-  func finishInit() {
-    setUpView()
+  // MARK: - SetUp View Controller -
+  private func finishInit() {
     setUpNavigationItem()
     setUpTableView()
   }
 
-  func setUpNavigationItem() {
-    navigationItem.title = Constants.title.localized
+  private func setUpNavigationItem() {
+    navigationItem.title = Resources.CityListStrings.title
     navigationItem.rightBarButtonItem = UIBarButtonItem(
       barButtonSystemItem: .add,
       target: self,
       action: #selector(addFavoriteCity))
   }
 
-  func setUpView() {
-    view.addSubview(tableView)
+  private func setUpTableView() {
+    tableView.register(CityTableViewCell.self, forCellReuseIdentifier: CityTableViewCell.reuseIdentifier)
   }
 
-  func setUpTableView() {
-    let screenSizeWidth = UIScreen.main.bounds.width
-    let screenSizeHeight = UIScreen.main.bounds.height
-
-    tableView.frame = CGRect(x: 0, y: 0, width: screenSizeWidth, height: screenSizeHeight)
-    tableView.delegate = self
-    tableView.dataSource = self
-    tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
+  @objc private func addFavoriteCity() {
+    if let service = weatherService {
+      let addCityViewController = AddCityViewController(weatherService: service, cityListViewController: self)
+      let navigationController = UINavigationController(rootViewController: addCityViewController)
+      self.present(navigationController, animated: true, completion: nil)
+    }
   }
 
-  // MARK: - Location service methods
+  // MARK: - Error Handle -
+
+  private func showError(serverMessage: String) {
+    DispatchQueue.main.async {
+      self.stopActivityIndicator()
+      self.showErrorMessage(serverMessage: serverMessage)
+    }
+  }
+
+  // MARK: - Location Service -
 
   private func showLocationSoftAskIfNeeded() {
     let isNotDetermined = locationService?.checkAuthorizationStatusIsNotDetermined() ?? false
@@ -90,68 +91,98 @@ final class CityListViewController: UIViewController {
     }
   }
 
-  // MARK: - Persistence service methods
-
-  @objc private func addFavoriteCity() {
-//    let context = persistenceService?.getContext()
-//    favoriteCity = FavoriteCity(context: context)
-//    favoriteCity?.name = "New York"
-//    favoriteCity?.temperature = "14"
-//    if let city = favoriteCity {
-//       cities.append(city)
-//    }
-  }
-
+  // MARK: - Persistence Service -
   private func fetchFavoriteCities() {
+    self.showActivityIndicator()
     if let result = persistenceService?.fetch(FavoriteCity.self) {
       switch result {
-      case .success(let value):
-        value.forEach { city in
-          cities.append(city)
-        }
-      default:
-        print("nothing")
+      case .success(let cities):
+        self.cities = cities
+        self.stopActivityIndicator()
+      case .failure(let error):
+         self.showError(serverMessage: error.localizedDescription)
       }
+    }
+  }
+
+  func save(city: City) {
+    if let persistence = persistenceService,
+      let name = city.name,
+      let latitude = city.latitude,
+      let longitude = city.longitude {
+      let context = persistence.getContext()
+      let favoriteCity = FavoriteCity(context: context)
+      favoriteCity.name = name
+      favoriteCity.lat = latitude
+      favoriteCity.long = longitude
+      do {
+        try persistence.saveContext()
+        fetchFavoriteCities()
+      } catch let error {
+        showError(serverMessage: error.localizedDescription)
+      }
+    }
+  }
+
+  private func delete(favoriteCity: FavoriteCity) {
+    do {
+      try persistenceService?.delete(favoriteCity)
+    } catch let error {
+      showError(serverMessage: error.localizedDescription)
     }
   }
 }
 
-extension CityListViewController: UITableViewDelegate, UITableViewDataSource {
+// MARK: - TableView Delegate and DataSource -
+extension CityListViewController {
+  override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
-  // MARK: - TableView Delegate and DataSource
+    var message = ""
+    var headerText = ""
+    let imageName = "background"
 
-  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    cities.count == 0 ?
-      tableView.setUpEmptyState(with: Constants.emptyStateMessage,
-                                ofSize: Constants.emptyStateFontSize) : tableView.restore()
+    if cities.count == 0 {
+      message = Resources.CityListStrings.emptyStateMessage
+      headerText = Resources.CityListStrings.title
+    }
+
+    tableView.setUpTableViewBackground(with: message, header: headerText, imageName: imageName)
+
     return cities.count
   }
 
-  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = UITableViewCell(style: .value1, reuseIdentifier: cellId)
-
+  override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    let cell = tableView.dequeueReusableCell(
+      withIdentifier: CityTableViewCell.reuseIdentifier, for: indexPath) as? CityTableViewCell
     let city = cities[indexPath.row]
-    cell.textLabel?.text = city.name
-    cell.detailTextLabel?.text = "\(city.temperature)°"
-
-    return cell
+    cell?.city = city
+    return cell!
   }
-
-  // MARK: - TableView EditingStyle
-
-  func tableView(_ tableView: UITableView,
-                 commit editingStyle: UITableViewCell.EditingStyle,
-                 forRowAt indexPath: IndexPath) {
+  // MARK: - TableView EditingStyle -
+  override func tableView(
+    _ tableView: UITableView,
+    commit editingStyle: UITableViewCell.EditingStyle,
+    forRowAt indexPath: IndexPath) {
     if editingStyle == .delete {
+      let city = cities[indexPath.row]
+      delete(favoriteCity: city)
       cities.remove(at: indexPath.row)
     }
   }
+  // MARK: - TableView Did Select Row -
 
-  // MARK: - Constants
+  override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    guard let service = weatherService else { return }
+    let city = cities[indexPath.row]
 
-  private struct Constants {
-    static let emptyStateFontSize: CGFloat = 24.0
-    static let emptyStateMessage = "Tap the plus to add a city"
-    static let title = "Favorite Cities"
+    let detailViewController = CityDetailViewController(weatherService: service, favoriteCity: city)
+    navigationController?.pushViewController(detailViewController, animated: true)
+  }
+
+  override func tableView(
+    _ tableView: UITableView,
+    willDisplay cell: UITableViewCell,
+    forRowAt indexPath: IndexPath) {
+    cell.backgroundColor = .clear
   }
 }

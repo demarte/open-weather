@@ -9,5 +9,10 @@
 import Foundation
 
 protocol WeatherServiceType {
-  func cityWeather(for searchTerm: String, completion: @escaping (Result<City>) -> Void)
+  func cityWeather(latitude: Float, longitude: Float, completion: @escaping (Result<City>) -> Void)
+  func fetchCities(for searchTerm: String, completion: @escaping (Result<OpenWeatherResponse<City>>) -> Void)
+  func weatherForecast(
+    latitude: Float,
+    longitude: Float,
+    completion: @escaping (Result<OpenWeatherResponse<City>>) -> Void)
 }

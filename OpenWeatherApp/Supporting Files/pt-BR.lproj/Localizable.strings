@@ -10,3 +10,15 @@
 "Can you provide us your location in order to get the current weather?" = "Poderia nos fornecer a sua localizaçāo para obter o clima atual? ";
 "Yes" = "Sim";
 "Maybe later" = "Mais tarde";
+"Tap the plus button to add a city" = "Toque no botão + para adicionar uma cidade";
+"Favorite Cities" = "Cidades favotitas";
+"City not found" = "Cidade não encontrada";
+/**
+AddCityViewController
+*/
+"Search" = "Buscar";
+"Enter city name" = "Digite o nome da cidade";
+"Today" = "Hoje";
+"Wind" = "Vento";
+"Pressure" = "Presão";
+"Humidity" = "Humidade";

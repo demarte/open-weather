@@ -10,3 +10,15 @@
 "Can you provide us your location in order to get the current weather?" = "Can you provide us your location in order to get the current weather?";
 "Yes" = "Yes";
 "Maybe later" = "Maybe later";
+"Tap the plus button to add a city" = "Tap the plus button to add a city";
+"Favorite Cities" = "Favorite Cities";
+"City not found" = "City not found";
+/**
+ AddCityViewController
+ */
+"Search" = "Search";
+"Enter city name" = "Enter city name";
+"Today" = "Today";
+"Wind" = "Wind";
+"Pressure" = "Pressure";
+"Humidity" = "Humidity";

@@ -9,9 +9,20 @@
 import Foundation
 
 struct WeatherProviderRestAPI: WeatherProviderType {
-  let apiRequester = APIRequester<WeatherEndpoint>()
+  let weatherRequester = APIRequester<WeatherEndpoint>()
 
-  func cityWeather(for searchTerm: String, completion: @escaping ((Result<City>) -> Void)) {
-    apiRequester.request(.cityWeatherBySearchTerm(searchTerm: searchTerm), completion: completion)
+  func cityWeather(latitude: Float, longitude: Float, completion: @escaping (Result<City>) -> Void) {
+    weatherRequester.request(.cityWeatherByCoordinates(lat: latitude, lon: longitude), completion: completion)
+  }
+
+  func fetchCities(for searchTerm: String, completion: @escaping (Result<OpenWeatherResponse<City>>) -> Void) {
+    weatherRequester.request(.cityWeatherBySearchTerm(searchTerm: searchTerm), completion: completion)
+  }
+
+  func weatherForecast(
+    latitude: Float,
+    longitude: Float,
+    completion: @escaping (Result<OpenWeatherResponse<City>>) -> Void) {
+    weatherRequester.request(.cityWeatherForecast(lat: latitude, lon: longitude), completion: completion)
   }
 }
