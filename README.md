@@ -1,6 +1,6 @@
 # Open Weather
 
-This project refers to an IOS App where you can find out the current weather by typing the city name or location coordinates.
+This project refers to an iOS App where you can find out the current weather by typing the city name or location coordinates.
 
 ## Motivation
 
